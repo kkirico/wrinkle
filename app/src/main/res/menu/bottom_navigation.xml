@@ -2,16 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_tab"
-        android:title="메인" />
+        android:id="@+id/newsfeed_tab"
+        android:title="뉴스피드" />
     <item
-        android:id="@+id/diary_tab"
+        android:id="@+id/writing_tab"
 
-        android:title="다이어리" />
+        android:title="글쓰기" />
     <item
-        android:id="@+id/promise_tab"
-        android:title="나의 다짐" />
+        android:id="@+id/sufing_tab"
+        android:title="파도타기" />
     <item
-        android:id="@+id/tip_tab"
-        android:title="금연 팁" />
+        android:id="@+id/notification_tab"
+        android:title="알림" />
+    <item
+        android:id="@+id/mypage_tab"
+        android:title="마이페이지"
+        />
 </menu>
