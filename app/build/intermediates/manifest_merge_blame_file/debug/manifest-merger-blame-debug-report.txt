@@ -15,7 +15,7 @@
 12        android:allowBackup="true"
 12-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8f8ab13dc8f4e84e14a8bb3d9ac92bc4/core-1.0.1/AndroidManifest.xml:22:18-86
+13-->[androidx.core:core:1.0.1] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\8f8ab13dc8f4e84e14a8bb3d9ac92bc4\core-1.0.1\AndroidManifest.xml:22:18-86
 14        android:debuggable="true"
 15        android:icon="@mipmap/ic_launcher"
 15-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:7:9-43

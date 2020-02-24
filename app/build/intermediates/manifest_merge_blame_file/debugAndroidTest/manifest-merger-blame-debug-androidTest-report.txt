@@ -23,8 +23,8 @@
 14-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger3735215961617740520.xml:12:22-65
 15
 16    <uses-permission android:name="android.permission.REORDER_TASKS" />
-16-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:24:5-72
-16-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:24:22-69
+16-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:24:5-72
+16-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:24:22-69
 17
 18    <application android:debuggable="true" >
 18-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger3735215961617740520.xml:7:5-9:19
@@ -34,42 +34,42 @@
 19-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger3735215961617740520.xml:8:23-57
 20
 21        <activity
-21-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:27:9-33:20
+21-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:27:9-33:20
 22            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
-22-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:28:13-99
+22-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:28:13-99
 23            android:theme="@style/InstrumentationActivityInvokerBootstrapActivityTheme" >
-23-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:29:13-88
+23-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:29:13-88
 24            <intent-filter>
-24-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:30:13-32:29
+24-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:30:13-32:29
 25                <action android:name="android.intent.action.MAIN" />
-25-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:17-69
-25-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:25-66
+25-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:17-69
+25-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:25-66
 26            </intent-filter>
 27        </activity>
 28        <activity
-28-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:34:9-40:20
+28-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:34:9-40:20
 29            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
-29-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:35:13-95
+29-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:35:13-95
 30            android:theme="@style/InstrumentationActivityInvokerEmptyActivityTheme" >
-30-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:36:13-84
+30-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:36:13-84
 31            <intent-filter>
-31-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:30:13-32:29
+31-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:30:13-32:29
 32                <action android:name="android.intent.action.MAIN" />
-32-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:17-69
-32-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:25-66
+32-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:17-69
+32-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:25-66
 33            </intent-filter>
 34        </activity>
 35        <activity
-35-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:41:9-47:20
+35-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:41:9-47:20
 36            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
-36-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:42:13-103
+36-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:42:13-103
 37            android:theme="@style/InstrumentationActivityInvokerFloatingActivityTheme" >
-37-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:43:13-87
+37-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:43:13-87
 38            <intent-filter>
-38-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:30:13-32:29
+38-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:30:13-32:29
 39                <action android:name="android.intent.action.MAIN" />
-39-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:17-69
-39-->[androidx.test:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/61e5e7e4c8c93d43f3f06edf87848d5f/core-1.1.0/AndroidManifest.xml:31:25-66
+39-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:17-69
+39-->[androidx.test:core:1.1.0] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\61e5e7e4c8c93d43f3f06edf87848d5f\core-1.1.0\AndroidManifest.xml:31:25-66
 40            </intent-filter>
 41        </activity>
 42    </application>

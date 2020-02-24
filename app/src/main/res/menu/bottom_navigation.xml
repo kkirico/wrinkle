@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/newsfeed_tab"
+        android:title="뉴스피드" />
+    <item
+        android:id="@+id/writing_tab"
+
+        android:title="글쓰기" />
+    <item
+        android:id="@+id/sufing_tab"
+        android:title="파도타기" />
+    <item
+        android:id="@+id/notification_tab"
+        android:title="알림" />
+    <item
+        android:id="@+id/mypage_tab"
+        android:title="마이페이지"
+        />
+</menu>
