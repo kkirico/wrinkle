@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.out xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,19 +16,18 @@
         app:layout_constraintTop_toTopOf="parent" >
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view"
             android:layout_gravity="center"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardBackgroundColor="black">
+            card_view:cardCornerRadius="4dp">
             <TextView
                 android:id="@+id/info_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
       </FrameLayout>
@@ -54,4 +53,4 @@
 
 
 
-</androidx.constraintlayout.widget.out>
+</androidx.constraintlayout.widget.ConstraintLayout>
