@@ -15,18 +15,20 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.flagtag.wrinkle.LoginActivity">
             <!--  인텐트 필터로 첫 실행 액티비티 선정 -->
-        <activity android:name="com.flagtag.wrinkle.MainActivity">
-            >>>>>>> a955c51816bbaf00c99857b8040c7544e86823b5
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
         <activity android:name="com.flagtag.wrinkle.MainActivity">
 
+
         </activity>
+        <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
+
+
+
     </application>
 
 </manifest>
