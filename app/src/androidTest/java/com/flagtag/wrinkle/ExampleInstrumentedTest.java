@@ -1,4 +1,4 @@
-package com.example.wrinkle;
+package com.flagtag.wrinkle;
 
 import android.content.Context;
 
