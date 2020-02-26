@@ -1,4 +1,4 @@
-package com.example.wrinkle;
+package com.flagtag.wrinkle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.wrinkle.storyFragment.OnListFragmentInteractionListener;
-import com.example.wrinkle.dummy.DummyContent.DummyItem;
+import com.flagtag.wrinkle.storyFragment.OnListFragmentInteractionListener;
+import com.flagtag.wrinkle.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 

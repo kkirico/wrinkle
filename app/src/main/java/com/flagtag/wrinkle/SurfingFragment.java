@@ -1,4 +1,4 @@
-package com.example.wrinkle;
+package com.flagtag.wrinkle;
 
 
 import android.content.Context;
@@ -14,10 +14,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationFragment extends Fragment {
+public class SurfingFragment extends Fragment {
 
 
-    public NotificationFragment() {
+    public SurfingFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_notification, container, false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_surfing, container, false);
 
 
         return rootView;

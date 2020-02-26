@@ -1,4 +1,4 @@
-package com.example.wrinkle;
+package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,10 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wrinkle.dummy.DummyContent;
-import com.example.wrinkle.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.flagtag.wrinkle.dummy.DummyContent;
+import com.flagtag.wrinkle.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.

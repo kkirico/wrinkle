@@ -1,7 +1,7 @@
-package com.example.wrinkle;
+package com.flagtag.wrinkle;
+
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,18 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NotificationFragment extends Fragment {
 
-public class NewsfeedFragment extends Fragment {
 
-    public NewsfeedFragment() {
+    public NotificationFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_newsfeed, container, false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_notification, container, false);
 
 
         return rootView;

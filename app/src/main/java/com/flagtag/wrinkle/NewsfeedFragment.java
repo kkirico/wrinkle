@@ -1,5 +1,4 @@
-package com.example.wrinkle;
-
+package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,22 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SurfingFragment extends Fragment {
 
+public class NewsfeedFragment extends Fragment {
 
-    public SurfingFragment() {
+    public NewsfeedFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_surfing, container, false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_newsfeed, container, false);
 
 
         return rootView;
