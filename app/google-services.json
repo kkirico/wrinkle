@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "35401488632",
+    "firebase_url": "https://wrinkle-bd1e4.firebaseio.com",
+    "project_id": "wrinkle-bd1e4",
+    "storage_bucket": "wrinkle-bd1e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35401488632:android:4627e32d8c0368c2d1030d",
+        "android_client_info": {
+          "package_name": "com.flagtag.wrinkle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35401488632-b7n6eob8i5kmt1ik3hnrcnpmstvkbg6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIcOri06t8sJFZUf0FFGZy9RxibgaTX-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35401488632-b7n6eob8i5kmt1ik3hnrcnpmstvkbg6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

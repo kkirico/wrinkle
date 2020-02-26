@@ -1,47 +1,183 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.wrinkle"
+3    package="com.flagtag.wrinkle"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="15"
-8-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml
+8        android:minSdkVersion="16"
+8-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml
+9-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 10
-11    <application
-11-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:5:5-19:19
-12        android:allowBackup="true"
-12-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.0.1] C:\Users\j03y1\.gradle\caches\transforms-2\files-2.1\8f8ab13dc8f4e84e14a8bb3d9ac92bc4\core-1.0.1\AndroidManifest.xml:22:18-86
-14        android:debuggable="true"
-15        android:icon="@mipmap/ic_launcher"
-15-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:7:9-43
-16        android:label="@string/app_name"
-16-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:8:9-41
-17        android:roundIcon="@mipmap/ic_launcher_round"
-17-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:9:9-54
-18        android:supportsRtl="true"
-18-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:10:9-35
-19        android:testOnly="true"
-20        android:theme="@style/AppTheme" >
-20-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:11:9-40
-21        <activity android:name="com.example.wrinkle.MainActivity" >
-21-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:12:9-18:20
-21-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:12:19-47
-22            <intent-filter>
-22-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:13:13-17:29
-23                <action android:name="android.intent.action.MAIN" />
-23-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:14:17-69
-23-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:14:25-66
-24
-25                <category android:name="android.intent.category.LAUNCHER" />
-25-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:16:17-77
-25-->C:\Users\j03y1\Documents\wrinkle\app\src\main\AndroidManifest.xml:16:27-74
-26            </intent-filter>
-27        </activity>
-28    </application>
-29
-30</manifest>
+11    <!-- 인터넷 권한 선언 -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:7:5-66
+12-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:7:22-64
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:24:5-79
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:24:22-76
+14    <uses-permission android:name="android.permission.WAKE_LOCK" />
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:25:5-68
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:25:22-65
+15    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+15-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:26:5-110
+15-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:26:22-107
+16    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+16-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:5-82
+16-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:22-79
+17
+18    <application
+18-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:9:5-30:19
+19        android:allowBackup="true"
+19-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:10:9-35
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:22:18-86
+21        android:debuggable="true"
+22        android:icon="@mipmap/ic_launcher"
+22-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:11:9-43
+23        android:label="@string/app_name"
+23-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:12:9-41
+24        android:roundIcon="@mipmap/ic_launcher_round"
+24-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:13:9-54
+25        android:supportsRtl="true"
+25-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:14:9-35
+26        android:testOnly="true"
+27        android:theme="@style/AppTheme" >
+27-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:15:9-40
+28        <activity android:name="com.flagtag.wrinkle.LoginActivity" >
+28-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:16:9-18:20
+28-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:16:19-67
+29        </activity>
+30        <activity android:name="com.flagtag.wrinkle.MainActivity" >
+30-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:19:9-26:20
+30-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:19:19-66
+31
+32            <!-- 인텐트 필터로 첫 실행 액티비티 선정 -->
+33            <intent-filter>
+33-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:21:13-25:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:22:17-69
+34-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:22:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:24:17-77
+36-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:24:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
+39-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:27:9-73
+39-->/Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:27:19-70
+40
+41        <receiver
+41-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:29:9-33:20
+42            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+42-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:30:13-85
+43            android:enabled="true"
+43-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:31:13-35
+44            android:exported="false" >
+44-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:32:13-37
+45        </receiver>
+46        <receiver
+46-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:34:9-42:20
+47            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+47-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:35:13-100
+48            android:enabled="true"
+48-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:36:13-35
+49            android:exported="true"
+49-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:37:13-36
+50            android:permission="android.permission.INSTALL_PACKAGES" >
+50-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:38:13-69
+51            <intent-filter>
+51-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:39:13-41:29
+52                <action android:name="com.android.vending.INSTALL_REFERRER" />
+52-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:40:17-79
+52-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:40:25-76
+53            </intent-filter>
+54        </receiver>
+55
+56        <service
+56-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:44:9-47:40
+57            android:name="com.google.android.gms.measurement.AppMeasurementService"
+57-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:45:13-84
+58            android:enabled="true"
+58-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:46:13-35
+59            android:exported="false" />
+59-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:47:13-37
+60        <service
+60-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:48:9-52:72
+61            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+61-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:49:13-87
+62            android:enabled="true"
+62-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:50:13-35
+63            android:exported="false"
+63-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:51:13-37
+64            android:permission="android.permission.BIND_JOB_SERVICE" />
+64-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:52:13-69
+65        <service
+65-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:27:9-33:19
+66            android:name="com.google.firebase.components.ComponentDiscoveryService"
+66-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:28:13-84
+67            android:directBootAware="true"
+67-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+68            android:exported="false" >
+68-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:29:13-37
+69            <meta-data
+69-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:30:13-32:85
+70                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+70-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:31:17-139
+71                android:value="com.google.firebase.components.ComponentRegistrar" />
+71-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:32:17-82
+72            <meta-data
+72-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
+73                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+73-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
+74                android:value="com.google.firebase.components.ComponentRegistrar" />
+74-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
+75        </service>
+76
+77        <receiver
+77-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
+78            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+78-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
+79            android:exported="true"
+79-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
+80            android:permission="com.google.android.c2dm.permission.SEND" >
+80-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
+81            <intent-filter>
+81-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
+82                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+82-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
+82-->[com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
+83            </intent-filter>
+84        </receiver>
+85
+86        <provider
+86-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+87            android:name="com.google.firebase.provider.FirebaseInitProvider"
+87-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+88            android:authorities="com.flagtag.wrinkle.firebaseinitprovider"
+88-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+89            android:exported="false"
+89-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+90            android:initOrder="100" />
+90-->[com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+91
+92        <activity
+92-->[com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+93            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+93-->[com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+94            android:exported="false"
+94-->[com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+95            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+95-->[com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+96
+97        <meta-data
+97-->[com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+98            android:name="com.google.android.gms.version"
+98-->[com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+99            android:value="@integer/google_play_services_version" />
+99-->[com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+100    </application>
+101
+102</manifest>
