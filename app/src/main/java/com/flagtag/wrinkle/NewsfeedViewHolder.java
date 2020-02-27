@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import org.w3c.dom.Text;
 
@@ -20,7 +21,7 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
     LinearLayout tagged_user_container;
     TextView title;
     TextView writing_date;
-    ViewPager image_container;
+    ViewPager2 image_container;
     TextView content_writing;
     LinearLayout tags_container;
     Button likes;

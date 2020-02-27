@@ -4,26 +4,58 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
     //뉴스피드에 각각의 아이템의 데이터를 가지고 있는 arrayList
-    private ArrayList<NewsfeedItem> items;
+    private ArrayList<Post> items;
 
     //position번째 item에 해당하는 데이터를 뷰홀더의 item view에 표시
     @Override
     public void onBindViewHolder(@NonNull NewsfeedViewHolder holder, int position) {
         //position번째 아이템을 arrayList에서 가져옴
-        NewsfeedItem item = items.get(position);
+        Post item = items.get(position);
 
         //뷰홀더에 넣음
-        holder.writing_date.setText("어쩌고 저쩌고");
+
+        //태그된 사용자를 넣는것.
+        for(int i=0; i<item.taggedUsers.size(); i++){
+            Button button = new Button(holder.tagged_user_container.getContext());
+            button.setText(item.taggedUsers.get(i).getName());
+            holder.tagged_user_container.addView(button);
+        }
+        //title
+        holder.title.setText(item.title);
+        //날짜
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        holder.writing_date.setText(format.format(item.writingDate));
+        //이미지
+        PhotoAdapter imageAdapter = new PhotoAdapter(item.imageUrls);
+        holder.image_container.setAdapter(imageAdapter);
+        //내용(글)
+        holder.content_writing.setText(item.contentWriting);
+        //태그
+        for(int i=0; i<item.tags.size(); i++){
+            TextView textView = new TextView(holder.tags_container.getContext());
+            textView.setText(item.tags.get(i));
+            holder.tags_container.addView(textView);
+        }
+        //좋아요
+        holder.likes.setText("좋아요 "+ item.likes);
+        //댓글
+        holder.comments.setText("댓글 "+item.comments);
+
         //동적으로 넣을 것들은 새로 생성해서 넣어줘야함.
     }
 
