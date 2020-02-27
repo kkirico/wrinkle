@@ -86,12 +86,10 @@ lint/tmp/
 
 app/build/
 app/app.iml
-app/app.iml
 app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/AndroidManifest.xml
 app/build/intermediates/instant_app_manifest/debug/AndroidManifest.xml
 app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
 app/build/intermediates/manifest_merge_blame_file/debugAndroidTest/manifest-merger-blame-debug-androidTest-report.txt
 app/build/intermediates/merged_manifests/debug/AndroidManifest.xml
 app/build/outputs/logs/manifest-merger-debug-report.txt
-app/app.iml
 local.properties
