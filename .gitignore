@@ -93,3 +93,7 @@ app/build/intermediates/manifest_merge_blame_file/debugAndroidTest/manifest-merg
 app/build/intermediates/merged_manifests/debug/AndroidManifest.xml
 app/build/outputs/logs/manifest-merger-debug-report.txt
 local.properties
+app/build/outputs/logs/manifest-merger-debug-report.txt
+app/build/intermediates/merged_manifests/debug/AndroidManifest.xml
+app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+app/build/intermediates/instant_app_manifest/debug/AndroidManifest.xml
