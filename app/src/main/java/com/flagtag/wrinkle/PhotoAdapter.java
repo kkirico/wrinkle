@@ -47,10 +47,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
+        ImageView image_part;
         public PhotoViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            image_part = itemView.findViewById(R.id.image_part);
         }
     }
 }

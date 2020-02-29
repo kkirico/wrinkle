@@ -16,10 +16,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.relex.circleindicator.CircleIndicator3;
+
 public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
     //뉴스피드에 각각의 아이템의 데이터를 가지고 있는 arrayList
     private ArrayList<Post> items;
+
+    public NewsfeedAdapter() {
+        this.items = items = new ArrayList<>();;
+    }
 
     //position번째 item에 해당하는 데이터를 뷰홀더의 item view에 표시
     @Override
@@ -40,9 +46,15 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //날짜
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         holder.writing_date.setText(format.format(item.writingDate));
-        //이미지
+
+        //이미지 (뷰페이저 부분)
         PhotoAdapter imageAdapter = new PhotoAdapter(item.imageUrls);
-        holder.image_container.setAdapter(imageAdapter);
+        holder.image_viewpager.setAdapter(imageAdapter);
+
+        CircleIndicator3 indicator = holder.indicator;
+        indicator.setViewPager(holder.image_viewpager);
+        imageAdapter.registerAdapterDataObserver(indicator.getAdapterDataObserver());
+
         //내용(글)
         holder.content_writing.setText(item.contentWriting);
         //태그
@@ -76,5 +88,9 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void addItem(Post post){
+        items.add(post);
     }
 }
