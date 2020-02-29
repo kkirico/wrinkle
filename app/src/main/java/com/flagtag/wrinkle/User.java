@@ -7,11 +7,17 @@ public class User {
     String name;
     Date birthday;
 
+    //리사이클러뷰 실험을 위해서 그냥 생성자 이렇게 해놓음.
+    public User() {
+        this.user_number = 1;
+        this.name = "name";
+        this.birthday = new Date();
+    }
 
     /*
-    ==========================================================
-    Getter와 Setter
-     */
+        ==========================================================
+        Getter와 Setter
+         */
     public int getUser_number() {
         return user_number;
     }
