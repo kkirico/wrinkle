@@ -18,10 +18,26 @@ public class Post {
     String contentWriting;
     ArrayList<String> tags;
 
+
+    public Post() {
+        taggedUsers = new ArrayList<User>();
+        taggedUsers.add(new User());
+        writer = new User();
+        postNumber = 1;
+        title = "title";
+        writingDate = new Date();
+        realDate = new Date();
+        imageUrls = new ArrayList<>();
+        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
+        contentWriting = "contents.....";
+        tags = new ArrayList<>();
+        tags.add("tag1");
+    }
+
     /*
-    ==========================================================
-    Getter와 Setter
-     */
+        ==========================================================
+        Getter와 Setter
+         */
     public ArrayList<User> getTaggedUsers() {
         return taggedUsers;
     }
