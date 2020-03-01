@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         //fragmentTransaction으로 fragment 추가, 변경 등의 작업을 할 수 있다.
         fragmentTransaction = fragmentManager.beginTransaction();
         //activity_main의 main_container를 newsfeedFragment로 바꾼다.
-        fragmentTransaction.replace(R.id.main_container, newsfeedFragment);
+        //commitAllowingStateLoss()까지 하면 처음 실행할 때 기본으로 실행된다.
+        fragmentTransaction.replace(R.id.main_container, newsfeedFragment).commitAllowingStateLoss();
 
         bottomNavigationView = findViewById(R.id.bottom_Navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());

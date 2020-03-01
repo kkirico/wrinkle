@@ -29,6 +29,8 @@ public class Post {
         realDate = new Date();
         imageUrls = new ArrayList<>();
         imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
+        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
+        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
         contentWriting = "contents.....";
         tags = new ArrayList<>();
         tags.add("tag1");

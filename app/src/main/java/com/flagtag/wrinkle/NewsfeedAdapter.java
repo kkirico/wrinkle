@@ -60,7 +60,8 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //태그
         for(int i=0; i<item.tags.size(); i++){
             TextView textView = new TextView(holder.tags_container.getContext());
-            textView.setText(item.tags.get(i));
+            textView.setText("#"+item.tags.get(i));
+            textView.setTextSize(20);
             holder.tags_container.addView(textView);
         }
         //좋아요

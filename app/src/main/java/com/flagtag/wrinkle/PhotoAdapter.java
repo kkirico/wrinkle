@@ -1,11 +1,14 @@
 package com.flagtag.wrinkle;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +28,9 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     @NonNull
     @Override
     public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_layout, parent,false);
+        Context context = parent.getContext() ;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
+        View view = inflater.inflate(R.layout.image_layout, parent, false) ;
 
         return new PhotoViewHolder(view);
     }
@@ -48,9 +53,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image_part;
+        ConstraintLayout image_layout;
         public PhotoViewHolder(@NonNull View itemView) {
             super(itemView);
             image_part = itemView.findViewById(R.id.image_part);
+            image_layout = itemView.findViewById(R.id.image_layout);
         }
     }
 }
