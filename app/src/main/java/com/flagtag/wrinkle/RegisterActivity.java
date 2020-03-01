@@ -1,7 +1,6 @@
 package com.flagtag.wrinkle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class RegisterActivity extends AppCompatActivity {
