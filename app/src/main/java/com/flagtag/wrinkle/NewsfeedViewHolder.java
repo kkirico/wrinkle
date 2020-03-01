@@ -3,6 +3,7 @@ package com.flagtag.wrinkle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
     Button likes;
     Button comments;
     CircleIndicator3 indicator;
+    SeekBar time_bar;
     public NewsfeedViewHolder(@NonNull View itemView) {
 
         super(itemView);
@@ -35,5 +37,6 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
         likes = itemView.findViewById(R.id.likes);
         comments = itemView.findViewById(R.id.comments);
         indicator = itemView.findViewById(R.id.indicator);
+        time_bar = itemView.findViewById(R.id.time_bar);
     }
 }
