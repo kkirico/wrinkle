@@ -6,9 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,10 +23,19 @@ public class MainActivity extends AppCompatActivity {
     private WritingFragment writingFragment;
     private BottomNavigationView bottomNavigationView;
     FragmentTransaction fragmentTransaction;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            startRegisterActivity();
+        }
+        findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
+
+
 
         fragmentManager = getSupportFragmentManager();
 
@@ -76,5 +88,26 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
+
     }
+
+
+    View.OnClickListener onClickListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()) {
+                case R.id.logoutBtn:
+                    FirebaseAuth.getInstance().signOut();
+                    startRegisterActivity();
+                    break;
+            }
+        }
+    };
+
+    private void startRegisterActivity(){
+        Intent intent = new Intent( this,RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -13,8 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.flagtag.wrinkle.MainActivity"/>
-        <activity android:name=".RegisterActivity">
+        <activity android:name="com.flagtag.wrinkle.MainActivity">
             <!--  인텐트 필터로 첫 실행 액티비티 선정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +23,9 @@
             </intent-filter>
 
         </activity >
+        <activity android:name="com.flagtag.wrinkle.loginActivity"/>
+        <activity android:name=".RegisterActivity"/>
+
 
 
     </application>

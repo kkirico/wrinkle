@@ -2,10 +2,12 @@ package com.flagtag.wrinkle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,8 +29,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.registerButton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoLoginBtn).setOnClickListener(onClickListener);
     }
 
+
+    @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -43,6 +48,9 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.registerButton:
                     signup();
                 break;
+                case R.id.gotoLoginBtn:
+                    startLoginActivity();
+                    break;
 
             }
         }
@@ -50,30 +58,47 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void signup() {
 
-        String email= ((EditText) findViewById(R.id.registerEmail)).getText().toString();
-        String password= ((EditText) findViewById(R.id.registerPassword)).getText().toString();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        String email = ((EditText) findViewById(R.id.registerEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.registerPassword)).getText().toString();
+        String passwordCheck = ((EditText) findViewById(R.id.registerPasswordCheck)).getText().toString();
+        if (email.length()>0 && password.length()>0 &&passwordCheck.length()>0) {
+            //비밀번호 확인
+            if (password.equals(passwordCheck)) {
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
+                    //화원가입 실행 부분
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
+                            startToast("회원가입 성공!");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //UI
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-
+                            if (task.getException() != null) {
+                                startToast(task.getException().toString());
+                            }
                             //UI
                         }
-
-                        // ...
                     }
                 });
-    }
+            } else {
+                Toast.makeText(this, " 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
 
+
+            }
+        }
+        else{
+            startToast("이메일 또는 비밀번호가 입력되지 않았습니다.");
+        }
+    }
+    //토스트 메시지띄우는 함수
+    private void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+    }
+    private void startLoginActivity(){
+        Intent intent = new Intent(RegisterActivity.this,loginActivity.class);
+        startActivity(intent);
+    }
 }
 
 
