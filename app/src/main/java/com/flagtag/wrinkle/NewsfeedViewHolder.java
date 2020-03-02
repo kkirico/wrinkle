@@ -1,5 +1,6 @@
 package com.flagtag.wrinkle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -7,6 +8,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -24,6 +26,7 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
     Button comments;
     CircleIndicator3 indicator;
     SeekBar time_bar;
+    ConstraintLayout timelinebar_container;
     public NewsfeedViewHolder(@NonNull View itemView) {
 
         super(itemView);
@@ -38,5 +41,8 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
         comments = itemView.findViewById(R.id.comments);
         indicator = itemView.findViewById(R.id.indicator);
         time_bar = itemView.findViewById(R.id.time_bar);
+        timelinebar_container = itemView.findViewById(R.id.timelinebar_container);
+
+        Log.d("text", content_writing.getText().toString());
     }
 }

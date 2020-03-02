@@ -2,6 +2,7 @@ package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -50,7 +51,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         long birthdayTimeStamp=0;
         long contentDateTimeStamp=0;
         try {
-            todayTimeStamp = format.parse(todayDate).getTime();
+            todayTimeStamp = format.parse(todayDate).getTime()/(60*60*24*1000);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -58,7 +59,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             //생일 날짜 구하기
         String birthdayDate = format.format(item.writer.birthday);
         try {
-            birthdayTimeStamp = format.parse(birthdayDate).getTime();
+            birthdayTimeStamp = format.parse(birthdayDate).getTime()/(60*60*24*1000);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -66,12 +67,23 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             //글 내용 날짜 구하기
         String contentDate = format.format(item.realDate);
         try {
-            contentDateTimeStamp = format.parse(contentDate).getTime();
+            contentDateTimeStamp = format.parse(contentDate).getTime()/(60*60*24*1000);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.time_bar.setProgress((int)((contentDateTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp)*100));
-        holder.time_bar.getParent()
+        double a =(((double)contentDateTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp))*100;
+        holder.time_bar.setProgress((int)a);
+
+        int height = holder.timelinebar_container.getHeight();
+        int width = holder.timelinebar_container.getWidth();
+
+        holder.time_bar.setRotation(90);
+        holder.time_bar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
 
         //태그된 사용자를 넣는것.
@@ -121,6 +133,9 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         View view = inflater.inflate(R.layout.newsfeed_cardview_layout, parent, false) ;
         //뷰홀더 붙여줌.
         NewsfeedViewHolder vh = new NewsfeedViewHolder(view) ;
+
+        int width = vh.timelinebar_container.getWidth();
+        int height = vh.timelinebar_container.getHeight();
 
         return vh ;
     }
