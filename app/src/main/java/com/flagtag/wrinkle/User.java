@@ -1,5 +1,9 @@
 package com.flagtag.wrinkle;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class User {
@@ -9,9 +13,15 @@ public class User {
 
     //리사이클러뷰 실험을 위해서 그냥 생성자 이렇게 해놓음.
     public User() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         this.user_number = 1;
         this.name = "name";
-        this.birthday = new Date();
+        try {
+            this.birthday = dateFormat.parse("1994-03-14");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /*

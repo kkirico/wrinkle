@@ -1,5 +1,8 @@
 package com.flagtag.wrinkle;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +29,12 @@ public class Post {
         postNumber = 1;
         title = "title";
         writingDate = new Date();
-        realDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            realDate = dateFormat.parse("2010-01-29");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         imageUrls = new ArrayList<>();
         imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
         imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");

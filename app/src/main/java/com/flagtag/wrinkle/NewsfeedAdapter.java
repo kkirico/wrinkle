@@ -2,6 +2,7 @@ package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,9 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import me.relex.circleindicator.CircleIndicator3;
 
@@ -33,7 +39,52 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //position번째 아이템을 arrayList에서 가져옴
         Post item = items.get(position);
 
-        //뷰홀더에 넣음
+        //타임바 부분
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        format.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+
+            //오늘 날짜 구하기
+        Calendar calendar = Calendar.getInstance();
+        Date today = new Date(calendar.getTimeInMillis());
+        String todayDate = format.format(today);
+        long todayTimeStamp=0;
+        long birthdayTimeStamp=0;
+        long contentDateTimeStamp=0;
+        try {
+            todayTimeStamp = format.parse(todayDate).getTime()/(60*60*24*1000);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+            //생일 날짜 구하기
+        String birthdayDate = format.format(item.writer.birthday);
+        try {
+            birthdayTimeStamp = format.parse(birthdayDate).getTime()/(60*60*24*1000);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+            //글 내용 날짜 구하기
+        String contentDate = format.format(item.realDate);
+        try {
+            contentDateTimeStamp = format.parse(contentDate).getTime()/(60*60*24*1000);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        double a =(((double)contentDateTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp))*100;
+        holder.time_bar.setProgress((int)a);
+
+        int height = holder.timelinebar_container.getHeight();
+        int width = holder.timelinebar_container.getWidth();
+
+        holder.time_bar.setRotation(90);
+        holder.time_bar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
 
         //태그된 사용자를 넣는것.
         for(int i=0; i<item.taggedUsers.size(); i++){
@@ -44,7 +95,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //title
         holder.title.setText(item.title);
         //날짜
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         holder.writing_date.setText(format.format(item.writingDate));
 
         //이미지 (뷰페이저 부분)
@@ -83,15 +134,20 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //뷰홀더 붙여줌.
         NewsfeedViewHolder vh = new NewsfeedViewHolder(view) ;
 
+        int width = vh.timelinebar_container.getWidth();
+        int height = vh.timelinebar_container.getHeight();
+
         return vh ;
     }
 
     @Override
     public int getItemCount() {
+
         return items.size();
     }
 
     public void addItem(Post post){
+
         items.add(post);
     }
 }
