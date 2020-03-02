@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:text="Wrinkle Register"
         android:textColor="@android:color/black"
@@ -38,7 +38,7 @@
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/registerPasswordTest"
+            android:id="@+id/registerPasswordCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -50,5 +50,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="회원가입" />
+
+        <Button
+            android:id="@+id/gotoLoginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인" />
     </LinearLayout>
 </LinearLayout>
