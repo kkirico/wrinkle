@@ -44,6 +44,11 @@ public class NewsfeedFragment extends Fragment {
         newsfeedAdapter.addItem(new Post());
         newsfeedAdapter.addItem(new Post());
         newsfeedAdapter.addItem(new Post());
+        newsfeedAdapter.addItem(new Post());
+        newsfeedAdapter.addItem(new Post());
+        newsfeedAdapter.addItem(new Post());
+        newsfeedAdapter.addItem(new Post());
+        newsfeedAdapter.addItem(new Post());
 
         recyclerView.setAdapter(newsfeedAdapter);
 

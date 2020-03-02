@@ -36,6 +36,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
     //position번째 item에 해당하는 데이터를 뷰홀더의 item view에 표시
     @Override
     public void onBindViewHolder(@NonNull NewsfeedViewHolder holder, int position) {
+
         //position번째 아이템을 arrayList에서 가져옴
         Post item = items.get(position);
 
@@ -87,13 +88,14 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
 
         //태그된 사용자를 넣는것.
+        holder.tagged_user_container.removeAllViews();
         for(int i=0; i<item.taggedUsers.size(); i++){
             Button button = new Button(holder.tagged_user_container.getContext());
-            button.setText(item.taggedUsers.get(i).getName());
+            button.setText(item.taggedUsers.get(i).getName()+position);
             holder.tagged_user_container.addView(button);
         }
         //title
-        holder.title.setText(item.title);
+        holder.title.setText(item.title+position);
         //날짜
 
         holder.writing_date.setText(format.format(item.writingDate));
@@ -109,9 +111,10 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //내용(글)
         holder.content_writing.setText(item.contentWriting);
         //태그
+        holder.tags_container.removeAllViews();
         for(int i=0; i<item.tags.size(); i++){
             TextView textView = new TextView(holder.tags_container.getContext());
-            textView.setText("#"+item.tags.get(i));
+            textView.setText("#"+item.tags.get(i)+position);
             textView.setTextSize(20);
             holder.tags_container.addView(textView);
         }
