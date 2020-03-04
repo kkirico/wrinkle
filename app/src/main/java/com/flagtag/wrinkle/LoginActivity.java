@@ -2,6 +2,7 @@ package com.flagtag.wrinkle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.loginButton:
                     signup();
-                    startMainActivity();
                     break;
 
             }
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
+                        Log.e("로그인액티비티 유저", String.valueOf(user));
                         startToast("로그인 성공");
                         startMainActivity();
                     } else {
@@ -89,9 +92,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     private void startMainActivity(){
         Intent intent = new Intent( this,MainActivity.class);
-        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }
