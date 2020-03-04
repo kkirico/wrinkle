@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class WritingFragment extends Fragment {
 
+    FirebaseFirestore db;
 
     public WritingFragment() {
         // Required empty public constructor
@@ -26,6 +28,8 @@ public class WritingFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
 
+        // Access a Cloud Firestore instance from your Activity
+        db = FirebaseFirestore.getInstance();
 
         return rootView;
     }

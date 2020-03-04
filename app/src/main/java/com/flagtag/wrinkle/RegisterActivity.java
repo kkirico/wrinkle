@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -100,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     private void startLoginActivity(){
-        Intent intent = new Intent(RegisterActivity.this,loginActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

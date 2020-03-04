@@ -36,9 +36,9 @@ public class Post {
             e.printStackTrace();
         }
         imageUrls = new ArrayList<>();
+        imageUrls.add("https://ssl.pstatic.net/mimgnews/image/312/2020/03/02/0000437912_001_20200302180211645.jpg?type=w540");
         imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
-        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
-        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
+        imageUrls.add("https://mimgnews.pstatic.net/image/117/2020/03/02/202003021714361802_1_20200302174409099.jpg?type=w540");
         contentWriting = "contents.....";
         tags = new ArrayList<>();
         tags.add("tag1");
