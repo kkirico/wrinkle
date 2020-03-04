@@ -72,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                     //화원가입 실행 부분
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            startLoginActivity();
                             startToast("회원가입 성공!");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //UI

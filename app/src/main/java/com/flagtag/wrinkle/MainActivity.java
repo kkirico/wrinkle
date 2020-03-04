@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private SurfingFragment surfingFragment;
     private WritingFragment writingFragment;
     private BottomNavigationView bottomNavigationView;
+
     FragmentTransaction fragmentTransaction;
 
 
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
             startRegisterActivity();
         }
         findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);

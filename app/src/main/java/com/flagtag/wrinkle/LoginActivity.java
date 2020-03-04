@@ -49,6 +49,7 @@ public class loginActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.loginButton:
+                    signup();
                     startMainActivity();
                     break;
 
