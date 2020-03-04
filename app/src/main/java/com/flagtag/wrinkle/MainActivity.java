@@ -26,14 +26,15 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     FragmentTransaction fragmentTransaction;
-
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() == null){
             startRegisterActivity();
         }
         findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
@@ -111,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
     private void startRegisterActivity(){
         Intent intent = new Intent( this,RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
 }
