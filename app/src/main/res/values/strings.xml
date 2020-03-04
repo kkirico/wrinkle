@@ -7,4 +7,6 @@
     <string name="아이디">아이디</string>
     <string name="비밀번호">비밀번호</string>
     <string name="로그아웃">로그아웃</string>
+    <string name="Guest">게스트 로그인</string>
+    <string name="게스트">게스트로 로그인</string>
 </resources>
