@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "35401488632-rdrs2s2jqfjfb4jjpbkokdoobgkkoer9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flagtag.wrinkle",
+            "certificate_hash": "25085e344d173388cfcecafc3266c45bde14fac5"
+          }
+        },
+        {
           "client_id": "35401488632-b7n6eob8i5kmt1ik3hnrcnpmstvkbg6m.apps.googleusercontent.com",
           "client_type": 3
         }
