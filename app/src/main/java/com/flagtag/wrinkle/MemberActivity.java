@@ -14,12 +14,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 
-public class memberInitActivity extends AppCompatActivity {
+public class MemberActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_member_init);
+        setContentView(R.layout.activity_member);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);

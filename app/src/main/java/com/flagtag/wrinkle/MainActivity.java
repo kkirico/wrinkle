@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     String photoUrl = profile.getPhotoUrl();*/
                     if(name != null) {
                         if (name.length() == 0) {
-                            myStartActivity(memberInitActivity.class);
+                            myStartActivity(MemberActivity.class);
                         }
                     }
             }
