@@ -9,4 +9,11 @@
     <string name="로그아웃">로그아웃</string>
     <string name="Guest">게스트 로그인</string>
     <string name="게스트">게스트로 로그인</string>
+    <string name="gotoPasswordReset">비밀번호 재설정</string>
+    <string name="로그인">로그인</string>
+    <string name="wrinkle_login">Wrinkle Login</string>
+    <string name="name">이름</string>
+    <string name="phone">전화번호</string>
+    <string name="date">생일</string>
+    <string name="check">확인</string>
 </resources>
