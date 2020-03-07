@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.flagtag.wrinkle.LoginActivity" />
+        <activity android:name="com.flagtag.wrinkle.PasswordResetActivity" />
         <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
 
         <meta-data
