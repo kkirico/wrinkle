@@ -9,6 +9,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,9 +35,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() == null){
-            startRegisterActivity();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user == null){
+            myStartActivity(RegisterActivity.class);
+        }
+        else{
+            //회원가입 or 로그인
+
+                for (UserInfo profile : user.getProviderData()) {
+                    String name = profile.getDisplayName();
+                    /*String email = profile.getEmail();
+                    String photoUrl = profile.getPhotoUrl();*/
+                    if(name != null) {
+                        if (name.length() == 0) {
+                            myStartActivity(memberInitActivity.class);
+                        }
+                    }
+            }
         }
         findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
 
@@ -103,17 +120,17 @@ public class MainActivity extends AppCompatActivity {
             switch(v.getId()) {
                 case R.id.logoutBtn:
                     FirebaseAuth.getInstance().signOut();
-                    startRegisterActivity();
+                    myStartActivity(RegisterActivity.class);
                     break;
             }
         }
     };
 
-    private void startRegisterActivity(){
-        Intent intent = new Intent( this,RegisterActivity.class);
+
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
-
     public void onBackPressed(){
         super.onBackPressed();
         moveTaskToBack(true);

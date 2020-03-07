@@ -24,8 +24,6 @@ import java.util.List;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private static final String TAG = "loginActivity";
     private static final int RC_SIGN_IN = 123;
 
     private FirebaseAuth mAuth;
@@ -38,13 +36,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoPasswordReset).setOnClickListener(onClickListener);
     }
 
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //UI
-    }
 
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -52,14 +46,18 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.loginButton:
-                    signup();
+                    login();
                     break;
+                case R.id.gotoPasswordReset:
+                    myStartActivity(PasswordResetActivity.class);
+                    break;
+
 
             }
         }
     };
 
-    private void signup() {
+    private void login() {
 
         String email = ((EditText) findViewById(R.id.loginEmail)).getText().toString();
         String password = ((EditText) findViewById(R.id.loginPassword)).getText().toString();
@@ -71,9 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        Log.e("로그인액티비티 유저", String.valueOf(user));
                         startToast("로그인 성공");
-                        startMainActivity();
+                        finish();
                     } else {
                         if (task.getException() != null) {
                             startToast(task.getException().toString());
@@ -93,9 +90,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void startMainActivity(){
-        Intent intent = new Intent( this,MainActivity.class);
-        //intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
 }

@@ -16,9 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    private static final String TAG = "registerActivity";
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -49,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                     signup();
                 break;
                 case R.id.gotoLoginBtn:
-                    startLoginActivity();
+                    myStartActivity(LoginActivity.class);
                     break;
 
             }
@@ -69,9 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
                     //화원가입 실행 부분
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startLoginActivity();
-                            startToast("회원가입 성공!");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            startToast("회원가입 성공!");
+                            myStartActivity(MainActivity.class);
                             //UI
                         } else {
                             if (task.getException() != null) {
@@ -96,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
     }
-    private void startLoginActivity(){
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
     public void onBackPressed(){
