@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
                     String name = profile.getDisplayName();
                     /*String email = profile.getEmail();
                     String photoUrl = profile.getPhotoUrl();*/
-                    if(name != null) {
-                        if (name.length() == 0) {
-                            myStartActivity(MemberActivity.class);
-                        }
+                    if(name == null) {
+
+                        myStartActivity(MemberActivity.class);
+
                     }
             }
         }
