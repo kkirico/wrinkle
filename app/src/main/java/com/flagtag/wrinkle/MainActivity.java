@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     }
             }
         }
-        findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
+
 
 
 
@@ -111,18 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    View.OnClickListener onClickListener = new View.OnClickListener(){
 
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()) {
-                case R.id.logoutBtn:
-                    FirebaseAuth.getInstance().signOut();
-                    myStartActivity(RegisterActivity.class);
-                    break;
-            }
-        }
-    };
 
 
     private void myStartActivity(Class c){

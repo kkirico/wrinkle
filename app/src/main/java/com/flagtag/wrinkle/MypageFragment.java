@@ -2,6 +2,7 @@ package com.flagtag.wrinkle;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -29,7 +32,27 @@ public class MypageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_mypage, container, false);
 
 
+        rootView.findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
+
         return rootView;
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()) {
+                case R.id.logoutBtn:
+                    FirebaseAuth.getInstance().signOut();
+                    myStartActivity(RegisterActivity.class);
+                    break;
+            }
+        }
+    };
+
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(getContext(), c);
+        startActivity(intent);
     }
 
 
