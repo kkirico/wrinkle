@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class googleLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -32,6 +33,8 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
     private FirebaseAuth auth;
     private GoogleApiClient googleApiClient;
     private static final int REQ_SIGN_GOOGLE = 100;//구글 로그인 결과코드
+
+    private Button fast_login_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,19 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
                 startActivity(intent);
             }
         });
+
+        fast_login_button = findViewById(R.id.fast_login);
+        fast_login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fastSignIn();
+            }
+        });
+
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {//구글 로그인 인증을 요청했을때 결과값을 돌려받는 곳
@@ -108,5 +123,45 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+
+    //디버깅용 빠른 로그인
+    //client@flagtag.com     123456으로 바로 로그인한다.
+    private void fastSignIn(){
+        String email = "client@flagtag.com";
+        String password = "123456";
+
+
+        if (email.length()>0 && password.length()>0) {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = auth.getCurrentUser();
+                        myStartActivity(MainActivity.class);
+                        startToast("로그인 성공");
+                        finish();
+                    } else {
+                        if (task.getException() != null) {
+                            startToast(task.getException().toString());
+                        }
+                    }
+                }
+            });
+        }
+        else{
+            startToast("이메일 또는 비밀번호가 입력되지 않았습니다.");
+        }
+    }
+
+    //토스트 메시지띄우는 함수
+    private void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+    }
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
     }
 }
