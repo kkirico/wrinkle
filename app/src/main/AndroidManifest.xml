@@ -5,6 +5,10 @@
 
     <!-- 인터넷 권한 선언 -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 카메라 권한 선언 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.flagtag.wrinkle.MainActivity"/>
-        <activity android:name="com.flagtag.wrinkle.googleLoginActivity">
+        <activity android:name="com.flagtag.wrinkle.MainActivity">
             <!--  인텐트 필터로 첫 실행 액티비티 선정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +25,26 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="google.com"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.flagtag.wrinkle.googleLoginActivity">
+
         </activity>
         <activity android:name="com.flagtag.wrinkle.LoginActivity"/>
         <activity android:name="com.flagtag.wrinkle.PasswordResetActivity"/>
         <activity android:name="com.flagtag.wrinkle.MemberActivity"/>
         <activity android:name=".RegisterActivity"/>
-
+        <activity android:name=".CameraActivity"/>
 
 
     </application>
