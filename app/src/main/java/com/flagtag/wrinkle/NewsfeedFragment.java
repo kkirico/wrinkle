@@ -8,11 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 
 public class NewsfeedFragment extends Fragment {
@@ -51,6 +51,11 @@ public class NewsfeedFragment extends Fragment {
         newsfeedAdapter.addItem(new Post());
 
         recyclerView.setAdapter(newsfeedAdapter);
+
+        Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setSupportActionBar(toolbar);
+
 
         return rootView;
     }
