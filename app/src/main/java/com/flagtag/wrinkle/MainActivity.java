@@ -5,17 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "Main Activity";
 
     private FragmentManager fragmentManager;
     private MypageFragment mypageFragment;
@@ -37,21 +43,30 @@ public class MainActivity extends AppCompatActivity {
 
         if(user == null){
             myStartActivity(RegisterActivity.class);
-        }
-        else{
-            //회원가입 or 로그인
+        }else{
 
-                for (UserInfo profile : user.getProviderData()) {
-                    String name = profile.getDisplayName();
-                    /*String email = profile.getEmail();
-                    String photoUrl = profile.getPhotoUrl();*/
-                    if(name == null) {
-
-                        myStartActivity(MemberActivity.class);
-
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("users").document(user.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if(document != null){
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.d(TAG, "No such document");
+                                myStartActivity(MainActivity.class);
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
-            }
+                }
+            });
         }
+
 
 
 

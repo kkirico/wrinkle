@@ -16,4 +16,8 @@
     <string name="phone">전화번호</string>
     <string name="date">생일</string>
     <string name="check">확인</string>
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
 </resources>

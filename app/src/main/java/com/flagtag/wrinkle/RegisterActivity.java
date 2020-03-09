@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                     signup();
                 break;
                 case R.id.gotoLoginBtn:
-                    myStartActivity(LoginActivity.class);
+                    myStartActivity(googleLoginActivity.class);
                     break;
 
             }

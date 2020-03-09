@@ -66,7 +66,7 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(googleLoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(googleLoginActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
