@@ -4,6 +4,8 @@ package com.flagtag.wrinkle;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -30,6 +32,13 @@ public class WritingFragment extends Fragment {
 
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
+
+        Toolbar toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setSupportActionBar(toolbar);
+        ActionBar actionBar = mainActivity.getSupportActionBar();
+
+
 
         return rootView;
     }

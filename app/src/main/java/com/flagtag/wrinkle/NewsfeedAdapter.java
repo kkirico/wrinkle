@@ -1,6 +1,9 @@
 package com.flagtag.wrinkle;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -110,6 +113,18 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         //내용(글)
         holder.content_writing.setText(item.contentWriting);
+            //택스트 중 더 보기
+        Spannable span = (Spannable) holder.content_writing.getText();
+        int start = 0;
+        int end = start + holder.content_writing.getText().length();
+
+        span.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                //이 게시물이 있는 페이지로 이동하게 하기
+            }
+        }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         //태그
         holder.tags_container.removeAllViews();
         for(int i=0; i<item.tags.size(); i++){

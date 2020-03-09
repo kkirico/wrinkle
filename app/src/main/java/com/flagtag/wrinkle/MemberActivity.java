@@ -1,4 +1,5 @@
 package com.flagtag.wrinkle;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,7 @@ public class MemberActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.check:
                     profileUpdate();
+
                     break;
 
 
@@ -59,6 +61,7 @@ public class MemberActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     startToast("회원정보 등록에 성공하셨습니다.");
+                                    myStartActivity(MainActivity.class);
                                     finish();
                                 }
                             }
@@ -76,3 +79,8 @@ public class MemberActivity extends AppCompatActivity {
     }
 }
 
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
+    }
+}
