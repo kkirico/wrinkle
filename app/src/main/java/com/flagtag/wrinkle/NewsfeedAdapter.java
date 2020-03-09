@@ -9,9 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -95,7 +97,10 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         for(int i=0; i<item.taggedUsers.size(); i++){
             Button button = new Button(holder.tagged_user_container.getContext());
             button.setText(item.taggedUsers.get(i).getName()+position);
-            holder.tagged_user_container.addView(button);
+            button.setTextSize(10);
+            button.setPadding(1,1,1,1);
+            //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT,1));
+            holder.tagged_user_container.addView(button,new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
         }
         //title
         holder.title.setText(item.title+position);
