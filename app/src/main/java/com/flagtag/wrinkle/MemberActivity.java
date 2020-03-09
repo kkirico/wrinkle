@@ -26,11 +26,10 @@ public class MemberActivity extends AppCompatActivity {
     }
 
 
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.check:
                     profileUpdate();
                     break;
@@ -45,7 +44,7 @@ public class MemberActivity extends AppCompatActivity {
         String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
 
 
-        if (name.length()>0) {
+        if (name.length() > 0) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -53,26 +52,27 @@ public class MemberActivity extends AppCompatActivity {
                     .setPhotoUri(Uri.parse("https://example.com/jane-q-User/profile.jpg"))
                     .build();
 
-            if(user !=null){
+            if (user != null) {
                 user.updateProfile(profileUpdates)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     startToast("회원정보 등록에 성공하셨습니다.");
                                     finish();
                                 }
                             }
                         });
             }
-        }
-        else{
-            startToast("회원정보를 입력해주세.");
+        } else {
+            startToast("회원정보를 입력해주세요.");
         }
     }
+
     //토스트 메시지띄우는 함수
-    private void startToast(String msg){
+    private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
     }
+}
 
