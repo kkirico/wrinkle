@@ -11,6 +11,12 @@
 
     <!-- 인터넷 권한 선언 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 카메라 권한 선언 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -27,8 +33,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.flagtag.wrinkle.MainActivity" />
-        <activity android:name="com.flagtag.wrinkle.googleLoginActivity" >
+        <activity android:name="com.flagtag.wrinkle.MainActivity" >
 
             <!-- 인텐트 필터로 첫 실행 액티비티 선정 -->
             <intent-filter>
@@ -36,11 +41,24 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="google.com"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.flagtag.wrinkle.googleLoginActivity" >
         </activity>
         <activity android:name="com.flagtag.wrinkle.LoginActivity" />
         <activity android:name="com.flagtag.wrinkle.PasswordResetActivity" />
         <activity android:name="com.flagtag.wrinkle.MemberActivity" />
         <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
+        <activity android:name="com.flagtag.wrinkle.CameraActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
