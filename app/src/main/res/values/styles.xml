@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolbarTitle">
+        
+        <item name="android:textColor">@color/design_default_color_primary_dark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
