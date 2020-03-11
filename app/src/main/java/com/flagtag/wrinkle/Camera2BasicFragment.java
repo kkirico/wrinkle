@@ -41,6 +41,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,6 +63,18 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,6 +90,7 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class Camera2BasicFragment extends Fragment
         implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+
 
     /**
      * Conversion from screen rotation to JPEG orientation.
@@ -254,21 +268,25 @@ public class Camera2BasicFragment extends Fragment
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
      * still image is ready to be saved.
      */
-    /*
-    private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
+
+    /*private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
             = new ImageReader.OnImageAvailableListener() {
         @Override
         public void onImageAvailable(ImageReader reader) {
             mBackgroundHandler.post(new ImageUpLoader(reader.acquireNextImage()));
         }
-    };
-    */
+    };*/
 
+/*
     private ImageReader.OnImageAvailableListener mOnImageAvailableListener;
     public void setOnImageAvailableListener(ImageReader.OnImageAvailableListener mOnImageAvailableListener) {
         this.mOnImageAvailableListener = mOnImageAvailableListener;
     }
-
+*/
+    private  ImageReader.OnImageAvailableListener mOnImageAvailableListener;
+    public void setOnImageAvailableListener(ImageReader.OnImageAvailableListener mOnImageAvailableListener){
+        this.mOnImageAvailableListener = mOnImageAvailableListener;
+    }
     /**
      * {@link CaptureRequest.Builder} for the camera preview
      */
@@ -512,7 +530,7 @@ public class Camera2BasicFragment extends Fragment
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressWarnings("SuspiciousNameCombination")
-    private void setUpCameraOutputs(int width, int height) {
+    private void setUpCameraOutputs(int width, int height, int facingId) {
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -530,7 +548,7 @@ public class Camera2BasicFragment extends Fragment
                 }
 
                 Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (facing != null && facing == facingId) {
+                if (facing != null && facing ==  facingId) {
 
                     StreamConfigurationMap map = characteristics.get(
                             CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
@@ -630,13 +648,14 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Opens the camera specified by {@link Camera2BasicFragment#mCameraId}.
      */
+
     private void openCamera(int width, int height) {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestCameraPermission();
             return;
         }
-        setUpCameraOutputs(width, height);
+        setUpCameraOutputs(width, height,facingId);//openCamera.CameraCharacteristics.LENS_FACING_FRONT
         configureTransform(width, height);
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
@@ -651,7 +670,6 @@ public class Camera2BasicFragment extends Fragment
             throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
         }
     }
-
     /**
      * Closes the current {@link CameraDevice}.
      */
@@ -947,6 +965,57 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Saves a JPEG {@link Image} into the specified {@link File}.
      */
+    private static class ImageUpLoader implements Runnable {
+
+        /**
+         * The JPEG image
+         */
+        private final Image mImage;
+
+        ImageUpLoader(Image image) {
+            mImage = image;
+        }
+
+        @Override
+        public void run() {
+            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+
+            // Access a Cloud Firestore instance from your Activity
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            final StorageReference mountainImagesRef = storageRef.child("images/"+user.getUid()+"mountain.jpg");
+
+            UploadTask uploadTask = mountainImagesRef.putBytes(bytes);
+
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return mountainImagesRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        Log.e("성공","users/"+downloadUri+"/Profile image");
+                    } else {
+                        // Handle failures
+                        // ...
+                    }
+                }
+            });
+        }
+
+    }
     private static class ImageSaver implements Runnable {
 
         /**
@@ -987,6 +1056,7 @@ public class Camera2BasicFragment extends Fragment
         }
 
     }
+
 
     /**
      * Compares two {@code Size}s based on their areas.

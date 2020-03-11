@@ -1,9 +1,13 @@
 package com.flagtag.wrinkle;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +18,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+
 public class MemberActivity extends AppCompatActivity {
     private static final String TAG = "Member Init Activity";
+    private ImageView profileImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member);
+
+        profileImageView = findViewById(R.id.profileImageView);
+        profileImageView.setOnClickListener(onClickListener);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -34,12 +43,33 @@ public class MemberActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode,data);
+        switch (requestCode){
+            case 0:
+                if (requestCode== Activity.RESULT_OK){
+                    String profilePath = data.getStringExtra("profilePath");
+                    Log.e("로그", "profilePath"+profilePath);
+                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
+                    profileImageView.setImageBitmap(bmp);
+
+                }
+                break;
+
+        }
+    }
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.check:
                     profileUpdate();
+
+                    break;
+                case R.id.profileImageView:
+                    myStartActivity(CameraActivity.class);
+
 
                     break;
 
@@ -101,6 +131,6 @@ public class MemberActivity extends AppCompatActivity {
 
     private void myStartActivity(Class c){
         Intent intent = new Intent(this, c);
-        startActivity(intent);
+        startActivityForResult(intent,0);
     }
 }
