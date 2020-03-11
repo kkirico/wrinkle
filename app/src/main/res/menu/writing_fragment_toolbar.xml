@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/image_button"
+        android:icon="@drawable/ic_add_photo_alternate_24px"
+        android:title="image_button"
+        app:showAsAction="always"
+        
+        />
+    <item
+        android:id="@+id/vidoe_button"
+        android:icon="@drawable/ic_video_call_24px"
+        android:title="vidoe_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/location_button"
+        android:icon="@drawable/ic_location_on_24px"
+        android:title="location_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/quote_button"
+        android:icon="@drawable/ic_format_quote_24px"
+        android:title="quote_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/division_line_button"
+        android:icon="@drawable/ic_horizontal_line_24px"
+        android:title="division_line_button"
+        app:showAsAction="always"/>
+</menu>
