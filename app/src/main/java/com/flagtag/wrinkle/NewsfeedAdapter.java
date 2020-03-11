@@ -157,8 +157,9 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //뷰홀더 붙여줌.
         NewsfeedViewHolder vh = new NewsfeedViewHolder(view) ;
 
-        int width = vh.timelinebar_container.getWidth();
-        int height = vh.timelinebar_container.getHeight();
+
+
+
 
         return vh ;
     }
