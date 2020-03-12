@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class WritingFragment extends Fragment {
 
     FirebaseFirestore db;
+    Toolbar toolbar;
 
     public WritingFragment() {
         // Required empty public constructor
@@ -33,7 +34,7 @@ public class WritingFragment extends Fragment {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
-        //Toolbar toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+        toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
         //MainActivity mainActivity = (MainActivity) getActivity();
         //mainActivity.setSupportActionBar(toolbar);
         //ActionBar actionBar = mainActivity.getSupportActionBar();
