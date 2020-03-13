@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -50,7 +51,8 @@ public class WritingFragment extends Fragment {
     MainActivity activity;
 
 
-    private static final int PICK_FROM_ALBUM = 1;
+    private static final int SELECT_IMAGE = 1;
+    private static int CUR_INDEX = 0;
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -68,6 +70,7 @@ public class WritingFragment extends Fragment {
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing1 = rootView.findViewById(R.id.writing_content1);
+        writing1.setOnFocusChangeListener(textFocusListener);
         contentArray = new ArrayList<View>();
         contentArray.add(writing1);
 
@@ -82,7 +85,7 @@ public class WritingFragment extends Fragment {
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(intent, PICK_FROM_ALBUM);
+                    startActivityForResult(intent, SELECT_IMAGE);
                 }else if(item.getItemId() == R.id.vidoe_button){
                     //동영상 선택
                 }else if(item.getItemId() == R.id.location_button){
@@ -129,7 +132,8 @@ public class WritingFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==PICK_FROM_ALBUM){
+        //이미지를 선택했을 때
+        if(requestCode==SELECT_IMAGE){
             try {
                 // 선택한 이미지에서 비트맵 생성
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
@@ -137,11 +141,45 @@ public class WritingFragment extends Fragment {
                 in.close();
                 // 이미지뷰에 세팅
                 ImageView imageView = new ImageView(activity);
+                //화면의 가로 비율에 맞춰서 세로 길이 지정하기
+                imageView.setAdjustViewBounds(true);
                 imageView.setImageBitmap(img);
 
+                //이미지뷰에 이미지 추가
+                writing_content_container.addView(imageView,CUR_INDEX+1);
+                //위가 텍스트이면 maxline을 없앤다.
+                View cur_view = writing_content_container.getChildAt(CUR_INDEX);
+                if(cur_view instanceof EditText){
+                    String text = ((EditText) cur_view).getText().toString();
+                    if(text.equals("")){
+                        writing_content_container.removeView(cur_view);
+                        CUR_INDEX--;
+                    }else{
+                        ((EditText) cur_view).setMinLines(0);
+                    }
+
+                }
 
 
-                writing_content_container.addView(imageView,0);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CUR_INDEX = writing_content_container.indexOfChild(view);
+                        startToast(Integer.toString(CUR_INDEX));
+                    }
+                });
+
+                //인덱스가 1보다 작으면 그 전의 뷰를 불러올 수 없으므로 확인
+
+
+
+
+                EditText text = new EditText(activity);
+                text.setOnFocusChangeListener(textFocusListener);
+                text.setMinLines(3);
+                writing_content_container.addView(text, CUR_INDEX+2, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+
+
 
 
             } catch (Exception e) {
@@ -183,4 +221,17 @@ public class WritingFragment extends Fragment {
         }
 
     }
+
+    View.OnFocusChangeListener textFocusListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean gainFocus) {
+            if(gainFocus){
+                CUR_INDEX = writing_content_container.indexOfChild(view);
+                startToast(Integer.toString(CUR_INDEX));
+            }
+        }
+
+    };
+
+
 }
