@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="writing_view_state">
+        <attr name="state_on" format="boolean"></attr>
+
+        <attr name="state_notset" format="boolean"></attr>
+    </declare-styleable>
+</resources>
