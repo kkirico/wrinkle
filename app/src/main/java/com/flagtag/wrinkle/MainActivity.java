@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
                                 Log.d(TAG, "No such document");
-                                myStartActivity(MainActivity.class);
+                                //myStartActivity(MainActivity.class);
                             }
                         }
                     } else {

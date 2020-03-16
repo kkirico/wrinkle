@@ -33,7 +33,7 @@ public class MypageFragment extends Fragment {
 
 
         rootView.findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
-
+        rootView.findViewById(R.id.myProfileBtn).setOnClickListener(onClickListener);
         return rootView;
     }
 
@@ -45,6 +45,10 @@ public class MypageFragment extends Fragment {
                 case R.id.logoutBtn:
                     FirebaseAuth.getInstance().signOut();
                     myStartActivity(RegisterActivity.class);
+                    break;
+                case R.id.myProfileBtn:
+                    FirebaseAuth.getInstance().signOut();
+                    myStartActivity(MemberActivity.class);
                     break;
             }
         }
