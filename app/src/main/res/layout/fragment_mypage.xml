@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     app:layout_dodgeInsetEdges="top"
-    tools:context=".MypageFragment">
+    tools:context=".fragement.MypageFragment">
 
     <TextView
         android:layout_width="match_parent"
