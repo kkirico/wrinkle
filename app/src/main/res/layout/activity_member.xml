@@ -32,7 +32,9 @@
                 android:id="@+id/profileImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_person_pin_24px" />
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@android:mipmap/sym_def_app_icon" />
         </androidx.cardview.widget.CardView>
 
         <EditText

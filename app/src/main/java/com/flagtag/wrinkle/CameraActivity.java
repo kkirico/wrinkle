@@ -18,10 +18,14 @@ package com.flagtag.wrinkle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,10 +37,9 @@ import java.nio.ByteBuffer;
 
 public class CameraActivity extends AppCompatActivity {
     private Camera2BasicFragment camera2BasicFragment;
-    /**
-     * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
-     * still image is ready to be saved.
-     */
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
             = new ImageReader.OnImageAvailableListener() {
@@ -45,7 +48,7 @@ public class CameraActivity extends AppCompatActivity {
             //mBackgroundHandler.post(new Camera2BasicFragment.ImageUpLoader(reader.acquireNextImage()));
 
             Image mImage = reader.acquireNextImage();
-            File mFile = new File(getExternalFilesDir(null), "profileImage.jpg");
+            File mFile = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "profileImage.jpg");
 
             ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
             byte[] bytes = new byte[buffer.remaining()];
@@ -66,6 +69,7 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
             }
+
             Intent resultIntent = new Intent();
             resultIntent.putExtra("profilePath",mFile.toString());
             setResult(Activity.RESULT_OK, resultIntent);
@@ -88,6 +92,12 @@ public class CameraActivity extends AppCompatActivity {
                     .replace(R.id.container, camera2BasicFragment)
                     .commit();
         //}
+    }
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 
 }

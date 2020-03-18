@@ -962,60 +962,7 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
-    /**
-     * Saves a JPEG {@link Image} into the specified {@link File}.
-     */
-    private static class ImageUpLoader implements Runnable {
 
-        /**
-         * The JPEG image
-         */
-        private final Image mImage;
-
-        ImageUpLoader(Image image) {
-            mImage = image;
-        }
-
-        @Override
-        public void run() {
-            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
-            byte[] bytes = new byte[buffer.remaining()];
-            buffer.get(bytes);
-
-            // Access a Cloud Firestore instance from your Activity
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference();
-
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            final StorageReference mountainImagesRef = storageRef.child("images/"+user.getUid()+"mountain.jpg");
-
-            UploadTask uploadTask = mountainImagesRef.putBytes(bytes);
-
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-
-                    // Continue with the task to get the download URL
-                    return mountainImagesRef.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        Log.e("성공","users/"+downloadUri+"/Profile image");
-                    } else {
-                        // Handle failures
-                        // ...
-                    }
-                }
-            });
-        }
-
-    }
     private static class ImageSaver implements Runnable {
 
         /**

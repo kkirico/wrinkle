@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.flagtag.wrinkle"
         minSdkVersion 28
-        targetSdkVersion 29
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

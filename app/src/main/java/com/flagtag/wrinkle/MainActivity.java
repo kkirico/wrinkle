@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             myStartActivity(RegisterActivity.class);
         }else{
-
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
                                 Log.d(TAG, "No such document");
-                                //myStartActivity(MainActivity.class);
                             }
                         }
                     } else {
