@@ -1,4 +1,4 @@
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,13 +11,15 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.flagtag.wrinkle.R;
+
 public class WritingImageView extends ConstraintLayout {
 
     ConstraintLayout background;
     ImageView imageView;
     EditText text;
 
-    private static final int[] mStates = { R.attr.state_notset, R.attr.state_on, R.attr.state_off };
+    private static final int[] mStates = { R.attr.state_notset, R.attr.state_on};
     private int mStateIndex = 0;
     public WritingImageView(Context context) {
         super(context);

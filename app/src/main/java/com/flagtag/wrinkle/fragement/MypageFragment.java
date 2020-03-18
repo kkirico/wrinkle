@@ -1,4 +1,4 @@
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.fragement;
 
 
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.activity.MemberActivity;
+import com.flagtag.wrinkle.activity.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 

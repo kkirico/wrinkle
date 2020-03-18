@@ -1,10 +1,16 @@
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.flagtag.wrinkle.fragement.MypageFragment;
+import com.flagtag.wrinkle.fragement.NewsfeedFragment;
+import com.flagtag.wrinkle.fragement.NotificationFragment;
+import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.fragement.SurfingFragment;
+import com.flagtag.wrinkle.fragement.WritingFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

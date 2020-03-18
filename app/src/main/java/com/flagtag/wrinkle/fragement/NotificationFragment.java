@@ -1,4 +1,4 @@
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.fragement;
 
 
 import android.content.Context;
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.flagtag.wrinkle.R;
 
 
 /**
