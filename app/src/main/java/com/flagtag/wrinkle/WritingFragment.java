@@ -70,7 +70,7 @@ public class WritingFragment extends Fragment {
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing1 = rootView.findViewById(R.id.writing_content1);
-        writing1.setOnFocusChangeListener(textFocusListener);
+        writing1.setOnFocusChangeListener(focusChangeListener);
         contentArray = new ArrayList<View>();
         contentArray.add(writing1);
 
@@ -140,10 +140,10 @@ public class WritingFragment extends Fragment {
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
                 // 이미지뷰에 세팅
-                ImageView imageView = new ImageView(activity);
+                WritingImageView imageView = new WritingImageView(activity);
                 //화면의 가로 비율에 맞춰서 세로 길이 지정하기
-                imageView.setAdjustViewBounds(true);
-                imageView.setImageBitmap(img);
+
+                imageView.setImageView(img);
 
                 //이미지뷰에 이미지 추가
                 writing_content_container.addView(imageView,CUR_INDEX+1);
@@ -158,14 +158,21 @@ public class WritingFragment extends Fragment {
                         ((EditText) cur_view).setMinLines(0);
                     }
 
+                    EditText editText = new EditText(activity);
+                    editText.setOnFocusChangeListener(focusChangeListener);
+                    editText.setMinLines(3);
+                    writing_content_container.addView(editText, CUR_INDEX+2, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+
                 }
 
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        CUR_INDEX = writing_content_container.indexOfChild(view);
+                    public void onClick(View v) {
+                        
+                        CUR_INDEX = writing_content_container.indexOfChild(v);
                         startToast(Integer.toString(CUR_INDEX));
+
                     }
                 });
 
@@ -174,10 +181,7 @@ public class WritingFragment extends Fragment {
 
 
 
-                EditText text = new EditText(activity);
-                text.setOnFocusChangeListener(textFocusListener);
-                text.setMinLines(3);
-                writing_content_container.addView(text, CUR_INDEX+2, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+
 
 
 
@@ -222,7 +226,7 @@ public class WritingFragment extends Fragment {
 
     }
 
-    View.OnFocusChangeListener textFocusListener = new View.OnFocusChangeListener() {
+    View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
             if(gainFocus){
