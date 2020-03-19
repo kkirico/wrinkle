@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.flagtag.wrinkle.R;
+
 public class WritingImageView extends LinearLayout {
 
     public ConstraintLayout background;
