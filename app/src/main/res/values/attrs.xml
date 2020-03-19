@@ -3,6 +3,5 @@
     <declare-styleable name="writing_view_state">
         <attr name="state_on" format="boolean"></attr>
 
-        <attr name="state_notset" format="boolean"></attr>
     </declare-styleable>
 </resources>

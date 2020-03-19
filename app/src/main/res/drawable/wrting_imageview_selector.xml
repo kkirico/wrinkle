@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/res/com.flagtag.wrinkle">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:drawable="@drawable/writing_imageview_border_not_selected"></item>
+
 
     <item
-        android:drawable="@drawable/writing_imageview_border_selected"
         app:state_on="true"
-        app:state_notset="false">
+        android:drawable="@drawable/writing_imageview_border_selected"
+
+        >
 
     </item>
     <item
-        android:drawable="@drawable/writing_imageview_border_not_selected"
-        app:state_on="false"
-
-        app:state_notset="false">
+        android:drawable="@drawable/writing_imageview_border_not_selected">
 
     </item>
 

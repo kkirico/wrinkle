@@ -139,50 +139,47 @@ public class WritingFragment extends Fragment {
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
-                // 이미지뷰에 세팅
-                WritingImageView imageView = new WritingImageView(activity);
-                //화면의 가로 비율에 맞춰서 세로 길이 지정하기
-
+                // Custom WritingImageView 생성
+                final WritingImageView imageView = new WritingImageView(activity);
+                //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
                 imageView.setImageView(img);
+                //WritingImageView의 onClickListener를 만든다.
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                //이미지뷰에 이미지 추가
+                        CUR_INDEX = writing_content_container.indexOfChild(v);
+                        startToast(Integer.toString(CUR_INDEX));
+                        //WritingImageView가 선택되었을 때 setSelected() 함수 호출
+                        imageView.setSelected();
+
+                    }
+                });
+                //container에 WritingImageView를 넣어준다.
                 writing_content_container.addView(imageView,CUR_INDEX+1);
-                //위가 텍스트이면 maxline을 없앤다.
+
+
+                //현재 인덱스의 뷰를 불러온다.
                 View cur_view = writing_content_container.getChildAt(CUR_INDEX);
+                //현재 인덱스의 뷰가 텍스트일 때,
                 if(cur_view instanceof EditText){
                     String text = ((EditText) cur_view).getText().toString();
+                    //텍스트에 아무 것도 안 쓰여있었으면,
                     if(text.equals("")){
+                        //그 텍스트 뷰를 삭제한다.
                         writing_content_container.removeView(cur_view);
                         CUR_INDEX--;
                     }else{
+                        //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
                         ((EditText) cur_view).setMinLines(0);
                     }
-
+                    //그 밑에 텍스트뷰를 넣어준다.
                     EditText editText = new EditText(activity);
                     editText.setOnFocusChangeListener(focusChangeListener);
                     editText.setMinLines(3);
                     writing_content_container.addView(editText, CUR_INDEX+2, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
                 }
-
-
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        
-                        CUR_INDEX = writing_content_container.indexOfChild(v);
-                        startToast(Integer.toString(CUR_INDEX));
-
-                    }
-                });
-
-                //인덱스가 1보다 작으면 그 전의 뷰를 불러올 수 없으므로 확인
-
-
-
-
-
-
 
 
 
@@ -193,38 +190,6 @@ public class WritingFragment extends Fragment {
         }
     }
 
-    public void checkSelfPermission() {
-        String temp = "";
-        //파일 읽기 권한 확인
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            temp += Manifest.permission.READ_EXTERNAL_STORAGE + " ";
-        }
-        //파일 쓰기 권한 확인
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " ";
-        }
-        if (TextUtils.isEmpty(temp) == false) {
-            // 권한 요청
-            ActivityCompat.requestPermissions(activity, temp.trim().split(" "),1);
-        }else {
-            // 모두 허용 상태
-            startToast("권한을 모두 허용");
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 1){
-            int length = permissions.length;
-            for (int i = 0; i < length; i++) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) { // 동의
-                    Log.d("MainActivity","권한 허용 : " + permissions[i]);
-                }
-            }
-        }
-
-    }
 
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
