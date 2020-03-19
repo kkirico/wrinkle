@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.fragement;
 
 import android.Manifest;
 import android.app.Activity;
@@ -41,7 +41,6 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,17 +62,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.view.AutoFitTextureView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -530,7 +520,7 @@ public class Camera2BasicFragment extends Fragment
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressWarnings("SuspiciousNameCombination")
-    private void setUpCameraOutputs(int width, int height, int facingId) {
+    private void setUpCameraOutputs(int width, int height) {
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -655,7 +645,7 @@ public class Camera2BasicFragment extends Fragment
             requestCameraPermission();
             return;
         }
-        setUpCameraOutputs(width, height,facingId);//openCamera.CameraCharacteristics.LENS_FACING_FRONT
+        setUpCameraOutputs(width, height);//openCamera.CameraCharacteristics.LENS_FACING_FRONT
         configureTransform(width, height);
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);

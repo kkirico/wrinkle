@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

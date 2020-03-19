@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.flagtag.wrinkle.MainActivity">
+        <activity android:name="com.flagtag.wrinkle.activity.MainActivity">
             <!--  인텐트 필터로 첫 실행 액티비티 선정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,14 +40,15 @@
                     android:host="google.com"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.flagtag.wrinkle.googleLoginActivity">
+        <activity android:name="com.flagtag.wrinkle.activity.googleLoginActivity">
 
         </activity>
-        <activity android:name="com.flagtag.wrinkle.LoginActivity"/>
-        <activity android:name="com.flagtag.wrinkle.PasswordResetActivity"/>
-        <activity android:name="com.flagtag.wrinkle.MemberActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".CameraActivity"/>
+        <activity android:name="com.flagtag.wrinkle.activity.LoginActivity"/>
+        <activity android:name="com.flagtag.wrinkle.activity.PasswordResetActivity"/>
+        <activity android:name="com.flagtag.wrinkle.activity.MemberActivity"/>
+        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.CameraActivity"/>
+        <activity android:name=".activity.GalleryActivity"/>
 
 
     </application>

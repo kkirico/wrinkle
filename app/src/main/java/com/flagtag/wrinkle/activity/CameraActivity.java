@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
@@ -29,6 +28,9 @@ import android.os.Environment;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.fragement.Camera2BasicFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;

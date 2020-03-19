@@ -1,10 +1,8 @@
-package com.flagtag.wrinkle;
+package com.flagtag.wrinkle.fragement;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +11,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.flagtag.wrinkle.NewsfeedAdapter;
+import com.flagtag.wrinkle.Post;
+import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.activity.MainActivity;
 
 
 public class NewsfeedFragment extends Fragment {
