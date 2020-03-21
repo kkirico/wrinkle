@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
+import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.google.android.gms.tasks.Continuation;
@@ -42,7 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class MemberActivity extends AppCompatActivity {
+public class MemberActivity extends BasicActivity {
     private static final String TAG = "Member Init Activity";
     private ImageView profileImageView;
     private String profilePath;
@@ -60,33 +61,26 @@ public class MemberActivity extends AppCompatActivity {
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.picture).setOnClickListener(onClickListener);
         findViewById(R.id.gallery).setOnClickListener(onClickListener);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     public void onBackPressed(){
         super.onBackPressed();
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        finish();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
-        switch (requestCode){
-            case 0:
-                if (resultCode== Activity.RESULT_OK){
+        switch (requestCode) {
+            case 0:{
+                if (resultCode == Activity.RESULT_OK) {
                     profilePath = data.getStringExtra("profilePath");
-                    Log.e("로그", "profilePath"+profilePath);
-                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
-                    try {
-                        rotatePicture(profilePath,bmp);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    profileImageView.setImageBitmap(bmp);
+                    Glide.with(this).load(profilePath).centerCrop().override(300).into(profileImageView);
                 }
                 break;
-
+            }
         }
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -106,20 +100,23 @@ public class MemberActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.picture:
+                    CardView cardView1 = findViewById(R.id.buttonsCardview);
+                    cardView1.setVisibility(View.GONE);
                     myStartActivity(CameraActivity.class);
                     break;
                 case R.id.gallery:
-
+                    CardView cardView2 = findViewById(R.id.buttonsCardview);//카드뷰 다시 안보이게 하
+                    cardView2.setVisibility(View.GONE);
                     if (ContextCompat.checkSelfPermission(MemberActivity.this ,
-                            Manifest.permission.READ_CONTACTS)
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(MemberActivity.this,
-                                new String[]{Manifest.permission.READ_CONTACTS},
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 1);
                         if (ActivityCompat.shouldShowRequestPermissionRationale(MemberActivity.this,
-                                Manifest.permission.READ_CONTACTS)) {
+                                Manifest.permission.READ_EXTERNAL_STORAGE)) {
                         } else {
-                            startToast("갤러리 사용 권한을 허가해 주세요:)");
+                            startToast("갤러리 사용 권한을 허가해 주세요1");
                         }
                     } else {
                         myStartActivity(GalleryActivity.class);
@@ -136,7 +133,7 @@ public class MemberActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     myStartActivity(GalleryActivity.class);
                 } else {
-                    startToast("갤러리 사용 권한을 허가해 주세요:)");
+                    startToast("갤러리 사용 권한을 허가해 주세요2");
 
                 }
             }
@@ -153,14 +150,13 @@ public class MemberActivity extends AppCompatActivity {
         if (name.length()>0 && phoneNumber.length()>9 && birthDay.length()>5 && address.length()>0) {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            final FirebaseAuth auth = FirebaseAuth.getInstance();
-            user = auth.getCurrentUser();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            user = mAuth.getCurrentUser();
             final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"profileImage.jpg");
 
             if(profilePath ==null){
                 MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
                 uploader(memberInfo);
-
             }
             else{
                 try{
@@ -179,11 +175,10 @@ public class MemberActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-
                                 MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address,downloadUri.toString());
                                 uploader(memberInfo);
                              } else {
-                                // Handle failures
+                                startToast("회원정보 저장 실패.");
                             }
                         }
                     });
@@ -207,7 +202,7 @@ public class MemberActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                         startToast("회원정보를 등록 성공.");
-                        //myStartActivity(MainActivity.class); 이거 왜 안해도되는지 어디서 처리했는지 찾아봐 헌준?
+                        //myStartActivity(MainActivity.class);이거 왜 없어지는걸까정말루
                         finish();
                     }
                 })
