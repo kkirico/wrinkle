@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PasswordResetActivity extends AppCompatActivity {
+public class PasswordResetActivity extends BasicActivity {
     private static final int RC_SIGN_IN = 123;
 
     private FirebaseAuth mAuth;

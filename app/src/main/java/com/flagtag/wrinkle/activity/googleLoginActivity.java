@@ -26,9 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class googleLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class googleLoginActivity extends BasicActivity implements GoogleApiClient.OnConnectionFailedListener {
     private SignInButton btn_google;
     private Button btn_guestLogin;
+    private Button btn_register;
     private FirebaseAuth auth;
     private GoogleApiClient googleApiClient;
     private static final int REQ_SIGN_GOOGLE = 100;//구글 로그인 결과코드
@@ -69,8 +70,14 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
                 startActivity(intent);
             }
         });
-
         fast_login_button = findViewById(R.id.fast_login);
+        btn_register = findViewById((R.id.registerBtn));
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myStartActivity(RegisterActivity.class);
+            }
+        });
         fast_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
