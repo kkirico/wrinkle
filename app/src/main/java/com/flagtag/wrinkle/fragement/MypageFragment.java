@@ -50,7 +50,6 @@ public class MypageFragment extends Fragment {
                     myStartActivity(RegisterActivity.class);
                     break;
                 case R.id.myProfileBtn:
-                    FirebaseAuth.getInstance().signOut();
                     myStartActivity(MemberActivity.class);
                     break;
             }
