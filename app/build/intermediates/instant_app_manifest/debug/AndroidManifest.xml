@@ -35,7 +35,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.flagtag.wrinkle.MainActivity" >
+        <activity android:name="com.flagtag.wrinkle.activity.MainActivity" >
 
             <!-- 인텐트 필터로 첫 실행 액티비티 선정 -->
             <intent-filter>
@@ -54,13 +54,14 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name="com.flagtag.wrinkle.googleLoginActivity" >
+        <activity android:name="com.flagtag.wrinkle.activity.googleLoginActivity" >
         </activity>
-        <activity android:name="com.flagtag.wrinkle.LoginActivity" />
-        <activity android:name="com.flagtag.wrinkle.PasswordResetActivity" />
-        <activity android:name="com.flagtag.wrinkle.MemberActivity" />
-        <activity android:name="com.flagtag.wrinkle.RegisterActivity" />
-        <activity android:name="com.flagtag.wrinkle.CameraActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.LoginActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.PasswordResetActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.MemberActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.RegisterActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.CameraActivity" />
+        <activity android:name="com.flagtag.wrinkle.activity.GalleryActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
