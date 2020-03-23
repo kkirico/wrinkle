@@ -1,275 +1,445 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6683de5dafd9fd5724aab89d2c8499e3/jetified-firebase-analytics-17.2.2/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.material:material:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/073557272cdb0504ec443c1fdd6e13ca/material-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f59d987d795705bbcf06d06ef0f2de9a/appcompat-1.0.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3fbc1fd346f80d1ea6db5e99ab41d4e4/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/46702dfb46a9155127470b8e4570990c/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74027a2b5d8e157be6dfd13d1e20246f/jetified-volley-1.1.1/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/bfa7ad81033e0a315c770b343bc9e992/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4fafc86370755d7c904d03ef3971083/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:17:1-55:12
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:17:1-36:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aed2f428b00f0ad86f82664c7d1c0250/jetified-play-services-measurement-sdk-17.2.2/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:17:1-40:12
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:17:1-27:12
-MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c732501ddbebc5fd006c00c0d91a5d4a/jetified-play-services-measurement-base-17.2.2/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:17:1-47:12
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f9f24604756cc71fcc8dc41d0be7af57/jetified-play-services-stats-17.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:15:1-39:12
-MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1cb9ca235e3c96f659ca81a176616c01/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e9f0acc79fadc9fbad6bf080176f6020/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b579d565bd5cbef8ee3bfb967eb9df40/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:17:1-25:12
-MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5fc8b7aa461694c7aefe6630d2150e77/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6c138ad622ceb17438e1bf1389eb7f37/fragment-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/037fbbf930394a5180488f53e0b27942/vectordrawable-animated-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/34e8eba7d42c4b30a741a2f064be41e3/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b9f680570392d2941077c96ac0071037/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80051bbad49e208934fe466fd2646273/vectordrawable-1.0.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/744e20a78dacd4e10a3ccb1c5582fd4a/media-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.transition:transition:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b422219dec3a7e32cfbb73e3fb88e165/transition-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c3c67a6b0c567715c1b761e2bc561a80/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/17f9bddc9992d9e356f424e919c9a01c/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/458d8696fed65034db6dcee48409b4a0/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/06b812f6d774b24152207909eeade351/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2b4bff7edcef561489f1a4d02758ff58/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/88885b8afb892f2c4c92950308f02240/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4f6df70d59f282df2678e78fe44b186/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b5b4183164e6df6068232ba173eb5eb8/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4878a1892a08fcb01f2d0181235bf63/versionedparcelable-1.0.0/AndroidManifest.xml:17:1-25:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/102edf060ace7f6700d22f562ffc82af/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/79ec9f0fb008e367a10ee5adcc081489/jetified-firebase-components-16.0.0/AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e2909dcc3eaf447f46fc603a5de31d87/lifecycle-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/812334fc979131257e9cd9e9abfdbe50/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cdb774487ecaaaf9278822196b847146/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7198d9a0add136c8c7f5999756bca948/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0b9bf634acdd10594ed1943604738b44/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d1e480b7a3e38bc5bb2c563b2e91c373/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/54bb5691b6f84ec3f5721158cbfd6093/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/595abc47a2d4a55785d80658cffde5e2/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d4f6c3b74c9a46c978ee06464d9d874f/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+MERGED from [com.google.firebase:firebase-core:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5897985b586b4aaf41620b8d60eb6db7/jetified-firebase-core-17.2.3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:2:1-109:12
+MERGED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-analytics:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/87bc1310f335f3ababf80f9dfdd23cc9/jetified-firebase-analytics-17.2.3/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8d1bc7e6c02e2985b97177e18e0fcee7/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.android.material:material:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.4.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aeb5a976a6402e9da7fa8304bdcbc05e/jetified-library-1.4.2/AndroidManifest.xml:6:1-16:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/72755d8593c3ca1ed00b11907b10c688/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/65c09879886c04dd03c37ecd65c89ae1/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80b69e0281975f7e9accaab0f9198800/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/efb3befe40c1dad7c65e029c5eda8c17/jetified-volley-1.1.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5b4940cfd8e6b027ab48147c86d677f1/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ee402462607e3d7bc40e1166a58a6978/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c848c62bfcae3f04351f6536eae6ec04/jetified-glide-4.11.0/AndroidManifest.xml:2:1-12:12
+MERGED from [me.relex:circleindicator:2.1.4] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1ff23a34adcfacf0e27523f9dfc4dc62/jetified-circleindicator-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:17:1-39:12
+MERGED from [androidx.browser:browser:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/294bd24170e57c471f9047a9bbea9687/browser-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0a6c212f73963fa6835af45599dfab1e/lifecycle-extensions-2.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9e025505c94c04007a8190f74982d1e9/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-database-collection:17.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/78d35203614433f57bd71fa2fd607863/jetified-firebase-database-collection-17.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19f20e21d80ac6626dc4a60384b4e560/jetified-play-services-auth-api-phone-16.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4fcc822a760e4b1e908addecc99e3608/jetified-play-services-auth-base-16.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:17:1-47:12
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b42d6d39f9d0ddd1d0eedd8d664bd481/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ff919aa2adc3061f3daede0df598b5f3/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/eba683f4bbe7b70c920ae60bf53ca549/jetified-play-services-measurement-sdk-17.2.3/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/48f8e447dd9a92ac152aa8ba0bea6204/jetified-play-services-measurement-base-17.2.3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/38a1471f9b60a43b2bc484b6cedb7a67/jetified-play-services-stats-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a481f1d35c4d4a933182b444857cab5a/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/530cf519bd2690ba125c7365bd4345e5/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f6a20730590ab62e2149b3f2118fc4f7/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b04599de2daa334d543a60c24c9af47d/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/15dedc436db97eba9c51ba371d2b8714/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/709dec39ab4d41e4eaebf9d7dbe74e41/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3edfbc7b78ed5b8b0b6ccffd1386d8d8/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dd6e81403769a15935cf91e15427e1b5/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/93fa951bb50245f79bfdb3046a233a07/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ec2ff2d2f35f5ce21d8f3a2cd566b74c/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9f9d1f3c50ce4e1f871ff56b75c8e58c/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/faf6750b30e085dada05d5bf2b630089/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/85ca3f2cc7fc2d3a231f6bc7d430904f/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4339a1db68a86092531ac27a7672e57d/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/21e18b66e86534a7ba2f091590864e61/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/33987a6c2abb97d3a5dc8363aa39ad35/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/778008f0324b525fd9b227724bac745f/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74a949c57b303ec0823b0ea9d5439f22/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19851895a64cdce23bed4e3d01b0894b/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/69ad70deb7fc3872e7a51cd7de424a87/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e7b316e008973942910afd1c84dc02d7/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/28950d5ca212ff0c86ed1244329056eb/jetified-firebase-components-16.0.0/AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fd87986aa651fe7c3128c0b95293c012/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cc22061029568e927a90b39fd84bc307/jetified-gifdecoder-4.11.0/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/448ad5636d84a77758d1f5390643618a/exifinterface-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c7e64f6181ef9b2b223b47bd6635a3b3/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dcf4af4213d59bd5fe489359c2b51b96/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e5f4ab83b7154d8dd7689c213d4008f9/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3ad98f043f0e278e1b4f445317842885/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6ab1828441a6b45d05a01b9241ca901a/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6dd4de7fc3225e55d58846adf9ecb0a7/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a169fceb4d633b6f5331b08236945ee0/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8afb13b33fd0950ef40834a78e555523/lifecycle-runtime-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/058a364b06d9011467e5efaaa1ab266f/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ffd0aa10f2a787335b333d5b793ff3d9/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9b6fcc30da8d4d18e3efe61e9ccf3b58/jetified-protolite-well-known-types-17.0.0/AndroidManifest.xml:2:1-11:12
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d10c1748f6272b90f813c777e522a0f6/jetified-grpc-android-1.21.0/AndroidManifest.xml:2:1-13:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
 	package
 		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:3:5-34
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-32:12
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:1-58:12
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:7:5-66
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:23:5-67
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:13:5-67
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:13:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:27:5-67
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:27:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:23:5-67
 	android:name
 		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.CAMERA
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:9:5-65
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:9:22-62
+uses-feature#android.hardware.camera
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:10:5-60
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:10:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:11:5-70
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:11:19-67
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:13:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:14:22-78
 application
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:9:5-30:19
-MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6683de5dafd9fd5724aab89d2c8499e3/jetified-firebase-analytics-17.2.2/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6683de5dafd9fd5724aab89d2c8499e3/jetified-firebase-analytics-17.2.2/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.material:material:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/073557272cdb0504ec443c1fdd6e13ca/material-1.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/073557272cdb0504ec443c1fdd6e13ca/material-1.0.0/AndroidManifest.xml:22:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3fbc1fd346f80d1ea6db5e99ab41d4e4/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3fbc1fd346f80d1ea6db5e99ab41d4e4/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74027a2b5d8e157be6dfd13d1e20246f/jetified-volley-1.1.1/AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74027a2b5d8e157be6dfd13d1e20246f/jetified-volley-1.1.1/AndroidManifest.xml:9:5-20
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:28:5-53:19
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:28:5-53:19
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:26:5-34:19
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:26:5-34:19
-MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aed2f428b00f0ad86f82664c7d1c0250/jetified-play-services-measurement-sdk-17.2.2/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aed2f428b00f0ad86f82664c7d1c0250/jetified-play-services-measurement-sdk-17.2.2/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:28:5-38:19
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:28:5-38:19
-MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c732501ddbebc5fd006c00c0d91a5d4a/jetified-play-services-measurement-base-17.2.2/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c732501ddbebc5fd006c00c0d91a5d4a/jetified-play-services-measurement-base-17.2.2/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:28:5-45:19
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:28:5-45:19
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f9f24604756cc71fcc8dc41d0be7af57/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f9f24604756cc71fcc8dc41d0be7af57/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:25:5-37:19
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:25:5-37:19
-MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1cb9ca235e3c96f659ca81a176616c01/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1cb9ca235e3c96f659ca81a176616c01/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e9f0acc79fadc9fbad6bf080176f6020/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e9f0acc79fadc9fbad6bf080176f6020/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b579d565bd5cbef8ee3bfb967eb9df40/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b579d565bd5cbef8ee3bfb967eb9df40/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
-MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5fc8b7aa461694c7aefe6630d2150e77/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5fc8b7aa461694c7aefe6630d2150e77/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:22:5-89
-MERGED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:22:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4878a1892a08fcb01f2d0181235bf63/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4878a1892a08fcb01f2d0181235bf63/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:16:5-56:19
+MERGED from [com.google.firebase:firebase-core:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5897985b586b4aaf41620b8d60eb6db7/jetified-firebase-core-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-core:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5897985b586b4aaf41620b8d60eb6db7/jetified-firebase-core-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:15:5-107:19
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:15:5-107:19
+MERGED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-analytics:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/87bc1310f335f3ababf80f9dfdd23cc9/jetified-firebase-analytics-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/87bc1310f335f3ababf80f9dfdd23cc9/jetified-firebase-analytics-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.android.material:material:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/65c09879886c04dd03c37ecd65c89ae1/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/65c09879886c04dd03c37ecd65c89ae1/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/efb3befe40c1dad7c65e029c5eda8c17/jetified-volley-1.1.1/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/efb3befe40c1dad7c65e029c5eda8c17/jetified-volley-1.1.1/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c848c62bfcae3f04351f6536eae6ec04/jetified-glide-4.11.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c848c62bfcae3f04351f6536eae6ec04/jetified-glide-4.11.0/AndroidManifest.xml:10:5-20
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:29:5-37:19
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:29:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:22:5-37:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0a6c212f73963fa6835af45599dfab1e/lifecycle-extensions-2.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0a6c212f73963fa6835af45599dfab1e/lifecycle-extensions-2.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b42d6d39f9d0ddd1d0eedd8d664bd481/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b42d6d39f9d0ddd1d0eedd8d664bd481/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ff919aa2adc3061f3daede0df598b5f3/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ff919aa2adc3061f3daede0df598b5f3/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/eba683f4bbe7b70c920ae60bf53ca549/jetified-play-services-measurement-sdk-17.2.3/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/eba683f4bbe7b70c920ae60bf53ca549/jetified-play-services-measurement-sdk-17.2.3/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/48f8e447dd9a92ac152aa8ba0bea6204/jetified-play-services-measurement-base-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/48f8e447dd9a92ac152aa8ba0bea6204/jetified-play-services-measurement-base-17.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/38a1471f9b60a43b2bc484b6cedb7a67/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/38a1471f9b60a43b2bc484b6cedb7a67/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a481f1d35c4d4a933182b444857cab5a/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a481f1d35c4d4a933182b444857cab5a/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/530cf519bd2690ba125c7365bd4345e5/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/530cf519bd2690ba125c7365bd4345e5/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/69ad70deb7fc3872e7a51cd7de424a87/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/69ad70deb7fc3872e7a51cd7de424a87/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cc22061029568e927a90b39fd84bc307/jetified-gifdecoder-4.11.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cc22061029568e927a90b39fd84bc307/jetified-gifdecoder-4.11.0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:22:5-28:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:22:18-86
+		ADDED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:14:9-35
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:12:9-41
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:19:9-41
 	android:roundIcon
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:13:9-54
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:20:9-54
 	android:icon
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:11:9-43
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:18:9-43
 	android:allowBackup
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:17:9-35
 	android:theme
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:15:9-40
-activity#com.flagtag.wrinkle.LoginActivity
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:16:9-18:20
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:22:9-40
+activity#com.flagtag.wrinkle.activity.MainActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:23:9-42:20
 	android:name
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:16:19-67
-activity#com.flagtag.wrinkle.MainActivity
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:19:9-26:20
-	android:name
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:19:19-66
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:23:19-75
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:21:13-25:29
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:25:13-30:29
 action#android.intent.action.MAIN
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:22:17-69
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:22:25-66
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:24:17-77
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:24:27-74
-activity#com.flagtag.wrinkle.RegisterActivity
-ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:27:9-73
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:29:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:google.com+data:scheme:http
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:31:13-41:29
+action#android.intent.action.VIEW
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:27:19-70
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:32:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:35:17-76
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:35:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:36:17-78
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:36:27-75
+data
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:38:17-40:48
+	android:host
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:40:21-46
+	android:scheme
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:39:21-42
+activity#com.flagtag.wrinkle.activity.googleLoginActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:43:9-45:20
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:43:19-82
+activity#com.flagtag.wrinkle.activity.LoginActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:46:9-78
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:46:19-76
+activity#com.flagtag.wrinkle.activity.PasswordResetActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:47:9-86
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:47:19-84
+activity#com.flagtag.wrinkle.activity.MemberActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:48:9-79
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:48:19-77
+activity#com.flagtag.wrinkle.activity.RegisterActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:49:9-62
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:49:19-60
+activity#com.flagtag.wrinkle.activity.CameraActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:50:9-60
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:50:19-58
+activity#com.flagtag.wrinkle.activity.GalleryActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:51:9-61
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:51:19-59
+activity#com.flagtag.wrinkle.activity.BasicActivity
+ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:52:9-59
+	android:name
+		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml:52:19-57
 uses-sdk
 INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
-MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6683de5dafd9fd5724aab89d2c8499e3/jetified-firebase-analytics-17.2.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6683de5dafd9fd5724aab89d2c8499e3/jetified-firebase-analytics-17.2.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.material:material:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/073557272cdb0504ec443c1fdd6e13ca/material-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/073557272cdb0504ec443c1fdd6e13ca/material-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f59d987d795705bbcf06d06ef0f2de9a/appcompat-1.0.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f59d987d795705bbcf06d06ef0f2de9a/appcompat-1.0.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3fbc1fd346f80d1ea6db5e99ab41d4e4/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3fbc1fd346f80d1ea6db5e99ab41d4e4/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/46702dfb46a9155127470b8e4570990c/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/46702dfb46a9155127470b8e4570990c/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74027a2b5d8e157be6dfd13d1e20246f/jetified-volley-1.1.1/AndroidManifest.xml:7:5-43
-MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74027a2b5d8e157be6dfd13d1e20246f/jetified-volley-1.1.1/AndroidManifest.xml:7:5-43
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/bfa7ad81033e0a315c770b343bc9e992/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/bfa7ad81033e0a315c770b343bc9e992/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4fafc86370755d7c904d03ef3971083/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4fafc86370755d7c904d03ef3971083/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aed2f428b00f0ad86f82664c7d1c0250/jetified-play-services-measurement-sdk-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aed2f428b00f0ad86f82664c7d1c0250/jetified-play-services-measurement-sdk-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c732501ddbebc5fd006c00c0d91a5d4a/jetified-play-services-measurement-base-17.2.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c732501ddbebc5fd006c00c0d91a5d4a/jetified-play-services-measurement-base-17.2.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f9f24604756cc71fcc8dc41d0be7af57/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f9f24604756cc71fcc8dc41d0be7af57/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1cb9ca235e3c96f659ca81a176616c01/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1cb9ca235e3c96f659ca81a176616c01/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e9f0acc79fadc9fbad6bf080176f6020/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e9f0acc79fadc9fbad6bf080176f6020/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b579d565bd5cbef8ee3bfb967eb9df40/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b579d565bd5cbef8ee3bfb967eb9df40/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5fc8b7aa461694c7aefe6630d2150e77/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5fc8b7aa461694c7aefe6630d2150e77/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6c138ad622ceb17438e1bf1389eb7f37/fragment-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6c138ad622ceb17438e1bf1389eb7f37/fragment-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/037fbbf930394a5180488f53e0b27942/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/037fbbf930394a5180488f53e0b27942/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/34e8eba7d42c4b30a741a2f064be41e3/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/34e8eba7d42c4b30a741a2f064be41e3/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b9f680570392d2941077c96ac0071037/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b9f680570392d2941077c96ac0071037/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80051bbad49e208934fe466fd2646273/vectordrawable-1.0.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80051bbad49e208934fe466fd2646273/vectordrawable-1.0.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/744e20a78dacd4e10a3ccb1c5582fd4a/media-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/744e20a78dacd4e10a3ccb1c5582fd4a/media-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b422219dec3a7e32cfbb73e3fb88e165/transition-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b422219dec3a7e32cfbb73e3fb88e165/transition-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c3c67a6b0c567715c1b761e2bc561a80/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c3c67a6b0c567715c1b761e2bc561a80/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/17f9bddc9992d9e356f424e919c9a01c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/17f9bddc9992d9e356f424e919c9a01c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/458d8696fed65034db6dcee48409b4a0/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/458d8696fed65034db6dcee48409b4a0/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/06b812f6d774b24152207909eeade351/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/06b812f6d774b24152207909eeade351/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2b4bff7edcef561489f1a4d02758ff58/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2b4bff7edcef561489f1a4d02758ff58/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/88885b8afb892f2c4c92950308f02240/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/88885b8afb892f2c4c92950308f02240/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4f6df70d59f282df2678e78fe44b186/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4f6df70d59f282df2678e78fe44b186/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b5b4183164e6df6068232ba173eb5eb8/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b5b4183164e6df6068232ba173eb5eb8/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7d67da3a7741c63a97d81fcce30fd900/core-1.0.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4878a1892a08fcb01f2d0181235bf63/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a4878a1892a08fcb01f2d0181235bf63/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/102edf060ace7f6700d22f562ffc82af/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/102edf060ace7f6700d22f562ffc82af/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/79ec9f0fb008e367a10ee5adcc081489/jetified-firebase-components-16.0.0/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/79ec9f0fb008e367a10ee5adcc081489/jetified-firebase-components-16.0.0/AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e2909dcc3eaf447f46fc603a5de31d87/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e2909dcc3eaf447f46fc603a5de31d87/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/812334fc979131257e9cd9e9abfdbe50/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/812334fc979131257e9cd9e9abfdbe50/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cdb774487ecaaaf9278822196b847146/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cdb774487ecaaaf9278822196b847146/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7198d9a0add136c8c7f5999756bca948/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7198d9a0add136c8c7f5999756bca948/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0b9bf634acdd10594ed1943604738b44/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0b9bf634acdd10594ed1943604738b44/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d1e480b7a3e38bc5bb2c563b2e91c373/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d1e480b7a3e38bc5bb2c563b2e91c373/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/54bb5691b6f84ec3f5721158cbfd6093/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/54bb5691b6f84ec3f5721158cbfd6093/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/595abc47a2d4a55785d80658cffde5e2/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/595abc47a2d4a55785d80658cffde5e2/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d4f6c3b74c9a46c978ee06464d9d874f/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d4f6c3b74c9a46c978ee06464d9d874f/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-core:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5897985b586b4aaf41620b8d60eb6db7/jetified-firebase-core-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5897985b586b4aaf41620b8d60eb6db7/jetified-firebase-core-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:8:5-10:41
+MERGED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:8:5-10:41
+MERGED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/87bc1310f335f3ababf80f9dfdd23cc9/jetified-firebase-analytics-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/87bc1310f335f3ababf80f9dfdd23cc9/jetified-firebase-analytics-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8d1bc7e6c02e2985b97177e18e0fcee7/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8d1bc7e6c02e2985b97177e18e0fcee7/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.4.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aeb5a976a6402e9da7fa8304bdcbc05e/jetified-library-1.4.2/AndroidManifest.xml:12:5-14:41
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.4.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/aeb5a976a6402e9da7fa8304bdcbc05e/jetified-library-1.4.2/AndroidManifest.xml:12:5-14:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/72755d8593c3ca1ed00b11907b10c688/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/72755d8593c3ca1ed00b11907b10c688/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/65c09879886c04dd03c37ecd65c89ae1/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/65c09879886c04dd03c37ecd65c89ae1/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80b69e0281975f7e9accaab0f9198800/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/80b69e0281975f7e9accaab0f9198800/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/efb3befe40c1dad7c65e029c5eda8c17/jetified-volley-1.1.1/AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/efb3befe40c1dad7c65e029c5eda8c17/jetified-volley-1.1.1/AndroidManifest.xml:7:5-43
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5b4940cfd8e6b027ab48147c86d677f1/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5b4940cfd8e6b027ab48147c86d677f1/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ee402462607e3d7bc40e1166a58a6978/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ee402462607e3d7bc40e1166a58a6978/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c848c62bfcae3f04351f6536eae6ec04/jetified-glide-4.11.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c848c62bfcae3f04351f6536eae6ec04/jetified-glide-4.11.0/AndroidManifest.xml:6:5-8:41
+MERGED from [me.relex:circleindicator:2.1.4] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1ff23a34adcfacf0e27523f9dfc4dc62/jetified-circleindicator-2.1.4/AndroidManifest.xml:7:5-9:41
+MERGED from [me.relex:circleindicator:2.1.4] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1ff23a34adcfacf0e27523f9dfc4dc62/jetified-circleindicator-2.1.4/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/294bd24170e57c471f9047a9bbea9687/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/294bd24170e57c471f9047a9bbea9687/browser-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0a6c212f73963fa6835af45599dfab1e/lifecycle-extensions-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0a6c212f73963fa6835af45599dfab1e/lifecycle-extensions-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9e025505c94c04007a8190f74982d1e9/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9e025505c94c04007a8190f74982d1e9/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:17.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/78d35203614433f57bd71fa2fd607863/jetified-firebase-database-collection-17.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-collection:17.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/78d35203614433f57bd71fa2fd607863/jetified-firebase-database-collection-17.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19f20e21d80ac6626dc4a60384b4e560/jetified-play-services-auth-api-phone-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19f20e21d80ac6626dc4a60384b4e560/jetified-play-services-auth-api-phone-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4fcc822a760e4b1e908addecc99e3608/jetified-play-services-auth-base-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4fcc822a760e4b1e908addecc99e3608/jetified-play-services-auth-base-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b42d6d39f9d0ddd1d0eedd8d664bd481/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b42d6d39f9d0ddd1d0eedd8d664bd481/jetified-firebase-iid-interop-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ff919aa2adc3061f3daede0df598b5f3/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ff919aa2adc3061f3daede0df598b5f3/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/eba683f4bbe7b70c920ae60bf53ca549/jetified-play-services-measurement-sdk-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/eba683f4bbe7b70c920ae60bf53ca549/jetified-play-services-measurement-sdk-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/48f8e447dd9a92ac152aa8ba0bea6204/jetified-play-services-measurement-base-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/48f8e447dd9a92ac152aa8ba0bea6204/jetified-play-services-measurement-base-17.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/38a1471f9b60a43b2bc484b6cedb7a67/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/38a1471f9b60a43b2bc484b6cedb7a67/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a481f1d35c4d4a933182b444857cab5a/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a481f1d35c4d4a933182b444857cab5a/jetified-firebase-measurement-connector-18.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/530cf519bd2690ba125c7365bd4345e5/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/530cf519bd2690ba125c7365bd4345e5/jetified-play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f6a20730590ab62e2149b3f2118fc4f7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f6a20730590ab62e2149b3f2118fc4f7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b04599de2daa334d543a60c24c9af47d/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/b04599de2daa334d543a60c24c9af47d/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/15dedc436db97eba9c51ba371d2b8714/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/15dedc436db97eba9c51ba371d2b8714/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/709dec39ab4d41e4eaebf9d7dbe74e41/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/709dec39ab4d41e4eaebf9d7dbe74e41/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3edfbc7b78ed5b8b0b6ccffd1386d8d8/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3edfbc7b78ed5b8b0b6ccffd1386d8d8/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dd6e81403769a15935cf91e15427e1b5/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dd6e81403769a15935cf91e15427e1b5/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/93fa951bb50245f79bfdb3046a233a07/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/93fa951bb50245f79bfdb3046a233a07/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ec2ff2d2f35f5ce21d8f3a2cd566b74c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ec2ff2d2f35f5ce21d8f3a2cd566b74c/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9f9d1f3c50ce4e1f871ff56b75c8e58c/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9f9d1f3c50ce4e1f871ff56b75c8e58c/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/faf6750b30e085dada05d5bf2b630089/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/faf6750b30e085dada05d5bf2b630089/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/85ca3f2cc7fc2d3a231f6bc7d430904f/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/85ca3f2cc7fc2d3a231f6bc7d430904f/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4339a1db68a86092531ac27a7672e57d/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/4339a1db68a86092531ac27a7672e57d/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/21e18b66e86534a7ba2f091590864e61/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/21e18b66e86534a7ba2f091590864e61/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/33987a6c2abb97d3a5dc8363aa39ad35/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/33987a6c2abb97d3a5dc8363aa39ad35/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/778008f0324b525fd9b227724bac745f/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/778008f0324b525fd9b227724bac745f/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74a949c57b303ec0823b0ea9d5439f22/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/74a949c57b303ec0823b0ea9d5439f22/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19851895a64cdce23bed4e3d01b0894b/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/19851895a64cdce23bed4e3d01b0894b/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f961a727fd6ff1bec6d760c391cc6822/core-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/69ad70deb7fc3872e7a51cd7de424a87/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/69ad70deb7fc3872e7a51cd7de424a87/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e7b316e008973942910afd1c84dc02d7/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e7b316e008973942910afd1c84dc02d7/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/28950d5ca212ff0c86ed1244329056eb/jetified-firebase-components-16.0.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/28950d5ca212ff0c86ed1244329056eb/jetified-firebase-components-16.0.0/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fd87986aa651fe7c3128c0b95293c012/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fd87986aa651fe7c3128c0b95293c012/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cc22061029568e927a90b39fd84bc307/jetified-gifdecoder-4.11.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/cc22061029568e927a90b39fd84bc307/jetified-gifdecoder-4.11.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/448ad5636d84a77758d1f5390643618a/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/448ad5636d84a77758d1f5390643618a/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c7e64f6181ef9b2b223b47bd6635a3b3/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/c7e64f6181ef9b2b223b47bd6635a3b3/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dcf4af4213d59bd5fe489359c2b51b96/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dcf4af4213d59bd5fe489359c2b51b96/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e5f4ab83b7154d8dd7689c213d4008f9/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e5f4ab83b7154d8dd7689c213d4008f9/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3ad98f043f0e278e1b4f445317842885/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3ad98f043f0e278e1b4f445317842885/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6ab1828441a6b45d05a01b9241ca901a/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6ab1828441a6b45d05a01b9241ca901a/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6dd4de7fc3225e55d58846adf9ecb0a7/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/6dd4de7fc3225e55d58846adf9ecb0a7/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a169fceb4d633b6f5331b08236945ee0/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/a169fceb4d633b6f5331b08236945ee0/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8afb13b33fd0950ef40834a78e555523/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8afb13b33fd0950ef40834a78e555523/lifecycle-runtime-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/058a364b06d9011467e5efaaa1ab266f/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/058a364b06d9011467e5efaaa1ab266f/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ffd0aa10f2a787335b333d5b793ff3d9/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ffd0aa10f2a787335b333d5b793ff3d9/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9b6fcc30da8d4d18e3efe61e9ccf3b58/jetified-protolite-well-known-types-17.0.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/9b6fcc30da8d4d18e3efe61e9ccf3b58/jetified-protolite-well-known-types-17.0.0/AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d10c1748f6272b90f813c777e522a0f6/jetified-grpc-android-1.21.0/AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d10c1748f6272b90f813c777e522a0f6/jetified-grpc-android-1.21.0/AndroidManifest.xml:7:5-9:41
 INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
@@ -281,144 +451,378 @@ INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidMa
 		ADDED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/heon-junlee/Documents/GitHub/wrinkle/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:22:5-79
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:22:5-79
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:12:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:24:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d10c1748f6272b90f813c777e522a0f6/jetified-grpc-android-1.21.0/AndroidManifest.xml:11:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d10c1748f6272b90f813c777e522a0f6/jetified-grpc-android-1.21.0/AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:24:22-76
-uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:24:5-68
-MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:24:5-68
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:25:5-68
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/343d708bfbe7c821327144c22db6e15a/jetified-play-services-measurement-sdk-api-17.2.2/AndroidManifest.xml:25:5-68
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:24:5-68
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:24:5-68
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:25:22-65
-uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:26:5-110
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:26:5-110
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:26:5-110
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:26:22-107
-receiver#com.google.android.gms.measurement.AppMeasurementReceiver
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:29:9-33:20
-	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:31:13-35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:32:13-37
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:30:13-85
-receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:34:9-42:20
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:29:9-37:20
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f692fee0d05bd3fddf0799a81d3c9253/jetified-play-services-measurement-impl-17.2.2/AndroidManifest.xml:29:9-37:20
-	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:36:13-35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:37:13-36
-	android:permission
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:38:13-69
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:35:13-100
-intent-filter#action:name:com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:39:13-41:29
-action#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:40:17-79
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:40:25-76
-service#com.google.android.gms.measurement.AppMeasurementService
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:44:9-47:40
-	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:46:13-35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:47:13-37
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:45:13-84
-service#com.google.android.gms.measurement.AppMeasurementJobService
-ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:48:9-52:72
-	android:enabled
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:50:13-35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:51:13-37
-	android:permission
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:52:13-69
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/44a81f9c63e731c04aa3153216d19702/jetified-play-services-measurement-17.2.2/AndroidManifest.xml:49:13-87
-service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:27:9-33:19
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:32:9-36:35
-	android:exported
-		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:29:13-37
-	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:36:13-32
-	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:28:13-84
-meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
-ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:30:13-32:85
-	android:value
-		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:32:17-82
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/5988ad28cd6fd5de0ddd78b12cf31b57/jetified-play-services-measurement-api-17.2.2/AndroidManifest.xml:31:17-139
-uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:5-82
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:22-79
-meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
-ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
-	android:value
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
-receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
-ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
-	android:exported
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
-	android:permission
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
-intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
-action#com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
-	android:name
-		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/e108ff629d9a5e65b53844be55bcaf62/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
-provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
-	android:authorities
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
-	android:exported
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
-	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
-	android:name
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3f1cce472841f11fe16cf955f9472ba3/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/37be93d88503de7454be5a5f96957cac/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:12:22-76
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:16:9-18:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/f720b24cc490c109d50c0a0a1e6bf186/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:18:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/2465f099dd7150b541b6b858bc6f977b/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:17:13-58
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:19:9-21:63
+	android:value
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:21:13-60
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:20:13-58
+activity#com.firebase.ui.auth.KickoffActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:23:9-27:61
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:26:13-29
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:27:13-58
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:24:13-64
+activity#com.firebase.ui.auth.ui.idp.SingleSignInActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:28:9-32:61
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:31:13-29
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:30:13-37
+	android:theme
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:32:13-58
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:29:13-76
+activity#com.firebase.ui.auth.ui.credentials.CredentialSaveActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:33:9-37:61
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:36:13-29
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:35:13-37
+	android:theme
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:37:13-58
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:34:13-86
+activity#com.firebase.ui.auth.ui.email.RecoverPasswordActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:38:9-42:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:41:13-72
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:42:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:40:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:39:13-81
+activity#com.firebase.ui.auth.ui.email.EmailActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:43:9-47:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:46:13-56
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:47:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:45:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:44:13-71
+activity#com.firebase.ui.auth.ui.phone.PhoneActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:48:9-52:77
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:51:13-66
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:52:13-74
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:50:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:49:13-71
+activity#com.firebase.ui.auth.ui.idp.WelcomeBackIdpPrompt
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:53:9-57:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:56:13-70
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:57:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:55:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:54:13-76
+activity#com.firebase.ui.auth.ui.email.WelcomeBackPasswordPrompt
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:58:9-62:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:61:13-75
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:62:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:60:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:59:13-83
+activity#com.firebase.ui.auth.ui.email.WelcomeBackEmailLinkPrompt
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:63:9-67:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:66:13-75
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:67:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:64:13-84
+activity#com.firebase.ui.auth.ui.email.EmailLinkCatcherActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:68:9-73:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:71:13-29
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:73:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:70:13-37
+	android:theme
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:72:13-58
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:69:13-82
+activity#com.firebase.ui.auth.ui.email.EmailLinkErrorRecoveryActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:74:9-78:58
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:77:13-56
+	android:windowSoftInputMode
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:78:13-55
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:76:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:75:13-88
+activity#com.firebase.ui.auth.ui.idp.AuthMethodPickerActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:79:9-82:65
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:82:13-62
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:81:13-37
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:80:13-80
+activity#com.facebook.FacebookActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:83:9-87:48
+	android:label
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:86:13-45
+	tools:ignore
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:87:13-45
+	android:configChanges
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:85:13-96
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:84:13-57
+activity#com.facebook.CustomTabActivity
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:88:9-100:20
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:90:13-36
+	tools:ignore
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:91:13-45
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:89:13-58
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:@string/facebook_login_protocol_scheme
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:92:13-99:29
+provider#com.firebase.ui.auth.data.client.AuthUiInitProvider
+ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:102:9-106:38
+	android:authorities
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:104:13-70
+	android:exported
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:105:13-37
+	android:initOrder
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:106:13-35
+	android:name
+		ADDED from [com.firebaseui:firebase-ui-auth:4.3.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/ecb7449242db33e6ae2617d7b8e452ce/jetified-firebase-ui-auth-4.3.1/AndroidManifest.xml:103:13-79
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:24:9-31:50
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:26:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:28:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:27:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:29:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:31:13-47
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:25:13-85
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:32:9-36:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:35:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:36:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:34:13-84
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:36:13-38:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:38:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/dfe7b3659c61d92bbc3815d5264c7c0d/jetified-firebase-auth-19.3.0/AndroidManifest.xml:37:17-109
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:21.4.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/13154fab687b288ed9aef6894a4a20b6/jetified-firebase-firestore-21.4.1/AndroidManifest.xml:21:17-111
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:19.1.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/8ad4e1ffea3e5c78db0912db37bdac9c/jetified-firebase-storage-19.1.1/AndroidManifest.xml:34:17-107
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:33:9-36:110
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:35:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/fc90c662fca48eecaa111ecf99973a48/jetified-play-services-auth-16.0.1/AndroidManifest.xml:34:13-89
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/602317aaa2f1dddb3774e7abab6f1308/jetified-play-services-measurement-sdk-api-17.2.3/AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:24:22-65
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/3838fa066decd5d47eec7bd5d4f2a46d/jetified-play-services-measurement-api-17.2.3/AndroidManifest.xml:31:17-139
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.2] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/0dbca7ef2e7fe6dd6ad20b90edf9f9bc/jetified-firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/d515fa0142795af05e3369fe0848cba8/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:26:5-110
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/622c49637879e9affeeb97746ec47fe6/jetified-play-services-measurement-impl-17.2.3/AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.3] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/493b977d77656374211b333eaefc270a/jetified-play-services-measurement-17.2.3/AndroidManifest.xml:49:13-87
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/heon-junlee/.gradle/caches/transforms-2/files-2.1/399fb33a8ad56b04bb7efb3af3e16457/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79

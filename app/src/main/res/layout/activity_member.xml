@@ -12,7 +12,7 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="wrinkle_profile"
             android:textColor="@android:color/black"
@@ -64,13 +64,13 @@
                 android:inputType="phone" />
 
             <EditText
-                android:id="@+id/birthDayEditText"
+                android:id="@+id/profileEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/date"
-                android:inputType="date" />
+                android:hint="한 마디"
+                android:inputType="textShortMessage|none" />
 
             <EditText
                 android:id="@+id/addressEditText"
