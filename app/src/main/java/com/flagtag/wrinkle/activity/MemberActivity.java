@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,7 @@ import java.io.InputStream;
 public class MemberActivity extends BasicActivity {
     private static final String TAG = "Member Init Activity";
     private ImageView profileImageView;
+    private RelativeLayout loaderLayout;
     private String profilePath;
     private FirebaseUser user;
 
@@ -56,6 +58,7 @@ public class MemberActivity extends BasicActivity {
 
         profileImageView = findViewById(R.id.profileImageView);
         profileImageView.setOnClickListener(onClickListener);
+        loaderLayout = findViewById(R.id.loaderLayout);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -88,7 +91,7 @@ public class MemberActivity extends BasicActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.check:
-                    profileUpdate();
+                    storageUploader();
                     break;
                 case R.id.profileImageView:
                     CardView cardView = findViewById(R.id.buttonsCardview);
@@ -140,7 +143,7 @@ public class MemberActivity extends BasicActivity {
         }
     }
 
-    private void profileUpdate() {
+    private void storageUploader() {
         final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
         final String phoneNumber = ((EditText) findViewById(R.id.phoneNumberEditText)).getText().toString();
         final String birthDay = ((EditText) findViewById(R.id.birthDayEditText)).getText().toString();
@@ -148,6 +151,7 @@ public class MemberActivity extends BasicActivity {
 
 
         if (name.length()>0 && phoneNumber.length()>9 && birthDay.length()>5 && address.length()>0) {
+            loaderLayout.setVisibility(View.VISIBLE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -156,7 +160,7 @@ public class MemberActivity extends BasicActivity {
 
             if(profilePath ==null){
                 MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
-                uploader(memberInfo);
+                storeUploader(memberInfo);
             }
             else{
                 try{
@@ -176,7 +180,7 @@ public class MemberActivity extends BasicActivity {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
                                 MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address,downloadUri.toString());
-                                uploader(memberInfo);
+                                storeUploader(memberInfo);
                              } else {
                                 startToast("회원정보 저장 실패.");
                             }
@@ -194,7 +198,7 @@ public class MemberActivity extends BasicActivity {
         }
     }
 
-    private void uploader(MemberInfo memberInfo){
+    private void storeUploader(MemberInfo memberInfo){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getUid()).set(memberInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -202,6 +206,7 @@ public class MemberActivity extends BasicActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                         startToast("회원정보를 등록 성공.");
+                        loaderLayout.setVisibility(View.GONE);
                         //myStartActivity(MainActivity.class);이거 왜 없어지는걸까정말루
                         finish();
                     }
@@ -210,6 +215,7 @@ public class MemberActivity extends BasicActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         startToast("회원정보를 등록 실패.");
+                        //loaderLayout.setVisibility(View.GONE);
                         Log.w(TAG, "Error writing document", e);
                     }
                 });

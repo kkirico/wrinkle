@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.flagtag.wrinkle.R;
@@ -60,6 +61,8 @@ public class RegisterActivity extends BasicActivity {
         String password = ((EditText) findViewById(R.id.registerPassword)).getText().toString();
         String passwordCheck = ((EditText) findViewById(R.id.registerPasswordCheck)).getText().toString();
         if (email.length()>0 && password.length()>0 &&passwordCheck.length()>0) {
+            final RelativeLayout loaderLayout = findViewById(R.id.loaderLayout);
+            loaderLayout.setVisibility(View.VISIBLE);
             //비밀번호 확인
             if (password.equals(passwordCheck)) {
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -69,9 +72,11 @@ public class RegisterActivity extends BasicActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startToast("회원가입 성공!");
+                            loaderLayout.setVisibility(View.GONE);
                             myStartActivity(MainActivity.class);
                             //UI
                         } else {
+                            //loaderLayout.setVisibility(View.GONE);
                             if (task.getException() != null) {
                                 startToast(task.getException().toString());
                             }
