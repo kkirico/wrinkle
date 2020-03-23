@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <group android:id="@+id/default_group">
+    <group
+        android:id="@+id/default_group"
+        android:visible="true">
         <item
             android:id="@+id/image_button"
             android:icon="@drawable/ic_add_photo_alternate_24px"
@@ -30,6 +32,34 @@
             android:id="@+id/division_line_button"
             android:icon="@drawable/ic_horizontal_line_24px"
             android:title="division_line_button"
+            app:showAsAction="always" />
+    </group>
+    <group
+        android:id="@+id/move_group"
+        android:visible="false">
+        <item
+            android:id="@+id/up_button"
+            android:icon="@drawable/ic_arrow_upward_24px"
+            android:title="move_up_button"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/down_button"
+            android:icon="@drawable/ic_arrow_downward_24px"
+            android:title="move_down_button"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/delete_button"
+            android:icon="@drawable/ic_delete_24px"
+            android:title="delete_button"
+            app:showAsAction="always" />
+    </group>
+    <group
+        android:id="@+id/text_group"
+        android:visible="false" >
+        <item
+            android:id="@+id/bold_button"
+            android:icon="@drawable/ic_format_bold_24px"
+            android:title="bold_button"
             app:showAsAction="always" />
     </group>
     <item
