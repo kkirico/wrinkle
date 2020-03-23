@@ -49,6 +49,8 @@
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.CameraActivity"/>
         <activity android:name=".activity.GalleryActivity"/>
+        <activity android:name=".activity.BasicActivity"/>
+
 
 
     </application>

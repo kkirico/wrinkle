@@ -36,21 +36,22 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     public GalleryAdapter.GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gallery, parent, false);
-        return new GalleryViewHolder(cardView);
-    }
-    @Override
-    public void onBindViewHolder(@NonNull final GalleryViewHolder holder, int position) {
-        CardView cardView = holder.cardView;
+        final GalleryViewHolder galleryViewHolder = new GalleryViewHolder(cardView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent resultIntent = new Intent();
-                resultIntent.putExtra("profilePath",mDataset.get(holder.getAdapterPosition()));
+                resultIntent.putExtra("profilePath",mDataset.get(galleryViewHolder.getAdapterPosition()));
                 activity.setResult(Activity.RESULT_OK, resultIntent);
                 activity.finish();
             }
         });
+        return galleryViewHolder;
+    }
+    @Override
+    public void onBindViewHolder(@NonNull final GalleryViewHolder holder, int position) {
+        CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.imageView);
         Glide.with(activity).load(mDataset.get(position)).centerCrop().override(300).into(imageView);
     }

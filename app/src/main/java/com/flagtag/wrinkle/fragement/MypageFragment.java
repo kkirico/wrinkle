@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.activity.MemberActivity;
 import com.flagtag.wrinkle.activity.RegisterActivity;
+import com.google.android.material.circularreveal.CircularRevealWidget;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -35,8 +38,19 @@ public class MypageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_mypage, container, false);
 
 
+        rootView.findViewById(R.id.userId).setOnClickListener(onClickListener);
+        rootView.findViewById(R.id.userName).setOnClickListener(onClickListener);
+        rootView.findViewById(R.id.userIntro).setOnClickListener(onClickListener);
+        rootView.findViewById(R.id.userAdress).setOnClickListener(onClickListener);
+
+        rootView.findViewById(R.id.timeLineBtn).setOnClickListener(onClickListener);
+        rootView.findViewById(R.id.myFeedBtn).setOnClickListener(onClickListener);
+
         rootView.findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
         rootView.findViewById(R.id.myProfileBtn).setOnClickListener(onClickListener);
+        
+        RecyclerView myFeedView = (RecyclerView)rootView.findViewById(R.id.myFeedView);
+        RecyclerView timeLineView = (RecyclerView)rootView.findViewById(R.id.timeLIneView);
         return rootView;
     }
 
@@ -50,8 +64,11 @@ public class MypageFragment extends Fragment {
                     myStartActivity(RegisterActivity.class);
                     break;
                 case R.id.myProfileBtn:
-                    FirebaseAuth.getInstance().signOut();
                     myStartActivity(MemberActivity.class);
+                    break;
+                case R.id.timeLineBtn:
+                    break;
+                case R.id.myFeedBtn:
                     break;
             }
         }

@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.flagtag.wrinkle.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,9 +23,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class googleLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class googleLoginActivity extends BasicActivity implements GoogleApiClient.OnConnectionFailedListener {
     private SignInButton btn_google;
     private Button btn_guestLogin;
+    private Button btn_register;
     private FirebaseAuth auth;
     private GoogleApiClient googleApiClient;
     private static final int REQ_SIGN_GOOGLE = 100;//구글 로그인 결과코드
@@ -50,7 +48,6 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
 
-
         auth = FirebaseAuth.getInstance(); //파이어베이스 인증객체 초기화
 
         btn_google = findViewById(R.id.googleLoginBtn);
@@ -69,8 +66,14 @@ public class googleLoginActivity extends AppCompatActivity implements GoogleApiC
                 startActivity(intent);
             }
         });
-
         fast_login_button = findViewById(R.id.fast_login);
+        btn_register = findViewById((R.id.registerBtn));
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myStartActivity(RegisterActivity.class);
+            }
+        });
         fast_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PasswordResetActivity extends AppCompatActivity {
+public class PasswordResetActivity extends BasicActivity {
     private static final int RC_SIGN_IN = 123;
 
     private FirebaseAuth mAuth;
@@ -48,10 +49,14 @@ public class PasswordResetActivity extends AppCompatActivity {
         String email = ((EditText) findViewById(R.id.loginEmail)).getText().toString();
 
         if (email.length()>0 ) {
+            final RelativeLayout loaderLayout = findViewById(R.id.loaderLayout);
+            loaderLayout.setVisibility(View.VISIBLE);
             mAuth.sendPasswordResetEmail(email)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+
+                            loaderLayout.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 startToast("이메일을 보냈습니다.");
                             }

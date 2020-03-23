@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -13,14 +12,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
+import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.google.android.gms.tasks.Continuation;
@@ -42,9 +42,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class MemberActivity extends AppCompatActivity {
+public class MemberActivity extends BasicActivity {
     private static final String TAG = "Member Init Activity";
     private ImageView profileImageView;
+    private RelativeLayout loaderLayout;
     private String profilePath;
     private FirebaseUser user;
 
@@ -55,38 +56,32 @@ public class MemberActivity extends AppCompatActivity {
 
         profileImageView = findViewById(R.id.profileImageView);
         profileImageView.setOnClickListener(onClickListener);
+        loaderLayout = findViewById(R.id.loaderLayout);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.picture).setOnClickListener(onClickListener);
         findViewById(R.id.gallery).setOnClickListener(onClickListener);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     public void onBackPressed(){
         super.onBackPressed();
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        finish();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
-        switch (requestCode){
-            case 0:
-                if (resultCode== Activity.RESULT_OK){
+        switch (requestCode) {
+            case 0:{
+                if (resultCode == Activity.RESULT_OK) {
                     profilePath = data.getStringExtra("profilePath");
-                    Log.e("로그", "profilePath"+profilePath);
-                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
-                    try {
-                        rotatePicture(profilePath,bmp);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    profileImageView.setImageBitmap(bmp);
+                    Glide.with(this).load(profilePath).centerCrop().override(300).into(profileImageView);
                 }
                 break;
-
+            }
         }
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -94,7 +89,7 @@ public class MemberActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.check:
-                    profileUpdate();
+                    storageUploader();
                     break;
                 case R.id.profileImageView:
                     CardView cardView = findViewById(R.id.buttonsCardview);
@@ -106,20 +101,23 @@ public class MemberActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.picture:
+                    CardView cardView1 = findViewById(R.id.buttonsCardview);
+                    cardView1.setVisibility(View.GONE);
                     myStartActivity(CameraActivity.class);
                     break;
                 case R.id.gallery:
-
+                    CardView cardView2 = findViewById(R.id.buttonsCardview);//카드뷰 다시 안보이게 하
+                    cardView2.setVisibility(View.GONE);
                     if (ContextCompat.checkSelfPermission(MemberActivity.this ,
-                            Manifest.permission.READ_CONTACTS)
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(MemberActivity.this,
-                                new String[]{Manifest.permission.READ_CONTACTS},
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 1);
                         if (ActivityCompat.shouldShowRequestPermissionRationale(MemberActivity.this,
-                                Manifest.permission.READ_CONTACTS)) {
+                                Manifest.permission.READ_EXTERNAL_STORAGE)) {
                         } else {
-                            startToast("갤러리 사용 권한을 허가해 주세요:)");
+                            startToast("갤러리 사용 권한을 허가해 주세요1");
                         }
                     } else {
                         myStartActivity(GalleryActivity.class);
@@ -136,31 +134,31 @@ public class MemberActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     myStartActivity(GalleryActivity.class);
                 } else {
-                    startToast("갤러리 사용 권한을 허가해 주세요:)");
+                    startToast("갤러리 사용 권한을 허가해 주세요2");
 
                 }
             }
         }
     }
 
-    private void profileUpdate() {
+    private void storageUploader() {
         final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
         final String phoneNumber = ((EditText) findViewById(R.id.phoneNumberEditText)).getText().toString();
-        final String birthDay = ((EditText) findViewById(R.id.birthDayEditText)).getText().toString();
+        final String profileText = ((EditText) findViewById(R.id.profileEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
 
 
-        if (name.length()>0 && phoneNumber.length()>9 && birthDay.length()>5 && address.length()>0) {
+        if (name.length()>0 && phoneNumber.length()>9 && profileText.length()>5 && address.length()>0) {
+            loaderLayout.setVisibility(View.VISIBLE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            final FirebaseAuth auth = FirebaseAuth.getInstance();
-            user = auth.getCurrentUser();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            user = mAuth.getCurrentUser();
             final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"profileImage.jpg");
 
             if(profilePath ==null){
-                MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
-                uploader(memberInfo);
-
+                MemberInfo memberInfo = new MemberInfo(name, phoneNumber, profileText, address);
+                storeUploader(memberInfo);
             }
             else{
                 try{
@@ -179,11 +177,10 @@ public class MemberActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-
-                                MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address,downloadUri.toString());
-                                uploader(memberInfo);
+                                MemberInfo memberInfo = new MemberInfo(name, phoneNumber, profileText, address,downloadUri.toString());
+                                storeUploader(memberInfo);
                              } else {
-                                // Handle failures
+                                startToast("회원정보 저장 실패.");
                             }
                         }
                     });
@@ -199,7 +196,7 @@ public class MemberActivity extends AppCompatActivity {
         }
     }
 
-    private void uploader(MemberInfo memberInfo){
+    private void storeUploader(MemberInfo memberInfo){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getUid()).set(memberInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -207,7 +204,8 @@ public class MemberActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                         startToast("회원정보를 등록 성공.");
-                        //myStartActivity(MainActivity.class); 이거 왜 안해도되는지 어디서 처리했는지 찾아봐 헌준?
+                        loaderLayout.setVisibility(View.GONE);
+                        //myStartActivity(MainActivity.class);이거 왜 없어지는걸까정말루
                         finish();
                     }
                 })
@@ -215,6 +213,7 @@ public class MemberActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         startToast("회원정보를 등록 실패.");
+                        //loaderLayout.setVisibility(View.GONE);
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
