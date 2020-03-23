@@ -1,24 +1,18 @@
 package com.flagtag.wrinkle.fragement;
 
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +35,24 @@ public class WritingFragment extends Fragment {
     Toolbar toolbar;
     LinearLayout writing_content_container;
     ArrayList<View> contentArray;
-    EditText writing1;
+    EditText writing;
     MainActivity activity;
 
 
     private static final int SELECT_IMAGE = 1;
+    //현재 선택된 아이템을 뜻함.
     private static int CUR_INDEX = 0;
+
+    private static int DEFAULT_MENU =0;
+    private static int IMAGE_MENU =1;
+    private static int VEDIO_MENU =2;
+    private static int QUOTE_MENU =3;
+    private static int LOCATION_MENU =4;
+    private static int DIVISION_MENU =5;
+
+    private int menu_page = 0;
+    private int currentSelectedItem =0;
+
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -56,19 +62,20 @@ public class WritingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
+        final ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
         activity = (MainActivity)getActivity();
 
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
         writing_content_container = rootView.findViewById(R.id.content_container);
-        writing1 = rootView.findViewById(R.id.writing_content1);
-        writing1.setOnFocusChangeListener(focusChangeListener);
+        writing = rootView.findViewById(R.id.writing_content1);
+        writing.setOnFocusChangeListener(focusChangeListener);
         contentArray = new ArrayList<View>();
-        contentArray.add(writing1);
+        contentArray.add(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -91,6 +98,18 @@ public class WritingFragment extends Fragment {
                 }else if(item.getItemId() == R.id.more_button){
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음
+                     Menu menu = toolbar.getMenu();
+                    if(menu_page==DEFAULT_MENU && menu_page != currentSelectedItem){
+
+                        menu.setGroupVisible(R.id.default_group, false);
+                        menu_page = currentSelectedItem;
+                    }else{
+                        menu.setGroupVisible(R.id.default_group, true);
+                        menu_page = DEFAULT_MENU;
+                    }
+
+
+
                 }
                 return false;
             }
@@ -146,6 +165,7 @@ public class WritingFragment extends Fragment {
                         startToast(Integer.toString(CUR_INDEX));
                         //WritingImageView가 선택되었을 때 setSelected() 함수 호출
                         imageView.setSelected();
+                        currentSelectedItem = IMAGE_MENU;
 
                     }
                 });
@@ -174,8 +194,8 @@ public class WritingFragment extends Fragment {
                     writing_content_container.addView(editText, CUR_INDEX+2, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
 
                 }
-
-
+                currentSelectedItem = IMAGE_MENU;
+                startToast(Integer.toString(CUR_INDEX));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -190,7 +210,9 @@ public class WritingFragment extends Fragment {
         public void onFocusChange(View view, boolean gainFocus) {
             if(gainFocus){
                 CUR_INDEX = writing_content_container.indexOfChild(view);
+                currentSelectedItem = DEFAULT_MENU;
                 startToast(Integer.toString(CUR_INDEX));
+
             }
         }
 
