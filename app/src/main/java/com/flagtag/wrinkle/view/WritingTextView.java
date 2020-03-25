@@ -1,6 +1,7 @@
 package com.flagtag.wrinkle.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -52,6 +53,8 @@ public class WritingTextView extends WritingView {
         text.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         //gravity 기본 설정 위 왼쪽
         text.setGravity(Gravity.LEFT| Gravity.START);
+        //text underline 없애기
+        text.setBackgroundColor(Color.TRANSPARENT);
 
         background.addView(text);
 
