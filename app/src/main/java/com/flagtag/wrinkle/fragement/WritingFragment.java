@@ -3,19 +3,23 @@ package com.flagtag.wrinkle.fragement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -23,9 +27,12 @@ import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
+import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 
@@ -39,6 +46,7 @@ public class WritingFragment extends Fragment {
 
 
     private static final int SELECT_IMAGE = 1;
+    private static final int SELECT_VIDEO = 2;
     //현재 선택된 아이템을 뜻함.
     private static int CUR_INDEX = 0;
 
@@ -80,6 +88,7 @@ public class WritingFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                int numberofItem = writing_content_container.getChildCount();
                 if(item.getItemId() == R.id.image_button){
 
                     //이미지 선택
@@ -90,6 +99,11 @@ public class WritingFragment extends Fragment {
                     startActivityForResult(intent, SELECT_IMAGE);
                 }else if(item.getItemId() == R.id.vidoe_button){
                     //동영상 선택
+                    startToast("동영상 선택");
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType("video/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(intent, SELECT_VIDEO);
                 }else if(item.getItemId() == R.id.location_button){
                     //위치 선택
                 }else if(item.getItemId() == R.id.quote_button){
@@ -103,7 +117,8 @@ public class WritingFragment extends Fragment {
                      changeToolbarMenu(menu);
 
                 }else if(item.getItemId() == R.id.up_button){
-                    if(CUR_INDEX ==0){
+
+                    if(CUR_INDEX ==0 || CUR_INDEX == numberofItem-1){
                         return false;
                     }else{
                         //선택한 아이템을 위로 올린다.
@@ -115,7 +130,8 @@ public class WritingFragment extends Fragment {
                     }
 
                 }else if(item.getItemId() == R.id.down_button){
-                    if(CUR_INDEX == writing_content_container.getChildCount()-1){
+
+                    if(CUR_INDEX == numberofItem-1|| CUR_INDEX == numberofItem-2){
                         return false;
                     }else{
                         WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
@@ -123,6 +139,13 @@ public class WritingFragment extends Fragment {
                         writing_content_container.addView(curView, ++CUR_INDEX);
 
                     }
+                }else if(item.getItemId() == R.id.delete_button){
+                    if(numberofItem==1 ||CUR_INDEX == numberofItem-1){
+                        return false;
+                    }
+                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+                    writing_content_container.removeView(curView);
+                    changeToolbarMenu(toolbar.getMenu());
                 }
                 return false;
             }
@@ -159,7 +182,7 @@ public class WritingFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //이미지를 선택했을 때
-        if(requestCode==SELECT_IMAGE){
+        if (requestCode == SELECT_IMAGE) {
             try {
                 // 선택한 이미지에서 비트맵 생성
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
@@ -169,65 +192,37 @@ public class WritingFragment extends Fragment {
                 final WritingImageView imageView = new WritingImageView(activity);
                 //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
                 imageView.setImageView(img);
-                //WritingImageView의 onClickListener를 만든다.
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        CUR_INDEX = writing_content_container.indexOfChild(v);
-                        startToast(Integer.toString(CUR_INDEX));
-                        //WritingImageView가 선택되었을 때 setSelected() 함수 호출
-                        imageView.toggleSelected();
-                        unsetOtherViews(imageView);
-                        currentSelectedItem = IMAGE_MENU;
-
-                    }
-                });
-                //container에 WritingImageView를 넣어준다.
-                writing_content_container.addView(imageView,CUR_INDEX+1);
-
-
-                //현재 인덱스의 뷰를 불러온다.
-                View cur_view = writing_content_container.getChildAt(CUR_INDEX);
-                //현재 인덱스의 뷰가 텍스트일 때,
-                if(cur_view instanceof WritingTextView){
-                    String text = ((WritingTextView) cur_view).getText().toString();
-                    //텍스트에 아무 것도 안 쓰여있었으면,
-                    if(text.equals("")){
-                        //그 텍스트 뷰를 삭제한다.
-                        writing_content_container.removeView(cur_view);
-
-                    }else{
-                        //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
-                        ((WritingTextView) cur_view).setMinLines(0);
-                        CUR_INDEX++;
-                    }
-                    //그 밑에 텍스트뷰를 넣어준다.
-                    WritingTextView editText = new WritingTextView(activity);
-                    editText.setOnFocusChangeListener(focusChangeListener);
-                    editText.setMinLines(3);
-                    writing_content_container.addView(editText, CUR_INDEX+1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-
-                }
-                currentSelectedItem = IMAGE_MENU;
-                //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
-                unsetOtherViews(imageView);
-                changeToolbarMenu(toolbar.getMenu());
-                startToast(Integer.toString(CUR_INDEX));
-
-            } catch (Exception e) {
+                addViewToContainer(imageView);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else if (requestCode == SELECT_VIDEO) {
+            Uri videoURI = data.getData();
+            if (videoURI != null) {
+                String videoPath = getPath(videoURI);
 
+                //WritingVideoView 생성
+                WritingVideoView videoView = new WritingVideoView(activity);
+                videoView.setVideoView(videoURI);
+                videoView.requestFocus();
+
+
+                addViewToContainer(videoView);
+            }
         }
     }
+
+
 
 
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
-            if(gainFocus){
-                WritingView curWritingView = (WritingView)(view.getParent().getParent());
+            if (gainFocus) {
+                WritingView curWritingView = (WritingView) (view.getParent().getParent());
                 CUR_INDEX = writing_content_container.indexOfChild(curWritingView);
                 unsetOtherViews(curWritingView);
                 curWritingView.toggleSelected();
@@ -241,30 +236,30 @@ public class WritingFragment extends Fragment {
     };
 
     //매개변수로 주어진 view를 제외하고 writing_content_container 안의 모든 view를 unset한다.
-    private void unsetOtherViews(View view){
+    private void unsetOtherViews (View view){
         int number = writing_content_container.getChildCount();
-        for(int i=0; i<number; i++){
-            if(i != CUR_INDEX){
-                WritingView writingView = (WritingView)writing_content_container.getChildAt(i);
+        for (int i = 0; i < number; i++) {
+            if (i != CUR_INDEX) {
+                WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
                 writingView.unsetSelected();
             }
         }
     }
 
-    private void changeToolbarMenu(Menu menu){
+    private void changeToolbarMenu (Menu menu){
         int curMenuGroup = R.id.default_group;
-        if(currentSelectedItem == TEXT_MENU){
+        if (currentSelectedItem == TEXT_MENU) {
             curMenuGroup = R.id.text_group;
-        }else if(currentSelectedItem == IMAGE_MENU){
-            curMenuGroup =R.id.move_group;
+        } else if (currentSelectedItem == IMAGE_MENU) {
+            //curMenuGroup =R.id.move_group;
         }
         //현재 메뉴가 DEFAULT이고 골라진 아이템이랑 현재 메뉴랑 다르면
-        if(menu_page==DEFAULT_MENU && menu_page != currentSelectedItem){
+        if (menu_page == DEFAULT_MENU && menu_page != currentSelectedItem) {
             menu.setGroupVisible(R.id.move_group, true);
             menu.setGroupVisible(curMenuGroup, true);
             menu.setGroupVisible(R.id.default_group, false);
             menu_page = currentSelectedItem;
-        }else{
+        } else {
             menu.setGroupVisible(R.id.move_group, false);
             menu.setGroupVisible(curMenuGroup, false);
             menu.setGroupVisible(R.id.default_group, true);
@@ -272,4 +267,66 @@ public class WritingFragment extends Fragment {
         }
     }
 
+    private String getPath (Uri uri){
+        String[] projection = {MediaStore.Video.Media.DATA};
+        Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } else
+            return null;
+    }
+
+    private void addViewToContainer ( final WritingView view){
+        //WritingImageView의 onClickListener를 만든다.
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CUR_INDEX = writing_content_container.indexOfChild(v);
+                startToast(Integer.toString(CUR_INDEX));
+                //WritingImageView가 선택되었을 때 setSelected() 함수 호출
+                view.toggleSelected();
+                unsetOtherViews(view);
+                currentSelectedItem = IMAGE_MENU;
+
+            }
+        });
+        //container에 WritingImageView를 넣어준다.
+        writing_content_container.addView(view, CUR_INDEX + 1);
+
+
+        //현재 인덱스의 뷰를 불러온다.
+        View cur_view = writing_content_container.getChildAt(CUR_INDEX);
+        //현재 인덱스의 뷰가 텍스트일 때,
+        if (cur_view instanceof WritingTextView) {
+            String text = ((WritingTextView) cur_view).getText().toString();
+            //텍스트에 아무 것도 안 쓰여있었으면,
+            if (text.equals("")) {
+                //그 텍스트 뷰를 삭제한다.
+                writing_content_container.removeView(cur_view);
+
+            } else {
+                //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
+                ((WritingTextView) cur_view).setMinLines(0);
+                CUR_INDEX++;
+            }
+            //그 밑에 텍스트뷰를 넣어준다.
+            WritingTextView editText = new WritingTextView(activity);
+            editText.setOnFocusChangeListener(focusChangeListener);
+            editText.setMinLines(3);
+            writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        }
+        currentSelectedItem = IMAGE_MENU;
+        //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
+        unsetOtherViews(view);
+        changeToolbarMenu(toolbar.getMenu());
+        startToast(Integer.toString(CUR_INDEX));
+
+    }
 }
