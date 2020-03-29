@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.flagtag.wrinkle.BoldButton;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
@@ -61,9 +63,12 @@ public class WritingFragment extends Fragment {
     private int menu_page = 0;
     private int currentSelectedItem =0;
 
+    private boolean BOLD_BUTTON_CHECKED = false;
+
     public WritingFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -84,6 +89,8 @@ public class WritingFragment extends Fragment {
         writing_content_container.addView(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -146,6 +153,22 @@ public class WritingFragment extends Fragment {
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
                     changeToolbarMenu(toolbar.getMenu());
+                }
+                else if(item.getItemId() == R.id.bold_button){
+                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+                    startToast("boldbutton");
+
+                    ((BoldButton)item).toggleSelected();
+                    //not bold ->bold
+                    if(!BOLD_BUTTON_CHECKED){
+
+                        item.setChecked(true);
+                        BOLD_BUTTON_CHECKED = true;
+                    }else{
+                        item.setChecked(false);
+                        BOLD_BUTTON_CHECKED = false;
+                    }
+
                 }
                 return false;
             }
@@ -329,4 +352,6 @@ public class WritingFragment extends Fragment {
         startToast(Integer.toString(CUR_INDEX));
 
     }
+
+
 }

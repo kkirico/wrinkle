@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:state_on="true"
+        android:drawable="@color/colorAccent"
+
+        >
+    </item>
+
+    <item
+        app:state_on="false"
+        android:drawable="@drawable/ic_format_bold_24px">
+
+    </item>
+    <item
+        android:drawable="@drawable/ic_format_bold_24px">
+
+    </item>
+</selector>
