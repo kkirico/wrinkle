@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.fragement.MypageFragment;
 import com.flagtag.wrinkle.fragement.NewsfeedFragment;
 import com.flagtag.wrinkle.fragement.NotificationFragment;
@@ -12,6 +13,7 @@ import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.fragement.SurfingFragment;
 import com.flagtag.wrinkle.fragement.WritingFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +23,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class MainActivity extends BasicActivity {
 
@@ -48,33 +50,58 @@ public class MainActivity extends BasicActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-        if(user == null){
+        final MemberInfo memberInfo = MemberInfo.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("user").document(String.valueOf(user));
+
+
+
+        if (user == null) {
             myStartActivity(googleLoginActivity.class);
-        }else{
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference docRef = db.collection("users").document(user.getUid());
-            docRef.get().addOnCompleteListener( new OnCompleteListener<DocumentSnapshot>() {
+        } else {
+            db = FirebaseFirestore.getInstance();
+            docRef = db.collection("users").document(user.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        if(document != null){
-                            if (document.exists()) {
-                                //myStartActivity(MemberActivity.class);
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
+                        if (document.get("name") == null) {
+                            myStartActivity(googleLoginActivity.class);
+                        } else {
+                            memberInfo.setName(document.get("name").toString());
+                            memberInfo.setAddress(document.get("address").toString());
+                            memberInfo.setemail(document.get("email").toString());
+                            memberInfo.setText(document.get("text").toString());
+                            memberInfo.setPhotoUrl(document.get("photoUrl").toString());
                         }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
                     }
                 }
             });
+           if (memberInfo== null) {
+                myStartActivity(MemberActivity.class);
+            } else {
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null) {
+                                if (document.exists()) {
+                                    //myStartActivity(MemberActivity.class);
+                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
         }
-
-
-
 
 
         fragmentManager = getSupportFragmentManager();
@@ -96,13 +123,14 @@ public class MainActivity extends BasicActivity {
 
 
     }
-    class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
+
+    class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
             fragmentTransaction = fragmentManager.beginTransaction();
 
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.newsfeed_tab:
 
                     fragmentTransaction.replace(R.id.main_container, newsfeedFragment).commitAllowingStateLoss();
@@ -132,14 +160,12 @@ public class MainActivity extends BasicActivity {
     }
 
 
-
-
-
-    private void myStartActivity(Class c){
+    private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
-    public void onBackPressed(){
+
+    public void onBackPressed() {
         super.onBackPressed();
         moveTaskToBack(true);
         android.os.Process.killProcess(android.os.Process.myPid());
