@@ -8,7 +8,9 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -68,18 +70,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="@id/guideline9"
                     app:layout_constraintStart_toStartOf="@id/guideline8"
-                    app:layout_constraintTop_toBottomOf="@id/title">
-
-                    <EditText
-                        android:id="@+id/writing_content1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:hint="그 날의 일을 설명해주세요."
-                        android:inputType="textMultiLine"
-                        android:minLines="20" />
-                </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@id/title" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -46,8 +46,8 @@ public class WritingView extends LinearLayout {
         return drawableStates;
     }
 
-
-    public void setSelected() {
+    //
+    public void toggleSelected() {
         if ( mIsSelected ){
             mIsSelected = false;
 
@@ -61,13 +61,22 @@ public class WritingView extends LinearLayout {
         invalidate();
     }
 
+    public void unsetSelected(){
+        mIsSelected = false;
+        refreshDrawableState();
+        invalidate();
+
+    }
+
     public void initView(){
         String inflaterService = Context.LAYOUT_INFLATER_SERVICE;
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(inflaterService);
         View view = layoutInflater.inflate(R.layout.writing_view,this,false);
 
+        view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         //inflate한 view를 추가한다.
         addView(view);
+
 
         background = findViewById(R.id.background);
         guideline_top = findViewById(R.id.guideline_top);
