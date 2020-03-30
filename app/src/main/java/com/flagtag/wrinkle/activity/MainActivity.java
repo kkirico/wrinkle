@@ -68,7 +68,7 @@ public class MainActivity extends BasicActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.get("name") == null) {
-                            myStartActivity(googleLoginActivity.class);
+                            myStartActivity(MemberActivity.class);
                         } else {
                             memberInfo.setName(document.get("name").toString());
                             memberInfo.setAddress(document.get("address").toString());
