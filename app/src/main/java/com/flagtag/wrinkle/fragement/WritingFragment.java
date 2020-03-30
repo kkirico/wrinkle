@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +51,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 public class WritingFragment extends Fragment {
 
@@ -62,6 +65,7 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     MainActivity activity;
 
+    StyleSpan boldStyleSpan;
 
     private static final int SELECT_IMAGE = 1;
     private static final int SELECT_VIDEO = 2;
@@ -99,7 +103,7 @@ public class WritingFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
         titleEditText = rootView.findViewById(R.id.title);
-        contentEditText = rootView.findViewById(R.id.contentEditText);
+        //contentEditText = rootView.findViewById(R.id.contentEditText);
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
@@ -185,20 +189,17 @@ public class WritingFragment extends Fragment {
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
                         startToast("boldbutton set");
+
+                        boldStyleSpan = new StyleSpan(Typeface.BOLD);
                         for(int i=0; i<writing_content_container.getChildCount();i++){
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
                             if(writingView instanceof WritingTextView){
-                                StyleSpan boldSpan;
-                                if(ITALIC_BUTTON_CHECKED){
-                                    boldSpan= new StyleSpan(Typeface.BOLD_ITALIC);
-                                }else{
-                                    boldSpan = new StyleSpan(Typeface.BOLD);
-                                }
 
                                 int start = ((WritingTextView)writingView).text.getSelectionStart();
                                 int end = ((WritingTextView)writingView).text.getSelectionEnd();
                                 int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
-                                ((WritingTextView)writingView).text.getText().setSpan(boldSpan, start, end, flag);
+                                ((WritingTextView)writingView).text.getText().setSpan(boldStyleSpan, start, end, flag);
+
                             }
                         }
 
@@ -211,16 +212,9 @@ public class WritingFragment extends Fragment {
                         for(int i=0; i<writing_content_container.getChildCount();i++){
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
                             if(writingView instanceof WritingTextView){
-                                StyleSpan boldSpan;
-                                if(ITALIC_BUTTON_CHECKED){
-                                    boldSpan = new StyleSpan(Typeface.ITALIC);
-                                }else{
-                                    boldSpan = new StyleSpan(Typeface.NORMAL);
-                                }
-                                int start = ((WritingTextView)writingView).text.getSelectionStart();
-                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
-                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
-                                ((WritingTextView)writingView).text.getText().setSpan(boldSpan, start, end, flag);
+
+
+                                ((WritingTextView)writingView).text.getText().removeSpan(boldStyleSpan);
                             }
                         }
                     }
@@ -311,8 +305,8 @@ public class WritingFragment extends Fragment {
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
+            WritingView curWritingView =(WritingView) (view.getParent().getParent());;
             if (gainFocus) {
-                WritingView curWritingView = (WritingView) (view.getParent().getParent());
                 CUR_INDEX = writing_content_container.indexOfChild(curWritingView);
                 unsetOtherViews(curWritingView);
                 curWritingView.toggleSelected();
@@ -320,6 +314,9 @@ public class WritingFragment extends Fragment {
                 changeToolbarMenu(toolbar.getMenu());
                 startToast(Integer.toString(CUR_INDEX));
 
+            }else{
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(curWritingView.getWindowToken(), 0);
             }
         }
 
