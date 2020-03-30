@@ -9,34 +9,46 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.WriteInfo;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
 import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 
 public class WritingFragment extends Fragment {
+
+    private static final String TAG = "Write Post Activity";
+    private FirebaseUser user;
 
     FirebaseFirestore db;
     Toolbar toolbar;
@@ -57,6 +69,8 @@ public class WritingFragment extends Fragment {
     private static int LOCATION_MENU =4;
     private static int DIVISION_MENU =5;
     private static int TEXT_MENU = 6;
+    EditText titleEditText;
+    EditText contentEditText;
 
     private int menu_page = 0;
     private int currentSelectedItem =0;
@@ -72,10 +86,11 @@ public class WritingFragment extends Fragment {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
         activity = (MainActivity)getActivity();
-
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
-
+        rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
+        titleEditText = rootView.findViewById(R.id.title);
+        contentEditText = rootView.findViewById(R.id.contentEditText);
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
@@ -158,7 +173,17 @@ public class WritingFragment extends Fragment {
         return rootView;
     }
 
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.check:
+                    storageUploader();
 
+                    break;
+            }
+        }
+    };
     //프래그먼트가 액티비티에 올라올 때 호출되는 함수
     @Override
     public void onAttach(Context context) {
@@ -281,7 +306,7 @@ public class WritingFragment extends Fragment {
             return null;
     }
 
-    private void addViewToContainer ( final WritingView view){
+    private void addViewToContainer ( final WritingView view) {
         //WritingImageView의 onClickListener를 만든다.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,5 +353,41 @@ public class WritingFragment extends Fragment {
         changeToolbarMenu(toolbar.getMenu());
         startToast(Integer.toString(CUR_INDEX));
 
+   }
+    private void storageUploader() {
+        final String title =  titleEditText.getText().toString();
+        final String contents = contentEditText.getText().toString();
+
+
+        if (title.length()>0 && contents.length()>0 ) {
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            WriteInfo writeInfo = new WriteInfo(title,contents,user.getUid() );
+            storeUploader(writeInfo);
+        }
+            else {
+        }
     }
-}
+
+    private void storeUploader(WriteInfo writeInfo){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts").add(writeInfo)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot written with Id:"+documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //loaderLayout.setVisibility(View.GONE);
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(getContext(), c);
+        startActivityForResult(intent,0);
+    }
+
+    }
