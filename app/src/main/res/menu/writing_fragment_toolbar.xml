@@ -55,12 +55,15 @@
     </group>
     <group
         android:id="@+id/text_group"
-        android:visible="false" >
+        android:visible="false"
+        android:checkableBehavior="all">
         <item
             android:id="@+id/bold_button"
-            android:icon="@drawable/ic_format_bold_24px"
             android:title="bold_button"
-            app:showAsAction="always" />
+            app:showAsAction="always"
+            android:checkable="true"
+            android:icon="@drawable/ic_format_bold_24px"
+            />
     </group>
     <item
         android:id="@+id/more_button"

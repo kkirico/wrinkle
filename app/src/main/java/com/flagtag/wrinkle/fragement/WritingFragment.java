@@ -3,17 +3,25 @@ package com.flagtag.wrinkle.fragement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,23 +29,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.WriteInfo;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
 import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 public class WritingFragment extends Fragment {
+
+    private static final String TAG = "Write Post Activity";
+    private FirebaseUser user;
 
     FirebaseFirestore db;
     Toolbar toolbar;
@@ -45,6 +66,7 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     MainActivity activity;
 
+    StyleSpan boldStyleSpan;
 
     private static final int SELECT_IMAGE = 1;
     private static final int SELECT_VIDEO = 2;
@@ -58,13 +80,18 @@ public class WritingFragment extends Fragment {
     private static int LOCATION_MENU =4;
     private static int DIVISION_MENU =5;
     private static int TEXT_MENU = 6;
+    EditText titleEditText;
+    EditText contentEditText;
 
     private int menu_page = 0;
     private int currentSelectedItem =0;
 
+    private boolean BOLD_BUTTON_CHECKED = false;
+    private boolean ITALIC_BUTTON_CHECKED = false;
     public WritingFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -73,10 +100,11 @@ public class WritingFragment extends Fragment {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
         activity = (MainActivity)getActivity();
-
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
-
+        rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
+        titleEditText = rootView.findViewById(R.id.title);
+        //contentEditText = rootView.findViewById(R.id.contentEditText);
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
@@ -85,6 +113,8 @@ public class WritingFragment extends Fragment {
         writing_content_container.addView(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -155,6 +185,50 @@ public class WritingFragment extends Fragment {
 
 
                 }
+                else if(item.getItemId() == R.id.bold_button){
+                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+
+
+
+                    //not bold ->bold
+                    if(!BOLD_BUTTON_CHECKED){
+
+                        item.setChecked(true);
+                        item.setIconTintList(ColorStateList.valueOf(Color.RED));
+                        BOLD_BUTTON_CHECKED = true;
+                        startToast("boldbutton set");
+
+                        boldStyleSpan = new StyleSpan(Typeface.BOLD);
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+
+                                int start = ((WritingTextView)writingView).text.getSelectionStart();
+                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
+                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
+                                ((WritingTextView)writingView).text.getText().setSpan(boldStyleSpan, start, end, flag);
+
+                            }
+                        }
+
+
+                    }else{
+                        item.setChecked(false);
+                        item.setIconTintList(null);
+                        BOLD_BUTTON_CHECKED = false;
+                        startToast("boldbutton unset");
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+
+
+                                ((WritingTextView)writingView).text.getText().removeSpan(boldStyleSpan);
+                            }
+                        }
+                    }
+                    activity.invalidateOptionsMenu();
+
+                }
                 return false;
             }
         });
@@ -166,7 +240,17 @@ public class WritingFragment extends Fragment {
         return rootView;
     }
 
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.check:
+                    storageUploader();
 
+                    break;
+            }
+        }
+    };
     //프래그먼트가 액티비티에 올라올 때 호출되는 함수
     @Override
     public void onAttach(Context context) {
@@ -357,5 +441,41 @@ public class WritingFragment extends Fragment {
         changeToolbarMenu(toolbar.getMenu(),true);
         startToast(Integer.toString(CUR_INDEX));
 
+   }
+    private void storageUploader() {
+        final String title =  titleEditText.getText().toString();
+        final String contents = contentEditText.getText().toString();
+
+
+        if (title.length()>0 && contents.length()>0 ) {
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            WriteInfo writeInfo = new WriteInfo(title,contents,user.getUid() );
+            storeUploader(writeInfo);
+        }
+            else {
+        }
     }
-}
+
+    private void storeUploader(WriteInfo writeInfo){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts").add(writeInfo)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot written with Id:"+documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //loaderLayout.setVisibility(View.GONE);
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(getContext(), c);
+        startActivityForResult(intent,0);
+    }
+
+    }

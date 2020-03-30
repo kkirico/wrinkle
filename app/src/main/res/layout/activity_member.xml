@@ -55,13 +55,13 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/phoneNumberEditText"
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/phone"
-                android:inputType="phone" />
+                android:hint="이메일"
+                android:inputType="none|textEmailAddress" />
 
             <EditText
                 android:id="@+id/profileEditText"

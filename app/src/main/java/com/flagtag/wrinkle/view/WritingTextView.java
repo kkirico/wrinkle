@@ -14,7 +14,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class WritingTextView extends WritingView {
 
-    EditText text;
+    public EditText text;
+
 
     public WritingTextView(Context context) {
         super(context);
@@ -55,6 +56,7 @@ public class WritingTextView extends WritingView {
         text.setGravity(Gravity.LEFT| Gravity.START);
         //text underline 없애기
         text.setBackgroundColor(Color.TRANSPARENT);
+
 
         background.addView(text);
 
