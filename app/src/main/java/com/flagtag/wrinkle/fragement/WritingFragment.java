@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -114,7 +115,11 @@ public class WritingFragment extends Fragment {
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음
                      Menu menu = toolbar.getMenu();
-                     changeToolbarMenu(menu);
+                    if(menu_page ==DEFAULT_MENU && menu_page != currentSelectedItem){
+                        changeToolbarMenu(toolbar.getMenu(),true);
+                    }else{
+                        changeToolbarMenu(toolbar.getMenu(),false);
+                    }
 
                 }else if(item.getItemId() == R.id.up_button){
 
@@ -145,7 +150,10 @@ public class WritingFragment extends Fragment {
                     }
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
-                    changeToolbarMenu(toolbar.getMenu());
+
+                    changeToolbarMenu(toolbar.getMenu(),false);
+
+
                 }
                 return false;
             }
@@ -192,7 +200,7 @@ public class WritingFragment extends Fragment {
                 final WritingImageView imageView = new WritingImageView(activity);
                 //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
                 imageView.setImageView(img);
-                addViewToContainer(imageView);
+                addViewToContainer(imageView, IMAGE_MENU);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -210,7 +218,7 @@ public class WritingFragment extends Fragment {
                 videoView.requestFocus();
 
 
-                addViewToContainer(videoView);
+                addViewToContainer(videoView, VEDIO_MENU);
             }
         }
     }
@@ -221,14 +229,22 @@ public class WritingFragment extends Fragment {
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
             if (gainFocus) {
+
                 WritingView curWritingView = (WritingView) (view.getParent().getParent());
                 CUR_INDEX = writing_content_container.indexOfChild(curWritingView);
+
                 unsetOtherViews(curWritingView);
                 curWritingView.toggleSelected();
+
                 currentSelectedItem = TEXT_MENU;
-                changeToolbarMenu(toolbar.getMenu());
+                changeToolbarMenu(toolbar.getMenu(),true);
                 startToast(Integer.toString(CUR_INDEX));
+
+            }else{
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             }
         }
@@ -246,25 +262,26 @@ public class WritingFragment extends Fragment {
         }
     }
 
-    private void changeToolbarMenu (Menu menu){
-        int curMenuGroup = R.id.default_group;
-        if (currentSelectedItem == TEXT_MENU) {
-            curMenuGroup = R.id.text_group;
-        } else if (currentSelectedItem == IMAGE_MENU) {
-            //curMenuGroup =R.id.move_group;
-        }
-        //현재 메뉴가 DEFAULT이고 골라진 아이템이랑 현재 메뉴랑 다르면
-        if (menu_page == DEFAULT_MENU && menu_page != currentSelectedItem) {
+    private void changeToolbarMenu (Menu menu,boolean set){
+
+        //menu_page : 현재의 메뉴페이지
+        //currentSelectedItem : 현재 선택된 아이템
+        if(set){
             menu.setGroupVisible(R.id.move_group, true);
-            menu.setGroupVisible(curMenuGroup, true);
+            menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, false);
+            if(currentSelectedItem== TEXT_MENU) {
+                menu.setGroupVisible(R.id.text_group, true);
+            }
             menu_page = currentSelectedItem;
-        } else {
+        }else{
             menu.setGroupVisible(R.id.move_group, false);
-            menu.setGroupVisible(curMenuGroup, false);
+            menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, true);
             menu_page = DEFAULT_MENU;
         }
+
+
     }
 
     private String getPath (Uri uri){
@@ -281,18 +298,26 @@ public class WritingFragment extends Fragment {
             return null;
     }
 
-    private void addViewToContainer ( final WritingView view){
+    private void addViewToContainer ( final WritingView view, final int type){
         //WritingImageView의 onClickListener를 만든다.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int PREVIOUS = CUR_INDEX;
                 CUR_INDEX = writing_content_container.indexOfChild(v);
+
                 startToast(Integer.toString(CUR_INDEX));
                 //WritingImageView가 선택되었을 때 setSelected() 함수 호출
                 view.toggleSelected();
                 unsetOtherViews(view);
-                currentSelectedItem = IMAGE_MENU;
+
+                currentSelectedItem = type;
+                if(CUR_INDEX == PREVIOUS){
+                    changeToolbarMenu(toolbar.getMenu(), false);
+                }else{
+                    changeToolbarMenu(toolbar.getMenu(), true);
+                }
+
 
             }
         });
@@ -310,6 +335,7 @@ public class WritingFragment extends Fragment {
                 //그 텍스트 뷰를 삭제한다.
                 writing_content_container.removeView(cur_view);
 
+
             } else {
                 //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
                 ((WritingTextView) cur_view).setMinLines(0);
@@ -321,11 +347,14 @@ public class WritingFragment extends Fragment {
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
+        }else{
+            CUR_INDEX++;
         }
-        currentSelectedItem = IMAGE_MENU;
+
+        currentSelectedItem = type;
         //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
         unsetOtherViews(view);
-        changeToolbarMenu(toolbar.getMenu());
+        changeToolbarMenu(toolbar.getMenu(),true);
         startToast(Integer.toString(CUR_INDEX));
 
     }
