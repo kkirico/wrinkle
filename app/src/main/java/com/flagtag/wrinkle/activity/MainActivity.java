@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends BasicActivity {
 
@@ -68,7 +69,7 @@ public class MainActivity extends BasicActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.get("name") == null) {
-                            myStartActivity(googleLoginActivity.class);
+                            myStartActivity(MemberActivity.class);
                         } else {
                             memberInfo.setName(document.get("name").toString());
                             memberInfo.setAddress(document.get("address").toString());
