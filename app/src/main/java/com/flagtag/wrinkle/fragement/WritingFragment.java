@@ -3,15 +3,18 @@ package com.flagtag.wrinkle.fragement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -75,9 +78,12 @@ public class WritingFragment extends Fragment {
     private int menu_page = 0;
     private int currentSelectedItem =0;
 
+    private boolean BOLD_BUTTON_CHECKED = false;
+
     public WritingFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -99,6 +105,8 @@ public class WritingFragment extends Fragment {
         writing_content_container.addView(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
+
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -161,6 +169,25 @@ public class WritingFragment extends Fragment {
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
                     changeToolbarMenu(toolbar.getMenu());
+                }
+                else if(item.getItemId() == R.id.bold_button){
+                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+                    startToast("boldbutton");
+
+
+                    //not bold ->bold
+                    if(!BOLD_BUTTON_CHECKED){
+
+                        item.setChecked(true);
+                        item.setIconTintList(ColorStateList.valueOf(Color.RED));
+                        BOLD_BUTTON_CHECKED = true;
+                    }else{
+                        item.setChecked(false);
+                        item.setIconTintList(null);
+                        BOLD_BUTTON_CHECKED = false;
+                    }
+                    activity.invalidateOptionsMenu();
+
                 }
                 return false;
             }
