@@ -3,15 +3,18 @@ package com.flagtag.wrinkle.fragement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -24,7 +27,6 @@ import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.flagtag.wrinkle.BoldButton;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
@@ -158,16 +160,19 @@ public class WritingFragment extends Fragment {
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     startToast("boldbutton");
 
-                    ((BoldButton)item).toggleSelected();
+
                     //not bold ->bold
                     if(!BOLD_BUTTON_CHECKED){
 
                         item.setChecked(true);
+                        item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
                     }else{
                         item.setChecked(false);
+                        item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
                     }
+                    activity.invalidateOptionsMenu();
 
                 }
                 return false;

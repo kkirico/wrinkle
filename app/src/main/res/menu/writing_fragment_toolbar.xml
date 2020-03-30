@@ -55,12 +55,14 @@
     </group>
     <group
         android:id="@+id/text_group"
-        android:visible="false">
+        android:visible="false"
+        android:checkableBehavior="all">
         <item
             android:id="@+id/bold_button"
             android:title="bold_button"
             app:showAsAction="always"
-            app:actionViewClass="com.flagtag.wrinkle.BoldButton"
+            android:checkable="true"
+            android:icon="@drawable/bold_button_selector"
             />
     </group>
     <item
