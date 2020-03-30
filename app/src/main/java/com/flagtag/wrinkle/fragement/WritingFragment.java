@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,6 +19,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,7 +69,7 @@ public class WritingFragment extends Fragment {
     private int currentSelectedItem =0;
 
     private boolean BOLD_BUTTON_CHECKED = false;
-
+    private boolean ITALIC_BUTTON_CHECKED = false;
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -158,7 +161,7 @@ public class WritingFragment extends Fragment {
                 }
                 else if(item.getItemId() == R.id.bold_button){
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
-                    startToast("boldbutton");
+
 
 
                     //not bold ->bold
@@ -167,10 +170,45 @@ public class WritingFragment extends Fragment {
                         item.setChecked(true);
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
+                        startToast("boldbutton set");
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+                                StyleSpan boldSpan;
+                                if(ITALIC_BUTTON_CHECKED){
+                                    boldSpan= new StyleSpan(Typeface.BOLD_ITALIC);
+                                }else{
+                                    boldSpan = new StyleSpan(Typeface.BOLD);
+                                }
+
+                                int start = ((WritingTextView)writingView).text.getSelectionStart();
+                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
+                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
+                                ((WritingTextView)writingView).text.getText().setSpan(boldSpan, start, end, flag);
+                            }
+                        }
+
+
                     }else{
                         item.setChecked(false);
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
+                        startToast("boldbutton unset");
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+                                StyleSpan boldSpan;
+                                if(ITALIC_BUTTON_CHECKED){
+                                    boldSpan = new StyleSpan(Typeface.ITALIC);
+                                }else{
+                                    boldSpan = new StyleSpan(Typeface.NORMAL);
+                                }
+                                int start = ((WritingTextView)writingView).text.getSelectionStart();
+                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
+                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
+                                ((WritingTextView)writingView).text.getText().setSpan(boldSpan, start, end, flag);
+                            }
+                        }
                     }
                     activity.invalidateOptionsMenu();
 
