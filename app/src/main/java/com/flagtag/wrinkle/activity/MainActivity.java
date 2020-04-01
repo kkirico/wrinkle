@@ -2,6 +2,8 @@ package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -22,7 +24,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -56,7 +60,20 @@ public class MainActivity extends BasicActivity {
 
         DocumentReference docRef = db.collection("user").document(String.valueOf(user));
 
-
+        if (ContextCompat.checkSelfPermission(MainActivity.this ,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    1);
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                startToast("갤러리 사용 권한을 허가해 주세요1");
+            }
+        } else {
+            myStartActivity(GalleryActivity.class);
+        }
 
         if (user == null) {
             myStartActivity(googleLoginActivity.class);
@@ -165,7 +182,10 @@ public class MainActivity extends BasicActivity {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+    private void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
+    }
     public void onBackPressed() {
         super.onBackPressed();
         moveTaskToBack(true);
