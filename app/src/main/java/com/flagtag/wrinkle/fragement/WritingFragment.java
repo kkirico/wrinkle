@@ -1,8 +1,10 @@
 package com.flagtag.wrinkle.fragement;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -15,6 +17,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -30,27 +34,39 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.WriteInfo;
+import com.flagtag.wrinkle.activity.GalleryActivity;
+import com.flagtag.wrinkle.activity.MemberActivity;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
 import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -73,33 +89,37 @@ public class WritingFragment extends Fragment {
     //현재 선택된 아이템을 뜻함.
     private static int CUR_INDEX = 0;
 
-    private static int DEFAULT_MENU =0;
-    private static int IMAGE_MENU =1;
-    private static int VEDIO_MENU =2;
-    private static int QUOTE_MENU =3;
-    private static int LOCATION_MENU =4;
-    private static int DIVISION_MENU =5;
+    private static int DEFAULT_MENU = 0;
+    private static int IMAGE_MENU = 1;
+    private static int VEDIO_MENU = 2;
+    private static int QUOTE_MENU = 3;
+    private static int LOCATION_MENU = 4;
+    private static int DIVISION_MENU = 5;
     private static int TEXT_MENU = 6;
     EditText titleEditText;
     EditText contentEditText;
+    private ArrayList<String> pathList = new ArrayList<>();
+    private LinearLayout parent;
+
+    private int pathCount;
+    private int successCount;
 
     private int menu_page = 0;
-    private int currentSelectedItem =0;
+    private int currentSelectedItem = 0;
 
     private boolean BOLD_BUTTON_CHECKED = false;
-    private boolean ITALIC_BUTTON_CHECKED = false;
     public WritingFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_writing, container, false);
-        activity = (MainActivity)getActivity();
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_writing, container, false);
+        activity = (MainActivity) getActivity();
+        parent = rootView.findViewById(R.id.content_container);
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -117,12 +137,11 @@ public class WritingFragment extends Fragment {
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
 
 
-
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int numberofItem = writing_content_container.getChildCount();
-                if(item.getItemId() == R.id.image_button){
+                if (item.getItemId() == R.id.image_button) {
 
                     //이미지 선택
                     startToast("이미지 선택");
@@ -130,20 +149,20 @@ public class WritingFragment extends Fragment {
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
-                }else if(item.getItemId() == R.id.vidoe_button){
+                } else if (item.getItemId() == R.id.video_button) {
                     //동영상 선택
                     startToast("동영상 선택");
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("video/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_VIDEO);
-                }else if(item.getItemId() == R.id.location_button){
+                } else if (item.getItemId() == R.id.location_button) {
                     //위치 선택
-                }else if(item.getItemId() == R.id.quote_button){
+                } else if (item.getItemId() == R.id.quote_button) {
                     //인용 버튼
-                }else if(item.getItemId() == R.id.division_line_button){
+                } else if (item.getItemId() == R.id.division_line_button) {
                     //구분선 버튼
-                }else if(item.getItemId() == R.id.more_button){
+                } else if (item.getItemId() == R.id.more_button) {
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음
                      Menu menu = toolbar.getMenu();
@@ -153,45 +172,37 @@ public class WritingFragment extends Fragment {
                         changeToolbarMenu(toolbar.getMenu(),false);
                     }
 
-                }else if(item.getItemId() == R.id.up_button){
+                } else if (item.getItemId() == R.id.up_button) {
 
-                    if(CUR_INDEX ==0 || CUR_INDEX == numberofItem-1){
-                        return false;
-                    }else{
-                        //선택한 아이템을 위로 올린다.
-
-                        WritingView aboveView = (WritingView) writing_content_container.getChildAt(CUR_INDEX-1);
-                        writing_content_container.removeView(aboveView);
-                        writing_content_container.addView(aboveView, CUR_INDEX);
-                        CUR_INDEX--;
-                    }
-
-                }else if(item.getItemId() == R.id.down_button){
-
-                    if(CUR_INDEX == numberofItem-1|| CUR_INDEX == numberofItem-2){
-                        return false;
-                    }else{
-                        WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
-                        writing_content_container.removeView(curView);
-                        writing_content_container.addView(curView, ++CUR_INDEX);
-
-                    }
-                }else if(item.getItemId() == R.id.delete_button){
                     if(numberofItem==1 ||CUR_INDEX == numberofItem-1){
                         return false;
                     }
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
-
                     changeToolbarMenu(toolbar.getMenu(),false);
 
+                } else if (item.getItemId() == R.id.down_button) {
 
-                }
-                else if(item.getItemId() == R.id.bold_button){
+                    if (CUR_INDEX == numberofItem - 1 || CUR_INDEX == numberofItem - 2) {
+                        return false;
+                    } else {
+                        WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+                        writing_content_container.removeView(curView);
+                        writing_content_container.addView(curView, ++CUR_INDEX);
+
+                    }
+                } else if (item.getItemId() == R.id.delete_button) {
+                    if (numberofItem == 1 || CUR_INDEX == numberofItem - 1) {
+                        return false;
+                    }
+                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
+                    writing_content_container.removeView(curView);
+                    changeToolbarMenu(toolbar.getMenu(), false);
+                } else if (item.getItemId() == R.id.bold_button) {
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
 
                     //not bold ->bold
-                    if(!BOLD_BUTTON_CHECKED){
+                    if (!BOLD_BUTTON_CHECKED) {
 
                         item.setChecked(true);
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
@@ -228,16 +239,13 @@ public class WritingFragment extends Fragment {
         });
 
 
-
-
-
         return rootView;
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.check:
                     storageUploader();
 
@@ -245,6 +253,7 @@ public class WritingFragment extends Fragment {
             }
         }
     };
+
     //프래그먼트가 액티비티에 올라올 때 호출되는 함수
     @Override
     public void onAttach(Context context) {
@@ -259,7 +268,7 @@ public class WritingFragment extends Fragment {
 
     }
 
-    private void startToast(String msg){
+    private void startToast(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
     }
@@ -270,6 +279,8 @@ public class WritingFragment extends Fragment {
         //이미지를 선택했을 때
         if (requestCode == SELECT_IMAGE) {
             try {
+                String path = data.getStringExtra("profilePath");
+                pathList.add(path);
                 // 선택한 이미지에서 비트맵 생성
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
@@ -284,8 +295,7 @@ public class WritingFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if (requestCode == SELECT_VIDEO) {
+        } else if (requestCode == SELECT_VIDEO) {
             Uri videoURI = data.getData();
             if (videoURI != null) {
                 String videoPath = getPath(videoURI);
@@ -300,8 +310,6 @@ public class WritingFragment extends Fragment {
             }
         }
     }
-
-
 
 
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
@@ -330,7 +338,7 @@ public class WritingFragment extends Fragment {
     };
 
     //매개변수로 주어진 view를 제외하고 writing_content_container 안의 모든 view를 unset한다.
-    private void unsetOtherViews (View view){
+    private void unsetOtherViews(View view) {
         int number = writing_content_container.getChildCount();
         for (int i = 0; i < number; i++) {
             if (i != CUR_INDEX) {
@@ -340,8 +348,7 @@ public class WritingFragment extends Fragment {
         }
     }
 
-    private void changeToolbarMenu (Menu menu,boolean set){
-
+    private void changeToolbarMenu(Menu menu, boolean set) {
         //menu_page : 현재의 메뉴페이지
         //currentSelectedItem : 현재 선택된 아이템
         if(set){
@@ -360,9 +367,10 @@ public class WritingFragment extends Fragment {
         }
 
 
+
     }
 
-    private String getPath (Uri uri){
+    private String getPath(Uri uri) {
         String[] projection = {MediaStore.Video.Media.DATA};
         Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
         if (cursor != null) {
@@ -376,7 +384,7 @@ public class WritingFragment extends Fragment {
             return null;
     }
 
-    private void addViewToContainer ( final WritingView view, final int type){
+    private void addViewToContainer(final WritingView view, final int type) {
         //WritingImageView의 onClickListener를 만든다.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -421,10 +429,7 @@ public class WritingFragment extends Fragment {
             }
             //그 밑에 텍스트뷰를 넣어준다.
             WritingTextView editText = new WritingTextView(activity);
-            int start = editText.text.getSelectionStart();
-            int end = editText.text.getSelectionEnd();
-            int flag = Spannable.SPAN_EXCLUSIVE_INCLUSIVE;
-            editText.text.getText().setSpan(normalStyleSpan,start,end,flag);
+
             editText.setOnFocusChangeListener(focusChangeListener);
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -439,41 +444,120 @@ public class WritingFragment extends Fragment {
         changeToolbarMenu(toolbar.getMenu(),true);
         startToast(Integer.toString(CUR_INDEX));
 
-   }
+    }
+
     private void storageUploader() {
-        final String title =  titleEditText.getText().toString();
-        final String contents = contentEditText.getText().toString();
-
-
-        if (title.length()>0 && contents.length()>0 ) {
+        final String title = titleEditText.getText().toString();
+        if (title.length() > 0) {
+            final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
-            WriteInfo writeInfo = new WriteInfo(title,contents,user.getUid() );
-            storeUploader(writeInfo);
-        }
-            else {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            final DocumentReference documentReference = firebaseFirestore.collection("cities").document();
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                View view = parent.getChildAt(i);
+                if (view instanceof WritingTextView) {
+                    String text = ((WritingTextView)view).text.getText().toString();
+                    if (text.length() > 0) {
+                        contentsList.add(text);
+                    }
+                } else if(view instanceof WritingImageView){
+                        contentsList.add(pathList.get(pathCount));
+                        final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    try {
+                        InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
+                        StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
+                        UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                final int index = Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
+                                mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        contentsList.set(index, uri.toString());
+                                        successCount++;
+                                        if (pathList.size() == successCount) {
+                                            //완료
+                                            WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
+                                            storeUploader(documentReference,writeInfo);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } catch (FileNotFoundException e) {
+                        Log.e("에러", "에러" + e.toString());
+                    }
+                }
+                else if(view instanceof WritingVideoView){
+                    contentsList.add(pathList.get(pathCount));
+                    final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    try {
+                        InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
+                        StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
+                        UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                final int index = Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
+                                mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        contentsList.set(index, uri.toString());
+                                        successCount++;
+                                        if (pathList.size() == successCount) {
+                                            //완료
+                                            WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
+                                            storeUploader(documentReference,writeInfo);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } catch (FileNotFoundException e) {
+                        Log.e("에러", "에러" + e.toString());
+                    }
+
+                }
+            }
+
+
+        } else {
+            startToast("제목을 입력해 주세");
         }
     }
 
-    private void storeUploader(WriteInfo writeInfo){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").add(writeInfo)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with Id:"+documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //loaderLayout.setVisibility(View.GONE);
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
+    private void storeUploader(DocumentReference documentReference, WriteInfo writeInfo) {
+        documentReference.set(writeInfo)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error writing document", e);
+                }
+            });
     }
+
     private void myStartActivity(Class c) {
         Intent intent = new Intent(getContext(), c);
-        startActivityForResult(intent,0);
+        startActivityForResult(intent, 0);
     }
 
-    }
+}

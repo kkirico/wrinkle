@@ -14,9 +14,9 @@
 
             />
         <item
-            android:id="@+id/vidoe_button"
+            android:id="@+id/video_button"
             android:icon="@drawable/ic_video_call_24px"
-            android:title="vidoe_button"
+            android:title="video_button"
             app:showAsAction="always" />
         <item
             android:id="@+id/location_button"

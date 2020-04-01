@@ -18,7 +18,9 @@ import java.util.ArrayList;
 public class WritingTextView extends WritingView {
 
     public EditText text;
+
     public ArrayList<StyleSpan> styleSpanArr;
+
 
     public WritingTextView(Context context) {
         super(context);
@@ -46,7 +48,7 @@ public class WritingTextView extends WritingView {
         mIsSelected = false;
         text = new EditText(context);
 
-        text.setOn
+        
 
         ConstraintLayout.LayoutParams textViewLayoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         textViewLayoutParams.endToEnd =guideline_right.getId();
