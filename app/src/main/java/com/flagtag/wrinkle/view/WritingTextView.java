@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class WritingTextView extends WritingView {
 
-    EditText text;
+    public EditText text;
 
     public WritingTextView(Context context) {
         super(context);

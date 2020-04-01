@@ -77,8 +77,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="아무거나 적어봐 내가 올려줄게" />
+                        android:hint="아무거나 적어봐 내가 올려줄게"
+                        android:inputType="textPersonName" />
                 </LinearLayout>
 
                 <Button
