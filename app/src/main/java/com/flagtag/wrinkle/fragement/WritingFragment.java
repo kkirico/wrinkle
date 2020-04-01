@@ -208,15 +208,7 @@ public class WritingFragment extends Fragment {
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
                         startToast("boldbutton set");
-
-
-                        for(int i=0; i<writing_content_container.getChildCount();i++){
-                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
-                            if(writingView instanceof WritingTextView){
-
-
-                            }
-                        }
+                        
 
 
                     }else{
@@ -316,18 +308,33 @@ public class WritingFragment extends Fragment {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-
+            MenuItem boldButton = toolbar.getMenu().findItem(R.id.bold_button);
             if (gainFocus) {
-
+                //지금 선택된 것 인덱스 찾기
                 WritingView curWritingView = (WritingView) (view.getParent().getParent());
                 CUR_INDEX = writing_content_container.indexOfChild(curWritingView);
-
+                //선택된 것 말고 나머지 unset
                 unsetOtherViews(curWritingView);
+                //지금 선택된것 선택되었다고 토글 해주기
                 curWritingView.toggleSelected();
-
+                //지금 선택된 아이템이 텍스트 메뉴라고 해주기
                 currentSelectedItem = TEXT_MENU;
                 changeToolbarMenu(toolbar.getMenu(),true);
-                startToast(Integer.toString(CUR_INDEX));
+
+                int cursorPosition = ((EditText)view).getSelectionEnd();
+                //커서 포지션이 위치해 있는 span이 bold이면
+                if(((WritingTextView)curWritingView).isPositionInSpanArr(cursorPosition)== Typeface.BOLD){
+                    //boldButton을 눌린 상태로, BOLD_BUTTON_CHECKED를 true로
+                    boldButton.setIconTintList(ColorStateList.valueOf(Color.RED));
+                    BOLD_BUTTON_CHECKED = true;
+                }
+                //커서 포지션이 위치해 있는 span이 bold가 아니면,
+                else{
+                    //boldButton을 안 눌린 상태로, BOLD_BUTTON_CHECKED를 false로
+                    boldButton.setIconTintList(null);
+                    BOLD_BUTTON_CHECKED = false;
+                }
+
 
             }else{
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -559,5 +566,7 @@ public class WritingFragment extends Fragment {
         Intent intent = new Intent(getContext(), c);
         startActivityForResult(intent, 0);
     }
+
+
 
 }
