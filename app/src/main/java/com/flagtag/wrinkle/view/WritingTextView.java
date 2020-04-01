@@ -8,14 +8,17 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.text.style.StyleSpan;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.ArrayList;
+
 public class WritingTextView extends WritingView {
 
     public EditText text;
-
+    public ArrayList<StyleSpan> styleSpanArr;
 
     public WritingTextView(Context context) {
         super(context);
@@ -43,6 +46,8 @@ public class WritingTextView extends WritingView {
         mIsSelected = false;
         text = new EditText(context);
 
+        text.setOn
+
         ConstraintLayout.LayoutParams textViewLayoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         textViewLayoutParams.endToEnd =guideline_right.getId();
         textViewLayoutParams.startToStart = guideline_left.getId();
@@ -58,9 +63,13 @@ public class WritingTextView extends WritingView {
         text.setBackgroundColor(Color.TRANSPARENT);
 
 
+        styleSpanArr = new ArrayList<>();
+
         background.addView(text);
 
     }
+
+
 
     public String getText(){
         String textString = text.getText().toString();

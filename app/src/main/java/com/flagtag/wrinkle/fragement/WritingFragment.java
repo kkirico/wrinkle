@@ -66,7 +66,7 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     MainActivity activity;
 
-    StyleSpan boldStyleSpan;
+
 
     private static final int SELECT_IMAGE = 1;
     private static final int SELECT_VIDEO = 2;
@@ -110,6 +110,8 @@ public class WritingFragment extends Fragment {
         writing.setMinLines(20);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
+
+
         writing_content_container.addView(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
@@ -188,8 +190,6 @@ public class WritingFragment extends Fragment {
                 else if(item.getItemId() == R.id.bold_button){
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
 
-
-
                     //not bold ->bold
                     if(!BOLD_BUTTON_CHECKED){
 
@@ -198,15 +198,11 @@ public class WritingFragment extends Fragment {
                         BOLD_BUTTON_CHECKED = true;
                         startToast("boldbutton set");
 
-                        boldStyleSpan = new StyleSpan(Typeface.BOLD);
+
                         for(int i=0; i<writing_content_container.getChildCount();i++){
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
                             if(writingView instanceof WritingTextView){
 
-                                int start = ((WritingTextView)writingView).text.getSelectionStart();
-                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
-                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
-                                ((WritingTextView)writingView).text.getText().setSpan(boldStyleSpan, start, end, flag);
 
                             }
                         }
@@ -221,8 +217,6 @@ public class WritingFragment extends Fragment {
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
                             if(writingView instanceof WritingTextView){
 
-
-                                ((WritingTextView)writingView).text.getText().removeSpan(boldStyleSpan);
                             }
                         }
                     }
@@ -427,6 +421,10 @@ public class WritingFragment extends Fragment {
             }
             //그 밑에 텍스트뷰를 넣어준다.
             WritingTextView editText = new WritingTextView(activity);
+            int start = editText.text.getSelectionStart();
+            int end = editText.text.getSelectionEnd();
+            int flag = Spannable.SPAN_EXCLUSIVE_INCLUSIVE;
+            editText.text.getText().setSpan(normalStyleSpan,start,end,flag);
             editText.setOnFocusChangeListener(focusChangeListener);
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
