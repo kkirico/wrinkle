@@ -62,7 +62,7 @@
             android:title="bold_button"
             app:showAsAction="always"
             android:checkable="true"
-            android:icon="@drawable/bold_button_selector"
+            android:icon="@drawable/ic_format_bold_24px"
             />
     </group>
     <item

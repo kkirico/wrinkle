@@ -56,6 +56,7 @@ public class WritingTextView extends WritingView {
         //text underline 없애기
         text.setBackgroundColor(Color.TRANSPARENT);
 
+
         background.addView(text);
 
     }

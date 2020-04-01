@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,12 +23,16 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -63,6 +68,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 public class WritingFragment extends Fragment {
 
@@ -75,6 +82,7 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     MainActivity activity;
 
+    StyleSpan boldStyleSpan;
 
     private static final int SELECT_IMAGE = 1;
     private static final int SELECT_VIDEO = 2;
@@ -97,9 +105,6 @@ public class WritingFragment extends Fragment {
     private int currentSelectedItem = 0;
 
     private boolean BOLD_BUTTON_CHECKED = false;
-
-    private int pathCount, successCount;
-
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -116,7 +121,7 @@ public class WritingFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
         titleEditText = rootView.findViewById(R.id.title);
-        contentEditText = rootView.findViewById(R.id.contentEditText);
+        //contentEditText = rootView.findViewById(R.id.contentEditText);
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
@@ -155,8 +160,12 @@ public class WritingFragment extends Fragment {
                 } else if (item.getItemId() == R.id.more_button) {
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음
-                    Menu menu = toolbar.getMenu();
-                    changeToolbarMenu(menu);
+                     Menu menu = toolbar.getMenu();
+                    if(menu_page ==DEFAULT_MENU && menu_page != currentSelectedItem){
+                        changeToolbarMenu(toolbar.getMenu(),true);
+                    }else{
+                        changeToolbarMenu(toolbar.getMenu(),false);
+                    }
 
                 } else if (item.getItemId() == R.id.up_button) {
 
@@ -190,7 +199,7 @@ public class WritingFragment extends Fragment {
                     changeToolbarMenu(toolbar.getMenu());
                 } else if (item.getItemId() == R.id.bold_button) {
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
-                    startToast("boldbutton");
+
 
 
                     //not bold ->bold
@@ -199,10 +208,35 @@ public class WritingFragment extends Fragment {
                         item.setChecked(true);
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
-                    } else {
+                        startToast("boldbutton set");
+
+                        boldStyleSpan = new StyleSpan(Typeface.BOLD);
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+
+                                int start = ((WritingTextView)writingView).text.getSelectionStart();
+                                int end = ((WritingTextView)writingView).text.getSelectionEnd();
+                                int flag = Spannable.SPAN_INCLUSIVE_INCLUSIVE;
+                                ((WritingTextView)writingView).text.getText().setSpan(boldStyleSpan, start, end, flag);
+
+                            }
+                        }
+
+
+                    }else{
                         item.setChecked(false);
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
+                        startToast("boldbutton unset");
+                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
+                            if(writingView instanceof WritingTextView){
+
+
+                                ((WritingTextView)writingView).text.getText().removeSpan(boldStyleSpan);
+                            }
+                        }
                     }
                     activity.invalidateOptionsMenu();
 
@@ -262,7 +296,7 @@ public class WritingFragment extends Fragment {
                 final WritingImageView imageView = new WritingImageView(activity);
                 //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
                 imageView.setImageView(img);
-                addViewToContainer(imageView);
+                addViewToContainer(imageView, IMAGE_MENU);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -279,7 +313,7 @@ public class WritingFragment extends Fragment {
                 videoView.requestFocus();
 
 
-                addViewToContainer(videoView);
+                addViewToContainer(videoView, VEDIO_MENU);
             }
         }
     }
@@ -288,14 +322,22 @@ public class WritingFragment extends Fragment {
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean gainFocus) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
             if (gainFocus) {
+
                 WritingView curWritingView = (WritingView) (view.getParent().getParent());
                 CUR_INDEX = writing_content_container.indexOfChild(curWritingView);
+
                 unsetOtherViews(curWritingView);
                 curWritingView.toggleSelected();
+
                 currentSelectedItem = TEXT_MENU;
-                changeToolbarMenu(toolbar.getMenu());
+                changeToolbarMenu(toolbar.getMenu(),true);
                 startToast(Integer.toString(CUR_INDEX));
+
+            }else{
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             }
         }
@@ -323,15 +365,20 @@ public class WritingFragment extends Fragment {
         //현재 메뉴가 DEFAULT이고 골라진 아이템이랑 현재 메뉴랑 다르면
         if (menu_page == DEFAULT_MENU && menu_page != currentSelectedItem) {
             menu.setGroupVisible(R.id.move_group, true);
-            menu.setGroupVisible(curMenuGroup, true);
+            menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, false);
+            if(currentSelectedItem== TEXT_MENU) {
+                menu.setGroupVisible(R.id.text_group, true);
+            }
             menu_page = currentSelectedItem;
-        } else {
+        }else{
             menu.setGroupVisible(R.id.move_group, false);
-            menu.setGroupVisible(curMenuGroup, false);
+            menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, true);
             menu_page = DEFAULT_MENU;
         }
+
+
     }
 
     private String getPath(Uri uri) {
@@ -353,13 +400,21 @@ public class WritingFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int PREVIOUS = CUR_INDEX;
                 CUR_INDEX = writing_content_container.indexOfChild(v);
+
                 startToast(Integer.toString(CUR_INDEX));
                 //WritingImageView가 선택되었을 때 setSelected() 함수 호출
                 view.toggleSelected();
                 unsetOtherViews(view);
-                currentSelectedItem = IMAGE_MENU;
+
+                currentSelectedItem = type;
+                if(CUR_INDEX == PREVIOUS){
+                    changeToolbarMenu(toolbar.getMenu(), false);
+                }else{
+                    changeToolbarMenu(toolbar.getMenu(), true);
+                }
+
 
             }
         });
@@ -377,6 +432,7 @@ public class WritingFragment extends Fragment {
                 //그 텍스트 뷰를 삭제한다.
                 writing_content_container.removeView(cur_view);
 
+
             } else {
                 //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
                 ((WritingTextView) cur_view).setMinLines(0);
@@ -388,11 +444,14 @@ public class WritingFragment extends Fragment {
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
+        }else{
+            CUR_INDEX++;
         }
-        currentSelectedItem = IMAGE_MENU;
+
+        currentSelectedItem = type;
         //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
         unsetOtherViews(view);
-        changeToolbarMenu(toolbar.getMenu());
+        changeToolbarMenu(toolbar.getMenu(),true);
         startToast(Integer.toString(CUR_INDEX));
 
     }
