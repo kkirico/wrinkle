@@ -127,4 +127,33 @@ public class WritingTextView extends WritingView {
         }
         return Typeface.NORMAL;
     }
+
+    //현재 포지션을 포함하는 모든 stylespan의 styleSpanArr 안에서의 인덱스를 리턴한다.
+    public ArrayList<Integer> spansIncludePosition(int cursorPosition){
+        int start, end;
+        ArrayList<Integer> indexes = new ArrayList<>();
+        for(int i=0; i<styleSpanArr.size(); i++){
+            StyleSpan span = styleSpanArr.get(i);
+            start = spanText.getSpanStart(span);
+            end = spanText.getSpanEnd(span);
+            if(cursorPosition>=start && cursorPosition<= end){
+                indexes.add(i);
+            }
+
+        }
+
+        return indexes;
+    }
+
+    public void changeStyleSpan(ArrayList<Integer> indexes, int style, int cursorPosition){
+        int start, end, flag;
+        for(int i : indexes){
+            start = spanText.getSpanStart(styleSpanArr.get(indexes.get(i)));
+            end = spanText.getSpanEnd(styleSpanArr.get(indexes.get(i)));
+            flag = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE;
+
+            spanText.set
+        }
+
+    }
 }

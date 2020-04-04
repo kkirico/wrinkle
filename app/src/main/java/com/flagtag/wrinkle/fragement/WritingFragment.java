@@ -65,6 +65,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -199,8 +200,11 @@ public class WritingFragment extends Fragment {
                     writing_content_container.removeView(curView);
                     changeToolbarMenu(toolbar.getMenu(), false);
                 } else if (item.getItemId() == R.id.bold_button) {
-                    WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
 
+
+                    WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
+                    int cursorPosition = curView.text.getSelectionStart();
+                    ArrayList<Integer> spanIndexes;
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
@@ -208,7 +212,10 @@ public class WritingFragment extends Fragment {
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
                         BOLD_BUTTON_CHECKED = true;
                         startToast("boldbutton set");
-                        
+
+
+                        //현재 커서 위치가 포함되는 span을 찾는다.
+                        spanIndexes = curView.spansIncludePosition(cursorPosition);
 
 
                     }else{
