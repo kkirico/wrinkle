@@ -224,7 +224,7 @@ public class MemberActivity extends BasicActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         startToast("회원정보를 등록 실패.");
-                        //loaderLayout.setVisibility(View.GONE);
+                        loaderLayout.setVisibility(View.GONE);
                         Log.w(TAG, "Error writing document", e);
                     }
                 });

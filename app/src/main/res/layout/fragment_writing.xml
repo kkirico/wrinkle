@@ -85,5 +85,10 @@
         </ScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <include
+        layout="@layout/view_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </FrameLayout>

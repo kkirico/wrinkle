@@ -49,7 +49,7 @@ public class WritingTextView extends WritingView {
 
         mIsSelected = false;
         text = new EditText(context);
-
+        styleSpanArr = new ArrayList<>();
         //styleSpanArr에 처음에 normal을 넣어준다.
         styleSpanArr.add(new StyleSpan(Typeface.NORMAL));
         //editText 안에 spannable을 만들어주는거
@@ -73,7 +73,7 @@ public class WritingTextView extends WritingView {
         text.setBackgroundColor(Color.TRANSPARENT);
 
 
-        styleSpanArr = new ArrayList<>();
+
 
         background.addView(text);
 
@@ -146,14 +146,6 @@ public class WritingTextView extends WritingView {
     }
 
     public void changeStyleSpan(ArrayList<Integer> indexes, int style, int cursorPosition){
-        int start, end, flag;
-        for(int i : indexes){
-            start = spanText.getSpanStart(styleSpanArr.get(indexes.get(i)));
-            end = spanText.getSpanEnd(styleSpanArr.get(indexes.get(i)));
-            flag = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE;
-
-            spanText.set
-        }
 
     }
 }
