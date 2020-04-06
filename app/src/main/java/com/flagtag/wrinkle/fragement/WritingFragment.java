@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -27,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.flagtag.wrinkle.R;
@@ -86,6 +88,7 @@ public class WritingFragment extends Fragment {
     EditText titleEditText;
     private ArrayList<String> pathList = new ArrayList<>();
     private LinearLayout parent;
+    private RelativeLayout loaderLayout;
 
     private int pathCount=0;
     private int successCount;
@@ -117,6 +120,7 @@ public class WritingFragment extends Fragment {
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
+        loaderLayout = rootView.findViewById(R.id.loaderLayout);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
 
@@ -284,8 +288,8 @@ public class WritingFragment extends Fragment {
         } else if (requestCode == SELECT_VIDEO) {
             Uri videoURI = data.getData();
             if (videoURI != null) {
-                String videoPath = getPath(videoURI,1);
-                pathList.add(videoPath);
+                //String videoPath = getPath(videoURI,1);
+                pathList.add(data.getData().toString());
 
                 //WritingVideoView 생성
                 WritingVideoView videoView = new WritingVideoView(activity);
@@ -467,12 +471,13 @@ public class WritingFragment extends Fragment {
         final String title = titleEditText.getText().toString();
 
         if (title.length() > 0) {
+            loaderLayout.setVisibility(View.VISIBLE);
             final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-            final DocumentReference documentReference = firebaseFirestore.collection("cities").document();
+            final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
 
             for (int i = 0; i < parent.getChildCount(); i++) {
                 View view = parent.getChildAt(i);
@@ -516,6 +521,9 @@ public class WritingFragment extends Fragment {
                     }
                     pathCount++;
                 }
+                if(pathCount ==0){
+                    startToast("사진 혹은 영상을 넣어주세요");
+                }
             }
         } else {
             startToast("제목을 입력해 주세");
@@ -529,12 +537,17 @@ public class WritingFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
+                        loaderLayout.setVisibility(View.GONE);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().remove(WritingFragment.this).commit();
+                        fragmentManager.popBackStack();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error writing document", e);
+                        loaderLayout.setVisibility(View.GONE);
                     }
                 });
     }
