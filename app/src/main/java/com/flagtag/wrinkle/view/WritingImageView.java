@@ -3,7 +3,6 @@ package com.flagtag.wrinkle.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;

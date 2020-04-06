@@ -1,16 +1,14 @@
 package com.flagtag.wrinkle.fragement;
 
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -31,11 +29,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.WriteInfo;
-import com.flagtag.wrinkle.activity.CameraActivity;
-import com.flagtag.wrinkle.activity.GalleryActivity;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
@@ -52,17 +47,14 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_CANCELED;
-import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 
 public class WritingFragment extends Fragment {
@@ -493,8 +485,6 @@ public class WritingFragment extends Fragment {
                     contentsList.add(pathList.get(pathCount));
                     final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
                     try {
-                        //File a = new File(pathList.get(pathCount));
-                        //InputStream stream = new FileInputStream(a);
                         InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(pathList.get(pathCount)));
                         StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
                         UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);

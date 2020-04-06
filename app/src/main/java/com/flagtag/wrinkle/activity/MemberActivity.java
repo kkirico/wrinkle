@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
-import com.flagtag.wrinkle.fragement.MypageFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
