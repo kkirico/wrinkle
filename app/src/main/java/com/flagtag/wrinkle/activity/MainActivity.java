@@ -1,9 +1,6 @@
 package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,7 +12,6 @@ import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.fragement.SurfingFragment;
 import com.flagtag.wrinkle.fragement.WritingFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,13 +20,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends BasicActivity {
@@ -59,7 +52,7 @@ public class MainActivity extends BasicActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = db.collection("user").document(String.valueOf(user));
-
+/*
         if (ContextCompat.checkSelfPermission(MainActivity.this ,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -74,7 +67,7 @@ public class MainActivity extends BasicActivity {
         } else {
             myStartActivity(GalleryActivity.class);
         }
-
+*/
         if (user == null) {
             myStartActivity(googleLoginActivity.class);
         } else {
@@ -107,7 +100,6 @@ public class MainActivity extends BasicActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document != null) {
                                 if (document.exists()) {
-                                    //myStartActivity(MemberActivity.class);
                                     Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                                 } else {
                                     Log.d(TAG, "No such document");

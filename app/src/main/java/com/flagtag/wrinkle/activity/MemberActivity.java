@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
-import com.flagtag.wrinkle.fragement.MypageFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -225,7 +224,7 @@ public class MemberActivity extends BasicActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         startToast("회원정보를 등록 실패.");
-                        //loaderLayout.setVisibility(View.GONE);
+                        loaderLayout.setVisibility(View.GONE);
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
