@@ -5,10 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".fragement.NotificationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="notification fragment" />
+        android:orientation="vertical">
+        <Button
+            android:text="show start,end "
+            android:id="@+id/aButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Button>
+
+        <Button
+            android:id="@+id/newSpanButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="new span button">
+
+        </Button>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </EditText>
+
+
+    </LinearLayout>
 
 </FrameLayout>
