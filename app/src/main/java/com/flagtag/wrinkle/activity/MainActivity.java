@@ -59,7 +59,7 @@ public class MainActivity extends BasicActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = db.collection("user").document(String.valueOf(user));
-
+/*
         if (ContextCompat.checkSelfPermission(MainActivity.this ,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -74,7 +74,7 @@ public class MainActivity extends BasicActivity {
         } else {
             myStartActivity(GalleryActivity.class);
         }
-
+*/
         if (user == null) {
             myStartActivity(googleLoginActivity.class);
         } else {

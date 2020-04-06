@@ -2,6 +2,7 @@ package com.flagtag.wrinkle.fragement;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,21 +11,15 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
-import android.text.Spannable;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,25 +27,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.WriteInfo;
+import com.flagtag.wrinkle.activity.CameraActivity;
 import com.flagtag.wrinkle.activity.GalleryActivity;
-import com.flagtag.wrinkle.activity.MemberActivity;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
 import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -65,9 +57,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
@@ -83,11 +77,12 @@ public class WritingFragment extends Fragment {
     MainActivity activity;
 
 
-
     private static final int SELECT_IMAGE = 1;
     private static final int SELECT_VIDEO = 2;
     //현재 선택된 아이템을 뜻함.
     private static int CUR_INDEX = 0;
+
+    private String imagePath;
 
     private static int DEFAULT_MENU = 0;
     private static int IMAGE_MENU = 1;
@@ -97,17 +92,16 @@ public class WritingFragment extends Fragment {
     private static int DIVISION_MENU = 5;
     private static int TEXT_MENU = 6;
     EditText titleEditText;
-    EditText contentEditText;
     private ArrayList<String> pathList = new ArrayList<>();
     private LinearLayout parent;
 
-    private int pathCount;
+    private int pathCount=0;
     private int successCount;
 
     private int menu_page = 0;
     private int currentSelectedItem = 0;
-
     private boolean BOLD_BUTTON_CHECKED = false;
+
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -130,8 +124,6 @@ public class WritingFragment extends Fragment {
         writing.setMinLines(20);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
-
-
         writing_content_container.addView(writing);
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
@@ -142,6 +134,7 @@ public class WritingFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 int numberofItem = writing_content_container.getChildCount();
                 if (item.getItemId() == R.id.image_button) {
+                    //myStartActivity(GalleryActivity.class);
 
                     //이미지 선택
                     startToast("이미지 선택");
@@ -149,6 +142,7 @@ public class WritingFragment extends Fragment {
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
+
                 } else if (item.getItemId() == R.id.video_button) {
                     //동영상 선택
                     startToast("동영상 선택");
@@ -165,21 +159,21 @@ public class WritingFragment extends Fragment {
                 } else if (item.getItemId() == R.id.more_button) {
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음
-                     Menu menu = toolbar.getMenu();
-                    if(menu_page ==DEFAULT_MENU && menu_page != currentSelectedItem){
-                        changeToolbarMenu(toolbar.getMenu(),true);
-                    }else{
-                        changeToolbarMenu(toolbar.getMenu(),false);
+                    Menu menu = toolbar.getMenu();
+                    if (menu_page == DEFAULT_MENU && menu_page != currentSelectedItem) {
+                        changeToolbarMenu(toolbar.getMenu(), true);
+                    } else {
+                        changeToolbarMenu(toolbar.getMenu(), false);
                     }
 
                 } else if (item.getItemId() == R.id.up_button) {
 
-                    if(numberofItem==1 ||CUR_INDEX == numberofItem-1){
+                    if (numberofItem == 1 || CUR_INDEX == numberofItem - 1) {
                         return false;
                     }
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
-                    changeToolbarMenu(toolbar.getMenu(),false);
+                    changeToolbarMenu(toolbar.getMenu(), false);
 
                 } else if (item.getItemId() == R.id.down_button) {
 
@@ -210,23 +204,23 @@ public class WritingFragment extends Fragment {
                         startToast("boldbutton set");
 
 
-                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                        for (int i = 0; i < writing_content_container.getChildCount(); i++) {
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
-                            if(writingView instanceof WritingTextView){
+                            if (writingView instanceof WritingTextView) {
 
 
                             }
                         }
 
 
-                    }else{
+                    } else {
                         item.setChecked(false);
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
                         startToast("boldbutton unset");
-                        for(int i=0; i<writing_content_container.getChildCount();i++){
+                        for (int i = 0; i < writing_content_container.getChildCount(); i++) {
                             WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
-                            if(writingView instanceof WritingTextView){
+                            if (writingView instanceof WritingTextView) {
 
                             }
                         }
@@ -242,13 +236,13 @@ public class WritingFragment extends Fragment {
         return rootView;
     }
 
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.check:
                     storageUploader();
-
                     break;
             }
         }
@@ -276,12 +270,14 @@ public class WritingFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CANCELED) {
+            return;
+        }
         //이미지를 선택했을 때
         if (requestCode == SELECT_IMAGE) {
             try {
-                String path = data.getStringExtra("profilePath");
-                pathList.add(path);
                 // 선택한 이미지에서 비트맵 생성
+                pathList.add(data.getData().toString());
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
@@ -298,7 +294,8 @@ public class WritingFragment extends Fragment {
         } else if (requestCode == SELECT_VIDEO) {
             Uri videoURI = data.getData();
             if (videoURI != null) {
-                String videoPath = getPath(videoURI);
+                String videoPath = getPath(videoURI,1);
+                pathList.add(videoPath);
 
                 //WritingVideoView 생성
                 WritingVideoView videoView = new WritingVideoView(activity);
@@ -326,10 +323,10 @@ public class WritingFragment extends Fragment {
                 curWritingView.toggleSelected();
 
                 currentSelectedItem = TEXT_MENU;
-                changeToolbarMenu(toolbar.getMenu(),true);
+                changeToolbarMenu(toolbar.getMenu(), true);
                 startToast(Integer.toString(CUR_INDEX));
 
-            }else{
+            } else {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             }
@@ -351,15 +348,15 @@ public class WritingFragment extends Fragment {
     private void changeToolbarMenu(Menu menu, boolean set) {
         //menu_page : 현재의 메뉴페이지
         //currentSelectedItem : 현재 선택된 아이템
-        if(set){
+        if (set) {
             menu.setGroupVisible(R.id.move_group, true);
             menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, false);
-            if(currentSelectedItem== TEXT_MENU) {
+            if (currentSelectedItem == TEXT_MENU) {
                 menu.setGroupVisible(R.id.text_group, true);
             }
             menu_page = currentSelectedItem;
-        }else{
+        } else {
             menu.setGroupVisible(R.id.move_group, false);
             menu.setGroupVisible(R.id.text_group, false);
             menu.setGroupVisible(R.id.default_group, true);
@@ -367,21 +364,35 @@ public class WritingFragment extends Fragment {
         }
 
 
-
     }
 
-    private String getPath(Uri uri) {
-        String[] projection = {MediaStore.Video.Media.DATA};
-        Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
-        if (cursor != null) {
-            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
-            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } else
-            return null;
+
+    private String getPath(Uri uri,int type) {
+        if (type == 0) {
+            String[] projection = {MediaStore.Images.Media.DATA};
+            Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+            if (cursor != null) {
+                // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+                // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+                int column_index = cursor
+                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                cursor.moveToFirst();
+                return cursor.getString(column_index);
+            } else
+                return null;
+        } else {
+            String[] projection = {MediaStore.Video.Media.DATA};
+            Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+            if (cursor != null) {
+                // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+                // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+                int column_index = cursor
+                        .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+                cursor.moveToFirst();
+                return cursor.getString(column_index);
+            } else
+                return null;
+        }
     }
 
     private void addViewToContainer(final WritingView view, final int type) {
@@ -398,9 +409,9 @@ public class WritingFragment extends Fragment {
                 unsetOtherViews(view);
 
                 currentSelectedItem = type;
-                if(CUR_INDEX == PREVIOUS){
+                if (CUR_INDEX == PREVIOUS) {
                     changeToolbarMenu(toolbar.getMenu(), false);
-                }else{
+                } else {
                     changeToolbarMenu(toolbar.getMenu(), true);
                 }
 
@@ -434,20 +445,22 @@ public class WritingFragment extends Fragment {
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        }else{
+        } else {
             CUR_INDEX++;
         }
 
         currentSelectedItem = type;
         //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
         unsetOtherViews(view);
-        changeToolbarMenu(toolbar.getMenu(),true);
+        changeToolbarMenu(toolbar.getMenu(), true);
         startToast(Integer.toString(CUR_INDEX));
 
     }
 
     private void storageUploader() {
+
         final String title = titleEditText.getText().toString();
+
         if (title.length() > 0) {
             final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
@@ -455,52 +468,21 @@ public class WritingFragment extends Fragment {
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             final DocumentReference documentReference = firebaseFirestore.collection("cities").document();
+
             for (int i = 0; i < parent.getChildCount(); i++) {
                 View view = parent.getChildAt(i);
                 if (view instanceof WritingTextView) {
-                    String text = ((WritingTextView)view).text.getText().toString();
+                    String text = ((WritingTextView) view).text.getText().toString();
                     if (text.length() > 0) {
                         contentsList.add(text);
                     }
-                } else if(view instanceof WritingImageView){
-                        contentsList.add(pathList.get(pathCount));
-                        final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
-                    try {
-                        InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
-                        StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
-                        UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                final int index = Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
-                                mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        contentsList.set(index, uri.toString());
-                                        successCount++;
-                                        if (pathList.size() == successCount) {
-                                            //완료
-                                            WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
-                                            storeUploader(documentReference,writeInfo);
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    } catch (FileNotFoundException e) {
-                        Log.e("에러", "에러" + e.toString());
-                    }
-                }
-                else if(view instanceof WritingVideoView){
+                } else {
                     contentsList.add(pathList.get(pathCount));
                     final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
                     try {
-                        InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
+                        //File a = new File(pathList.get(pathCount));
+                        //InputStream stream = new FileInputStream(a);
+                        InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(pathList.get(pathCount)));
                         StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
                         UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
                         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -520,7 +502,7 @@ public class WritingFragment extends Fragment {
                                         if (pathList.size() == successCount) {
                                             //완료
                                             WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
-                                            storeUploader(documentReference,writeInfo);
+                                            storeUploader(documentReference, writeInfo);
                                         }
                                     }
                                 });
@@ -529,30 +511,29 @@ public class WritingFragment extends Fragment {
                     } catch (FileNotFoundException e) {
                         Log.e("에러", "에러" + e.toString());
                     }
-
+                    pathCount++;
                 }
             }
-
-
         } else {
             startToast("제목을 입력해 주세");
         }
     }
 
+
     private void storeUploader(DocumentReference documentReference, WriteInfo writeInfo) {
         documentReference.set(writeInfo)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error writing document", e);
-                }
-            });
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
     }
 
     private void myStartActivity(Class c) {
