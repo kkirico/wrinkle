@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Objects;
 
 
 public class MemberActivity extends BasicActivity {
@@ -114,29 +115,14 @@ public class MemberActivity extends BasicActivity {
                     myStartActivity(CameraActivity.class);
                     break;
                 case R.id.gallery:
-                    CardView cardView2 = findViewById(R.id.buttonsCardview);//카드뷰 다시 안보이게 하
-                    cardView2.setVisibility(View.GONE);
-                    if (ContextCompat.checkSelfPermission(MemberActivity.this ,
-                            Manifest.permission.READ_EXTERNAL_STORAGE)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(MemberActivity.this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                1);
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(MemberActivity.this,
-                                Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                        } else {
-                            startToast("갤러리 사용 권한을 허가해 주세요1");
-                        }
-                    } else {
                         myStartActivity(GalleryActivity.class);
-                    }
                     break;
             }
         }
     };
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -167,6 +153,7 @@ public class MemberActivity extends BasicActivity {
             StorageReference storageRef = storage.getReference();
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             user = mAuth.getCurrentUser();
+            assert user != null;
             final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"profileImage.jpg");
 
             if(profilePath ==null){
@@ -180,7 +167,7 @@ public class MemberActivity extends BasicActivity {
                         @Override
                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                             if (!task.isSuccessful()) {
-                                throw task.getException();
+                                throw Objects.requireNonNull(task.getException());
                             }
                             return mountainImagesRef.getDownloadUrl();
                         }
@@ -189,6 +176,7 @@ public class MemberActivity extends BasicActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
+                                assert downloadUri != null;
                                 memberInfo.setPhotoUrl(downloadUri.toString());
                                 storeUploader(memberInfo);
                              } else {
