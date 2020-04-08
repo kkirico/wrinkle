@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static android.graphics.Typeface.BOLD;
+import static android.graphics.Typeface.ITALIC;
 
 
 /**
@@ -39,6 +40,7 @@ public class NotificationFragment extends Fragment {
 
     Button button;
     Button newSpanButton;
+    Button flagButton;
     Spannable spannable;
 
     public NotificationFragment() {
@@ -55,6 +57,24 @@ public class NotificationFragment extends Fragment {
         //button 가져오기
         button = (Button) rootView.findViewById(R.id.aButton);
         newSpanButton = (Button) rootView.findViewById(R.id.newSpanButton);
+        flagButton = (Button)rootView.findViewById(R.id.flagButton) ;
+        flagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StyleSpan[] styleSpansArr = spannableStringBuilderArrayList.get(0).getSpans(0,spannableStringBuilderArrayList.get(0).length(), StyleSpan.class );
+                int start = spannableStringBuilderArrayList.get(0).getSpanStart(styleSpansArr[0]);
+                int end = spannableStringBuilderArrayList.get(0).getSpanEnd(styleSpansArr[0]);
+                spannableStringBuilderArrayList.get(0).removeSpan(styleSpansArr[0]);
+                spannableStringBuilderArrayList.get(0).setSpan(new StyleSpan(ITALIC),start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                text.setText(spannableStringBuilderArrayList.get(0));
+                for(int i=1; i<spannableStringBuilderArrayList.size(); i++){
+                    text.append(spannableStringBuilderArrayList.get(i));
+                }
+
+
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +123,7 @@ public class NotificationFragment extends Fragment {
         //가나다라를 굵게 start: 0 , end : 4
         spannableStringBuilder.setSpan(new StyleSpan(BOLD),0, 0, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         //자차카타를 빨간색으로 start : 8, end : 12
-        spannableStringBuilder.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        spannableStringBuilder.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         text.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
 
