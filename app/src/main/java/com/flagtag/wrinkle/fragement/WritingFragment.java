@@ -130,9 +130,6 @@ public class WritingFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 int numberofItem = writing_content_container.getChildCount();
                 if (item.getItemId() == R.id.image_button) {
-                    //myStartActivity(GalleryActivity.class);
-
-                    //이미지 선택
                     startToast("이미지 선택");
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
@@ -271,10 +268,11 @@ public class WritingFragment extends Fragment {
         if (requestCode == SELECT_IMAGE) {
             try {
                 // 선택한 이미지에서 비트맵 생성
-                pathList.add(data.getData().toString());
+                pathList.add("0"+data.getData().toString());
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
+
                 // Custom WritingImageView 생성
                 final WritingImageView imageView = new WritingImageView(activity);
                 //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
@@ -288,15 +286,13 @@ public class WritingFragment extends Fragment {
         } else if (requestCode == SELECT_VIDEO) {
             Uri videoURI = data.getData();
             if (videoURI != null) {
-                //String videoPath = getPath(videoURI,1);
-                pathList.add(data.getData().toString());
+
+                pathList.add("1"+data.getData().toString());
 
                 //WritingVideoView 생성
                 WritingVideoView videoView = new WritingVideoView(activity);
                 videoView.setVideoView(videoURI);
                 videoView.requestFocus();
-
-
                 addViewToContainer(videoView, VEDIO_MENU);
             }
         }
@@ -487,10 +483,17 @@ public class WritingFragment extends Fragment {
                         contentsList.add(text);
                     }
                 } else {
-                    contentsList.add(pathList.get(pathCount));
-                    final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    String URI = pathList.get(pathCount);
+                    contentsList.add(URI.substring(1));
+                    final StorageReference mountainImagesRef;
+                    if(URI.substring(0, 1).equals("0")) {
+                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    }
+                    else {
+                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".mp4");
+                    }
                     try {
-                        InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(pathList.get(pathCount)));
+                        InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(URI.substring(1)));
                         StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
                         UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
                         uploadTask.addOnFailureListener(new OnFailureListener() {
