@@ -84,7 +84,7 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("\nabcdefg");
-                spannableStringBuilderArrayList.add(new SpannableStringBuilder("\nabcdefg"));
+                spannableStringBuilderArrayList.add(spannableStringBuilder);
 
                 spannableStringBuilder.setSpan(new StyleSpan(BOLD),1, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 text.append(spannableStringBuilderArrayList.get(spannableStringBuilderArrayList.size()-1));
@@ -101,15 +101,16 @@ public class NotificationFragment extends Fragment {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text.getText());
         spannableStringBuilderArrayList.add(spannableStringBuilder);
         //가나다라를 굵게 start: 0 , end : 4
-        spannableStringBuilder.setSpan(new StyleSpan(BOLD),0, 0, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.setSpan(new StyleSpan(BOLD),0, 0, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         //자차카타를 빨간색으로 start : 8, end : 12
-        spannableStringBuilder.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 
         text.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
 
         return rootView;
     }
 
+    //커서 위치가 바뀌면 inclusive_inclusive를 exclusive_exclusive로 바꿔야함.
 
 
     //프래그먼트가 액티비티에 올라올 때 호출되는 함수
