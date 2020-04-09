@@ -41,7 +41,7 @@ public class NotificationFragment extends Fragment {
 
     EditText text;
     ArrayList<StyleSpan> spanArrayList;
-
+    TextView textView;
     Button button;
     Button newSpanButton;
     Button flagButton;
@@ -63,6 +63,7 @@ public class NotificationFragment extends Fragment {
         button = (Button) rootView.findViewById(R.id.aButton);
         newSpanButton = (Button) rootView.findViewById(R.id.newSpanButton);
         flagButton = (Button)rootView.findViewById(R.id.flagButton) ;
+        textView = (TextView)rootView.findViewById(R.id.textView);
         flagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +97,7 @@ public class NotificationFragment extends Fragment {
                     start= stringBuilder.getSpanStart(span);
                     end = stringBuilder.getSpanEnd(span);
                     String string = "start : "+Integer.toString(start)+", end : " + Integer.toString(end);
-                    text.append("\n"+string);
+                    textView.append("\n"+string);
                 }
             }
         });
@@ -128,6 +129,14 @@ public class NotificationFragment extends Fragment {
         text.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
 
 
+        /**
+         * onSelectionChanged를 사용해서 cursor 위치가 바뀌었을 때
+         * 이전 cursor가 있던 곳의 span을 inclusive inclusive에서 exclusive exclusive로 바꿔준다.
+         *
+         * beforeTextChanged에서 span들을 모두 받고 현재 커서 위치가 있는 span만 inclusive inclusive로 바꿔준다.
+         * afterTextChanged에서 span들을 다시 그려준다.
+         */
+
         text.addTextChangedListener(new TextWatcher() {
 
             int cursor;
@@ -149,7 +158,13 @@ public class NotificationFragment extends Fragment {
                     style = new StyleSpan(span.getStyle());
                     stringBuilder.removeSpan(span);
 
-                    stringBuilder.setSpan(style, mStart,mEnd,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    if(mStart<=cursor && cursor<=mEnd){
+                        stringBuilder.setSpan(style, mStart,mEnd,Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    }else{
+                        stringBuilder.setSpan(style, mStart,mEnd,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+
+
                 }
 
 
@@ -160,29 +175,37 @@ public class NotificationFragment extends Fragment {
                 if(flag){
                     return;
                 }
+                /*
                 String string = s.toString().substring(cursor,cursor+count-before);
                 Log.d("string", string);
                 Log.d("start", Integer.toString(start));
                 Log.d("before", Integer.toString(before));
                 Log.d("count", Integer.toString(count));
-                stringBuilder.append(s, start, before);
-                stringBuilder.setSpan(new StyleSpan(BOLD), cursor, cursor+s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Log.d("cursor", Integer.toString(cursor));
+                Log.d("stringBuilder", stringBuilder.toString());
+                stringBuilder.insert(cursor, string);
+                stringBuilder.setSpan(new StyleSpan(BOLD), cursor, cursor+string.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 flag = true;
                 text.setText(stringBuilder);
 
 
-
+                cursor += string.length();
+                */
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
+                text.setText(stringBuilder);
                 flag = false;
+                //text.setSelection(cursor);
             }
         });
+
         return rootView;
     }
 
-    //커서 위치가 바뀌면 inclusive_inclusive를 exclusive_exclusive로 바꿔야함.
+
 
 
     //프래그먼트가 액티비티에 올라올 때 호출되는 함수
