@@ -32,14 +32,14 @@
             android:layout_height="wrap_content"
             android:text="change flag" />
 
-        <EditText
+        <com.flagtag.wrinkle.SmartEditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
 
-        </EditText>
+        </com.flagtag.wrinkle.SmartEditText>
 
         <TextView
             android:id="@+id/textView"

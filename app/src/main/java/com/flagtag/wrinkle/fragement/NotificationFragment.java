@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.SmartEditText;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ import static android.graphics.Typeface.NORMAL;
  */
 public class NotificationFragment extends Fragment {
 
-    EditText text;
+    SmartEditText text;
     ArrayList<StyleSpan> spanArrayList;
     TextView textView;
     Button button;
@@ -114,14 +115,14 @@ public class NotificationFragment extends Fragment {
         });
 
         //editText 가져오기
-        text = (EditText) rootView.findViewById(R.id.editText);
+        text = (SmartEditText) rootView.findViewById(R.id.editText);
         //text 글자 주기
         text.setText("가나다라마바사아자차카타파하");
 
         //spannableStringBuilder를 editText와 연결
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text.getText());
         //가나다라를 굵게 start: 0 , end : 4
-        spannableStringBuilder.setSpan(new StyleSpan(BOLD),0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.setSpan(new StyleSpan(BOLD),0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.setSpan(new StyleSpan(NORMAL),5, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //자차카타를 빨간색으로 start : 8, end : 12
         spannableStringBuilder.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -137,6 +138,7 @@ public class NotificationFragment extends Fragment {
          * afterTextChanged에서 span들을 다시 그려준다.
          */
 
+
         text.addTextChangedListener(new TextWatcher() {
 
             int cursor;
@@ -144,29 +146,8 @@ public class NotificationFragment extends Fragment {
             StyleSpan[] styleSpans ;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if(flag){
-                    return;
-                }
-                cursor = text.getSelectionStart();
                 stringBuilder = new SpannableStringBuilder(text.getText());
-                styleSpans = stringBuilder.getSpans(0, stringBuilder.length(), StyleSpan.class);
-                int mStart, mEnd;
-                StyleSpan style;
-                for(StyleSpan span : styleSpans){
-                    mStart = stringBuilder.getSpanStart(span);
-                    mEnd = stringBuilder.getSpanEnd(span);
-                    style = new StyleSpan(span.getStyle());
-                    stringBuilder.removeSpan(span);
-
-                    if(mStart<=cursor && cursor<=mEnd){
-                        stringBuilder.setSpan(style, mStart,mEnd,Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                    }else{
-                        stringBuilder.setSpan(style, mStart,mEnd,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    }
-
-
-                }
-
+                cursor = text.getSelectionStart();
 
             }
 
@@ -175,32 +156,54 @@ public class NotificationFragment extends Fragment {
                 if(flag){
                     return;
                 }
-                /*
+
+
+
                 String string = s.toString().substring(cursor,cursor+count-before);
-                Log.d("string", string);
-                Log.d("start", Integer.toString(start));
-                Log.d("before", Integer.toString(before));
-                Log.d("count", Integer.toString(count));
-                Log.d("cursor", Integer.toString(cursor));
+
                 Log.d("stringBuilder", stringBuilder.toString());
                 stringBuilder.insert(cursor, string);
-                stringBuilder.setSpan(new StyleSpan(BOLD), cursor, cursor+string.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                StyleSpan[] styleSpans = stringBuilder.getSpans(0, stringBuilder.length(),StyleSpan.class);
+                for(StyleSpan span : styleSpans){
+                    int spanStart = stringBuilder.getSpanStart(span);
+                    int spanEnd = stringBuilder.getSpanEnd(span);
+                    int style = span.getStyle();
+
+                    if(spanStart <= cursor && cursor <= spanEnd){
+                        if(style != Typeface.BOLD){
+                            stringBuilder.removeSpan(span);
+                            stringBuilder.setSpan(new StyleSpan(style), spanStart, cursor, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            stringBuilder.setSpan(new StyleSpan(BOLD), cursor, cursor+count-before, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            stringBuilder.setSpan(new StyleSpan(style), cursor+count-before, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }else{
+                            stringBuilder.removeSpan(span);
+                            stringBuilder.setSpan(new StyleSpan(BOLD), spanStart, spanEnd+cursor+count-before, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }
+                    }
+
+                }
+
+
                 flag = true;
+                //cursor += count-before;
+                cursor--;
                 text.setText(stringBuilder);
 
 
-                cursor += string.length();
-                */
+
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-                text.setText(stringBuilder);
+
                 flag = false;
-                //text.setSelection(cursor);
+                text.setSelection(cursor);
             }
         });
+
+
 
         return rootView;
     }
