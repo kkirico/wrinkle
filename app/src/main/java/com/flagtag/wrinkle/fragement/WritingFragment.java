@@ -32,7 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.flagtag.wrinkle.R;
-import com.flagtag.wrinkle.WriteInfo;
+import com.flagtag.wrinkle.PostInfo;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
@@ -130,9 +130,6 @@ public class WritingFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 int numberofItem = writing_content_container.getChildCount();
                 if (item.getItemId() == R.id.image_button) {
-                    //myStartActivity(GalleryActivity.class);
-
-                    //이미지 선택
                     startToast("이미지 선택");
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
@@ -275,6 +272,7 @@ public class WritingFragment extends Fragment {
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
+
                 // Custom WritingImageView 생성
                 final WritingImageView imageView = new WritingImageView(activity);
                 //Custom WritingImageView 안의 imageView 안에 이미지 설정을 해준다.
@@ -288,15 +286,13 @@ public class WritingFragment extends Fragment {
         } else if (requestCode == SELECT_VIDEO) {
             Uri videoURI = data.getData();
             if (videoURI != null) {
-                //String videoPath = getPath(videoURI,1);
+
                 pathList.add(data.getData().toString());
 
                 //WritingVideoView 생성
                 WritingVideoView videoView = new WritingVideoView(activity);
                 videoView.setVideoView(videoURI);
                 videoView.requestFocus();
-
-
                 addViewToContainer(videoView, VEDIO_MENU);
             }
         }
@@ -488,7 +484,9 @@ public class WritingFragment extends Fragment {
                     }
                 } else {
                     contentsList.add(pathList.get(pathCount));
-                    final StorageReference mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    String[] pathArray = pathList.get(pathCount).split("\\.");
+                    final StorageReference mountainImagesRef;
+                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + "."+ pathArray[pathArray.length-1]);
                     try {
                         InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(pathList.get(pathCount)));
                         StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
@@ -509,8 +507,8 @@ public class WritingFragment extends Fragment {
                                         successCount++;
                                         if (pathList.size() == successCount) {
                                             //완료
-                                            WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
-                                            storeUploader(documentReference, writeInfo);
+                                            PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
+                                            storeUploader(documentReference, postInfo);
                                         }
                                     }
                                 });
@@ -521,8 +519,9 @@ public class WritingFragment extends Fragment {
                     }
                     pathCount++;
                 }
-                if(pathCount ==0){
-                    startToast("사진 혹은 영상을 넣어주세요");
+                if(pathList.size() ==0){
+                    PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
+                    storeUploader(documentReference, postInfo);
                 }
             }
         } else {
@@ -531,8 +530,8 @@ public class WritingFragment extends Fragment {
     }
 
 
-    private void storeUploader(DocumentReference documentReference, WriteInfo writeInfo) {
-        documentReference.set(writeInfo)
+    private void storeUploader(DocumentReference documentReference, PostInfo postInfo) {
+        documentReference.set(postInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
