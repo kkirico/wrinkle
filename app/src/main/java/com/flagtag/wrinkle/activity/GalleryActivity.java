@@ -48,9 +48,10 @@ public class GalleryActivity extends BasicActivity {
 
     }
     private void recycleInt(){
+        final int numberOfColumns = 5;
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        final int numberOfColumns = 5;
+
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         mAdapter = new GalleryAdapter(this,getImagesPath(this));
         recyclerView.setAdapter(mAdapter);
