@@ -1,16 +1,24 @@
 package com.flagtag.wrinkle;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Post {
+public class PostInfo {
+    private static final String TAG ="오류" ;
     ArrayList<User> taggedUsers;
     User writer;
     int postNumber;
-    String title;
     Date writingDate;
     Date realDate;
     ArrayList<String> imageUrls;
@@ -21,8 +29,19 @@ public class Post {
     String contentWriting;
     ArrayList<String> tags;
 
+    String title;
+    private ArrayList<String> contents;
+    private String publisher;
+    private Date createdAt;
 
-    public Post() {
+    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
+        this.title = title;
+        this.contents = contents ;
+        this.publisher = publisher;
+        this.createdAt = createdAt;
+    }
+
+    public PostInfo() {
         taggedUsers = new ArrayList<User>();
         taggedUsers.add(new User());
         writer = new User();
@@ -135,6 +154,14 @@ public class Post {
     public void setComments(int comments) {
         this.comments = comments;
     }
+    public ArrayList<String> getContents(){
+        return this.contents;
+    }
+    public void setContents(ArrayList<String> contents){this.contents  = contents;}
+    public String getPublisher(){return  this.publisher;}
+    public  void setPublisher(String publisher){this.publisher = publisher;}
+    public Date getCreatedAt(){return  this.createdAt;}
+    public  void setCreatedAt(Date createdAt){this.createdAt = createdAt;}
 
     /*
         comments랑 likes도 단순히 몇 개 체크되었는지 뿐만 아니라
