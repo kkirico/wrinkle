@@ -150,7 +150,7 @@ public class MemberActivity extends BasicActivity {
         memberInfo.setText(profileText);
         memberInfo.setemail(email);
         memberInfo.setPhotoUrl(profilePicture);
-        memberInfo.setBirthDay(userBirthDay);
+        //memberInfo.setBirthDay(userBirthDay);
 
         if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0) {
             loaderLayout.setVisibility(View.VISIBLE);
