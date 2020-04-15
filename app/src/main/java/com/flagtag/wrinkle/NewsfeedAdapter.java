@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.adapter.PhotoAdapter;
 import com.flagtag.wrinkle.fragement.NewsfeedFragment;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -84,15 +85,18 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             e.printStackTrace();
         }
 
-            //생일 날짜 구하기
-        /*
-        String birthdayDate = format.format(item.writer.birthday);
+            //생일 날짜구하기
+        MemberInfo memberInfo = MemberInfo.getInstance();
+        String name = memberInfo.getName();
+        String birthDay = memberInfo.getBirthDay();
+        String profilePicture = memberInfo.getPhotoUrl();
+
         try {
-            birthdayTimeStamp = format.parse(birthdayDate).getTime()/(60*60*24*1000);
+            birthdayTimeStamp = format.parse(birthDay).getTime()/(60*60*24*1000);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+/*
             //글 내용 날짜 구하기 createdAt
         String contentDate = format.format(item.realDate);
         try {
