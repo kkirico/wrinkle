@@ -60,7 +60,7 @@ public class MemberInfo{
         public String getBirthDay(){
         return this.birthDay;
     }
-        public void setBirthDay(String photoUrl){
+        public void setBirthDay(String birthDay){
         this.birthDay  = birthDay;
     }
 

@@ -1,5 +1,4 @@
 package com.flagtag.wrinkle.activity;
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-
-
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
@@ -31,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -66,7 +62,7 @@ public class MemberActivity extends BasicActivity {
         ((TextView)findViewById(R.id.emailEditText)).setText(email);
         ((TextView)findViewById(R.id.profileEditText)).setText(text);
         ((TextView)findViewById(R.id.addressEditText)).setText(address);
-        //((TextView)findViewById(R.id.)).setText(birthDay);
+        ((TextView)findViewById(R.id.birthdayEditText)).setText(birthDay);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -143,16 +139,16 @@ public class MemberActivity extends BasicActivity {
         final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         final String profileText = ((EditText) findViewById(R.id.profileEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
-        //final String userBirthDay = ((EditText)findViewById(R.id.)).getText().toString();
+        final String userBirthDay = ((EditText)findViewById(R.id.birthdayEditText)).getText().toString();
         final String profilePicture = findViewById(R.id.profileImageView).toString();
         memberInfo.setAddress(address);
         memberInfo.setName(name);
         memberInfo.setText(profileText);
         memberInfo.setemail(email);
         memberInfo.setPhotoUrl(profilePicture);
-        //memberInfo.setBirthDay(userBirthDay);
+        memberInfo.setBirthDay(userBirthDay);
 
-        if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0) {
+        if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0&& userBirthDay.length()==8) {
             loaderLayout.setVisibility(View.VISIBLE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
@@ -197,7 +193,7 @@ public class MemberActivity extends BasicActivity {
 
 
         } else {
-            startToast("회원정보를 입력해주세요.");
+            startToast("회원정보를 정확히 입력해주세요.");
         }
     }
 
