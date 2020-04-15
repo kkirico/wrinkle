@@ -6,12 +6,13 @@ public class MemberInfo{
         private String text;
         private String address;
         private String photoUrl;
+        private String birthDay;
         private static final MemberInfo memberInstance = new MemberInfo();
 
-        public MemberInfo(String name, String email, String birthDay, String address, String photoUrl){
+        public MemberInfo(String name, String email, String text, String address, String photoUrl, String birthDay){
             this.name = name;
             this.email = email;
-            this.text = birthDay;
+            this.text = text;
             this.address = address;
             this.photoUrl = photoUrl;
         }
@@ -20,11 +21,12 @@ public class MemberInfo{
 
         }
 
-        public MemberInfo(String name, String email, String birthDay, String address){
+        public MemberInfo(String name, String email, String text, String address, String birthDay){
         this.name = name;
         this.email = email;
-        this.text = birthDay;
+        this.text = text;
         this.address = address;
+        this.birthDay = birthDay;
     }
 
         public String getName(){
@@ -54,6 +56,12 @@ public class MemberInfo{
     }
         public void setPhotoUrl(String photoUrl){
         this.photoUrl  = photoUrl;
+    }
+        public String getBirthDay(){
+        return this.birthDay;
+    }
+        public void setBirthDay(String photoUrl){
+        this.birthDay  = birthDay;
     }
 
         public static MemberInfo getInstance(){

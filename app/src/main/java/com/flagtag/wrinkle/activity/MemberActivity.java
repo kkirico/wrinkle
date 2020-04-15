@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 
 import com.bumptech.glide.Glide;
@@ -62,10 +61,12 @@ public class MemberActivity extends BasicActivity {
         String email = memberInfo.getemail();
         String name = memberInfo.getName();
         String text = memberInfo.getText();
+        String birthDay = memberInfo.getBirthDay();
         ((TextView)findViewById(R.id.nameEditText)).setText(name);
         ((TextView)findViewById(R.id.emailEditText)).setText(email);
         ((TextView)findViewById(R.id.profileEditText)).setText(text);
         ((TextView)findViewById(R.id.addressEditText)).setText(address);
+        //((TextView)findViewById(R.id.)).setText(birthDay);
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -135,17 +136,21 @@ public class MemberActivity extends BasicActivity {
         }
     }
 
+
+
     private void storageUploader() {
         final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
         final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         final String profileText = ((EditText) findViewById(R.id.profileEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
+        //final String userBirthDay = ((EditText)findViewById(R.id.)).getText().toString();
         final String profilePicture = findViewById(R.id.profileImageView).toString();
         memberInfo.setAddress(address);
         memberInfo.setName(name);
         memberInfo.setText(profileText);
         memberInfo.setemail(email);
         memberInfo.setPhotoUrl(profilePicture);
+        memberInfo.setBirthDay(userBirthDay);
 
         if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0) {
             loaderLayout.setVisibility(View.VISIBLE);
