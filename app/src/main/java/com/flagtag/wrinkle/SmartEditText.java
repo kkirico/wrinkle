@@ -22,6 +22,8 @@ public class SmartEditText extends androidx.appcompat.widget.AppCompatEditText {
     protected void onSelectionChanged(int selStart, int selEnd) {
         super.onSelectionChanged(selStart, selEnd);
 
-        Toast.makeText(getContext(),"onselectionchagned", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"onselectionchagned", Toast.LENGTH_SHORT).show();
     }
+
+
 }
