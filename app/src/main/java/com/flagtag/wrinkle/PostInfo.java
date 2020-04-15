@@ -17,17 +17,18 @@ import java.util.Date;
 public class PostInfo {
     private static final String TAG ="오류" ;
     ArrayList<User> taggedUsers;
-    User writer;
-    int postNumber;
     Date writingDate;
-    Date realDate;
-    ArrayList<String> imageUrls;
+    ArrayList<String> tags;
+
+    //User writer;
+    //int postNumber;
+    //Date realDate;
+    //ArrayList<String> imageUrls;
     /*
     일단은 이렇게 하나의 String으로 했는데 나중에 원노트처럼
     누가 썼는지 옆에 나오게 하기 위해서는 다른 방법이 필요할 것 같음.
      */
     String contentWriting;
-    ArrayList<String> tags;
 
     String title;
     private ArrayList<String> contents;
@@ -40,7 +41,7 @@ public class PostInfo {
         this.publisher = publisher;
         this.createdAt = createdAt;
     }
-
+/*
     public PostInfo() {
         taggedUsers = new ArrayList<User>();
         taggedUsers.add(new User());
@@ -62,11 +63,11 @@ public class PostInfo {
         tags = new ArrayList<>();
         tags.add("tag1");
     }
-
+*/
     /*
         ==========================================================
         Getter와 Setter
-         */
+
     public ArrayList<User> getTaggedUsers() {
         return taggedUsers;
     }
@@ -123,14 +124,6 @@ public class PostInfo {
         this.imageUrls = imageUrls;
     }
 
-    public String getContentWriting() {
-        return contentWriting;
-    }
-
-    public void setContentWriting(String contentWriting) {
-        this.contentWriting = contentWriting;
-    }
-
     public ArrayList<String> getTags() {
         return tags;
     }
@@ -153,7 +146,7 @@ public class PostInfo {
 
     public void setComments(int comments) {
         this.comments = comments;
-    }
+    }*/
     public ArrayList<String> getContents(){
         return this.contents;
     }
@@ -161,7 +154,15 @@ public class PostInfo {
     public String getPublisher(){return  this.publisher;}
     public  void setPublisher(String publisher){this.publisher = publisher;}
     public Date getCreatedAt(){return  this.createdAt;}
-    public  void setCreatedAt(Date createdAt){this.createdAt = createdAt;}
+    public  void setCreatedAt(Date createdAt){this.createdAt = createdAt;
+    }
+    public String getContentWriting() {
+        return contentWriting;
+    }
+    public void setContentWriting(String contentWriting) {
+        this.contentWriting = contentWriting;
+    }
+
 
     /*
         comments랑 likes도 단순히 몇 개 체크되었는지 뿐만 아니라

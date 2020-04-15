@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,8 +47,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
     @Override
     public int getItemCount() {
-        //return imageUrls.size();
-        return 0;
+        return imageUrls.size();
+        //return 0;
     }
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder {

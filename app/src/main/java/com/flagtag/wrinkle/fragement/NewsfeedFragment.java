@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.flagtag.wrinkle.NewsfeedAdapter;
 import com.flagtag.wrinkle.PostInfo;
 import com.flagtag.wrinkle.R;
+import com.flagtag.wrinkle.activity.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,13 +61,13 @@ public class NewsfeedFragment extends Fragment {
         newsfeedAdapter.addItem(new PostInfo());
         newsfeedAdapter.addItem(new PostInfo());
         newsfeedAdapter.addItem(new PostInfo());
-        newsfeedAdapter.addItem(new PostInfo());
+        newsfeedAdapter.addItem(new PostInfo());*/
 
         recyclerView.setAdapter(newsfeedAdapter);
 
         Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setSupportActionBar(toolbar);*/
+        mainActivity.setSupportActionBar(toolbar);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
