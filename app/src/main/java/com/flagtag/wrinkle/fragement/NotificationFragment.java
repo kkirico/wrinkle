@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class NotificationFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_notification, container, false);
@@ -108,7 +109,7 @@ public class NotificationFragment extends Fragment {
 
 
         //가나다라를 굵게 start: 0 , end : 4
-        editable.setSpan(new StyleSpan(BOLD),0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        editable.setSpan(new StyleSpan(BOLD),0, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         editable.setSpan(new StyleSpan(NORMAL),5, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //자차카타를 빨간색으로 start : 8, end : 12
         editable.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -119,7 +120,7 @@ public class NotificationFragment extends Fragment {
         text.addTextChangedListener(new TextWatcher() {
 
             int lastCursor, curCursor;
-
+            StyleSpan inclusive;
             StyleSpan[] styleSpans ;
             ArrayList<SpanInfo> spanInfoArr = new ArrayList<>();
             @Override
@@ -132,6 +133,9 @@ public class NotificationFragment extends Fragment {
                     int spanStart = editable.getSpanStart(span);
                     int spanEnd = editable.getSpanEnd(span);
                     int style = span.getStyle();
+                    if(editable.getSpanFlags(span) != Spanned.SPAN_EXCLUSIVE_EXCLUSIVE){
+                        inclusive = span;
+                    }
                     spanInfoArr.add(new SpanInfo(style,spanStart, spanEnd));
                 }
 
@@ -148,7 +152,13 @@ public class NotificationFragment extends Fragment {
                 boolean isCusorInSpan = false;
                 curCursor = text.getSelectionStart();
 
+                if(inclusive != null){
+                    editable.removeSpan(inclusive);
+                    inclusive = null;
+                }
 
+
+                StyleSpan[] styleSpans = editable.getSpans(0, editable.length(),StyleSpan.class);
                 for(SpanInfo spanInfo: spanInfoArr){
                     if(spanInfo.getStart()<=lastCursor &&spanInfo.getEnd()>=lastCursor){
                         isCusorInSpan = true;

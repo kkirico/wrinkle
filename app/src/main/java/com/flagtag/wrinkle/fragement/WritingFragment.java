@@ -190,7 +190,7 @@ public class WritingFragment extends Fragment {
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
                     int cursorPosition = curView.text.getSelectionStart();
-                    ArrayList<Integer> spanIndexes;
+                    curView.clearComposingText();
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
@@ -200,8 +200,8 @@ public class WritingFragment extends Fragment {
                         startToast("boldbutton set");
 
 
-                        //현재 커서 위치가 포함되는 span을 찾는다.
-                        spanIndexes = curView.spansIncludePosition(cursorPosition);
+                        //현재 커서 위치가 포함되는 span을 수정한다.
+                        curView.setStyleAt(cursorPosition, Typeface.BOLD);
 
 
                     } else {
@@ -317,19 +317,20 @@ public class WritingFragment extends Fragment {
                 changeToolbarMenu(toolbar.getMenu(),true);
 
                 int cursorPosition = ((EditText)view).getSelectionEnd();
-                //커서 포지션이 위치해 있는 span이 bold이면
-                if(((WritingTextView)curWritingView).isPositionInSpanArr(cursorPosition)== Typeface.BOLD){
-                    //boldButton을 눌린 상태로, BOLD_BUTTON_CHECKED를 true로
-                    boldButton.setIconTintList(ColorStateList.valueOf(Color.RED));
-                    BOLD_BUTTON_CHECKED = true;
-                }
-                //커서 포지션이 위치해 있는 span이 bold가 아니면,
-                else{
-                    //boldButton을 안 눌린 상태로, BOLD_BUTTON_CHECKED를 false로
-                    boldButton.setIconTintList(null);
-                    BOLD_BUTTON_CHECKED = false;
-                }
+                BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isCursorInSpan(cursorPosition , Typeface.BOLD);
 
+                if (BOLD_BUTTON_CHECKED) {
+
+                    toolbar.getMenu().findItem(R.id.bold_button).setChecked(true);
+                    toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(ColorStateList.valueOf(Color.RED));
+
+
+                } else {
+                    toolbar.getMenu().findItem(R.id.bold_button).setChecked(false);
+                    toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(null);
+
+
+                }
 
             } else {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -551,9 +552,6 @@ public class WritingFragment extends Fragment {
                 });
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(getContext(), c);
-        startActivityForResult(intent, 0);
-    }
+
 
 }

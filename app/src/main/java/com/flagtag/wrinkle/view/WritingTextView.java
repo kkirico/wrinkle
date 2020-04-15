@@ -3,8 +3,10 @@ package com.flagtag.wrinkle.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,11 +19,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
+import io.opencensus.trace.Span;
+
 public class WritingTextView extends WritingView {
 
     public EditText text;
-    public Spannable spanText;
-    public ArrayList<StyleSpan> styleSpanArr;
+    ArrayList<SpanInfo> spanInfoArrayList;
+    Editable editable;
 
 
     public WritingTextView(Context context) {
@@ -49,13 +53,8 @@ public class WritingTextView extends WritingView {
 
         mIsSelected = false;
         text = new EditText(context);
-        styleSpanArr = new ArrayList<>();
-        //styleSpanArr에 처음에 normal을 넣어준다.
-        styleSpanArr.add(new StyleSpan(Typeface.NORMAL));
-        //editText 안에 spannable을 만들어주는거
-        spanText = (Spannable)text.getText();
-        //처음에는 normal, inclusive-inclusive로
-        spanText.setSpan(styleSpanArr.get(0), 0,0,Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        spanInfoArrayList = new ArrayList<>();
+        editable = text.getEditableText();
 
 
         ConstraintLayout.LayoutParams textViewLayoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -72,6 +71,97 @@ public class WritingTextView extends WritingView {
         //text underline 없애기
         text.setBackgroundColor(Color.TRANSPARENT);
 
+        //text watcher 붙이기
+        text.addTextChangedListener(new TextWatcher() {
+
+            int lastCursor, curCursor;
+
+            StyleSpan[] styleSpans ;
+            StyleSpan inclusiveSpan;
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                lastCursor = text.getSelectionStart();
+
+                //selectionStart와 selectionEnd가 똑같을 때
+
+                //span들을 다 가져온다.
+                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
+                //spanInfoArrayList를 다 지운 다음
+                spanInfoArrayList.clear();
+
+                //spanInfo들을 저장.
+                for(StyleSpan span : styleSpans){
+                    int flag = editable.getSpanFlags(span);
+                    int spanStart = editable.getSpanStart(span);
+                    int spanEnd = editable.getSpanEnd(span);
+                    int style = span.getStyle();
+                    if(flag != Spannable.SPAN_EXCLUSIVE_EXCLUSIVE){
+                        inclusiveSpan = span;
+                    }
+                    spanInfoArrayList.add(new SpanInfo(style, spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
+                }
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                curCursor = text.getSelectionEnd();
+
+                if(inclusiveSpan != null){
+                    editable.removeSpan(inclusiveSpan);
+                    inclusiveSpan = null;
+                }
+
+                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
+
+
+                for(SpanInfo spanInfo: spanInfoArrayList){
+                    int spanStart = spanInfo.getStart();
+                    int spanEnd = spanInfo.getEnd();
+                    int spanStyle = spanInfo.getStyle();
+
+
+                    //글을 써서 커서가 넘어갔을 때
+                    if(curCursor>lastCursor){
+
+                        if(lastCursor<spanStart){
+                            spanStart++;
+                        }
+                        if(lastCursor<=spanEnd){
+                            spanEnd++;
+                        }
+
+
+
+                    }
+                    //글을 지워서 커서가 뒤로 왔을 때
+                    else if(curCursor<=lastCursor){
+                        if(lastCursor<=spanStart){
+                            spanStart--;
+                        }
+                        if(lastCursor<=spanEnd){
+                            spanEnd--;
+                        }
+                    }
+                    //글을 쓰거나 지웠는데 커서가 넘어가거나 지워지지는 않을 때는 그냥 그대로 적용하면 됨
+
+                    //setspan 해주기
+                    editable.setSpan(new StyleSpan(spanStyle), spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                }
+                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
+                for(StyleSpan span : styleSpans){
+                    int flag = editable.getSpanFlags(span);
+                }
+            }
+        });
+
 
 
 
@@ -86,6 +176,9 @@ public class WritingTextView extends WritingView {
         return textString;
     }
 
+    public void clearComposingText(){
+        text.clearComposingText();
+    }
     public void setMinLines(int num){
         text.setMinLines(num);
     }
@@ -104,48 +197,54 @@ public class WritingTextView extends WritingView {
         text.clearFocus();
     }
 
-    public int isPositionInSpanArr(int cursorPosition){
-        int start, end;
-        for(StyleSpan span : styleSpanArr){
-            //styleSpanArr 안에 span의 시작과 끝을 가져온다.
-            start = spanText.getSpanStart(span);
-            end = spanText.getSpanEnd(span);
+    public boolean isCursorInSpan(int cursor, int style){
+        StyleSpan[] spans = editable.getSpans(0, editable.length(), StyleSpan.class);
 
-            //만약 cursorPosition이 start와 end 사이에 있으면
-            if(cursorPosition>=start && cursorPosition<= end) {
-                //만약 그 span의 종류가 bold이면
-                if (span.getStyle() == Typeface.BOLD) {
-                    return Typeface.BOLD;
-                } else if (span.getStyle() == Typeface.ITALIC) {
-                    return Typeface.ITALIC;
-                } else if (span.getStyle() == Typeface.BOLD_ITALIC) {
-                    return Typeface.BOLD_ITALIC;
-                } else if (span.getStyle() == Typeface.NORMAL) {
-                    return Typeface.NORMAL;
+        for(StyleSpan span : spans){
+            int spanStart = editable.getSpanStart(span);
+            int spanEnd = editable.getSpanEnd(span);
+            int spanStyle = span.getStyle();
+            if(spanStyle == style){
+                if(spanStart<=cursor && cursor<=spanEnd){
+                    return true;
                 }
             }
         }
-        return Typeface.NORMAL;
+
+        return false;
     }
 
-    //현재 포지션을 포함하는 모든 stylespan의 styleSpanArr 안에서의 인덱스를 리턴한다.
-    public ArrayList<Integer> spansIncludePosition(int cursorPosition){
-        int start, end;
-        ArrayList<Integer> indexes = new ArrayList<>();
-        for(int i=0; i<styleSpanArr.size(); i++){
-            StyleSpan span = styleSpanArr.get(i);
-            start = spanText.getSpanStart(span);
-            end = spanText.getSpanEnd(span);
-            if(cursorPosition>=start && cursorPosition<= end){
-                indexes.add(i);
-            }
+    public void setStyleAt(int cursor, int style){
+        editable.setSpan(new StyleSpan(style), cursor, cursor, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+    }
 
+
+
+    class SpanInfo{
+        int style;
+        int start;
+        int end;
+        int flag;
+
+        public SpanInfo(int style, int start, int end,int flag) {
+            this.style = style;
+            this.start = start;
+            this.end = end;
+            this.flag = flag;
         }
 
-        return indexes;
-    }
+        public int getStyle() {
+            return style;
+        }
 
-    public void changeStyleSpan(ArrayList<Integer> indexes, int style, int cursorPosition){
+        public int getStart() {
+            return start;
+        }
 
+        public int getEnd() {
+            return end;
+        }
+
+        public int getFlag() { return flag;}
     }
 }
