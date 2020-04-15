@@ -4,17 +4,20 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.adapter.PhotoAdapter;
 import com.flagtag.wrinkle.fragement.NewsfeedFragment;
 
@@ -34,11 +37,11 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
     private ArrayList<PostInfo> items;
 
     public NewsfeedAdapter() {
-        this.items = items = new ArrayList<>();;
+        this.items = new ArrayList<>();;
     }
 
     public NewsfeedAdapter(NewsfeedFragment newsfeedFragment, ArrayList<PostInfo> postList) {
-        this.items = items = postList;
+        this.items = postList;
     }
 
     @NonNull
@@ -130,21 +133,30 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
 
 
+        ArrayList<String> imageUrls = new ArrayList<>();
+        ArrayList<String> texts = new ArrayList<>();
+        ArrayList<String> videoUrls = new ArrayList<>();
+        int countImages=0;
+        int countVideos= 0;
+        int countTexts=0;
         //이미지 (뷰페이저 부분)
-        ArrayList<String> URLs = item.getContents();
-        for(int i =0; i<URLs.size(); i++) {
-            String contents = URLs.get(i);
+        ArrayList<String> contentList = item.getContents();
+        for(int i =0; i<contentList.size(); i++) {
+            String contents = contentList.get(i);
             String[] type = contents.split("\\.");
-            if(type[type.length-1].substring(0,2).equals("jpg")){
-                PhotoAdapter imageAdapter = new PhotoAdapter(URLs);
-                holder.image_viewpager.setAdapter(imageAdapter);
-
-                CircleIndicator3 indicator = holder.indicator;
-                indicator.setViewPager(holder.image_viewpager);
-                imageAdapter.registerAdapterDataObserver(indicator.getAdapterDataObserver());
-            }
-            else{
-                //내용(글)
+            if (type[type.length - 1].substring(0, 3).equals("jpg")) {
+                imageUrls.add(contentList.get(i));
+                //이미지 넣을때 마다 카운트 증가
+                countImages++;
+            } /* video adapter만들어야
+            else if(type[type.length - 1].substring(0, 3).equals("avi")||type[type.length - 1].substring(0, 3).equals("mp4")){
+                videoUrls.add(URLs.get(i));
+                countVideos++;
+            }*/
+            else {
+                texts.add(contentList.get(i));
+                item.setContentWriting(texts.get(0));
+                //내용(글) 위에서 걸러낸 texts를 사용해야하는디...
                 holder.content_writing.setText(item.contentWriting);
                 //택스트 중 더 보기
                 Spannable span = (Spannable) holder.content_writing.getText();
@@ -156,12 +168,15 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
                         //이 게시물이 있는 페이지로 이동하게 하기
                     }
                 }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
+                countTexts++;
             }
-
         }
 
-
+        PhotoAdapter imageAdapter = new PhotoAdapter(imageUrls);
+        holder.image_viewpager.setAdapter(imageAdapter);
+        CircleIndicator3 indicator = holder.indicator;
+        indicator.setViewPager(holder.image_viewpager);
+        imageAdapter.registerAdapterDataObserver(indicator.getAdapterDataObserver());
 
 
         //태그
