@@ -1,6 +1,9 @@
 package com.flagtag.wrinkle.fragement;
 
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -28,9 +31,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.PostInfo;
 import com.flagtag.wrinkle.view.WritingImageView;
@@ -52,7 +57,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -97,6 +105,13 @@ public class WritingFragment extends Fragment {
     private int currentSelectedItem = 0;
     private boolean BOLD_BUTTON_CHECKED = false;
 
+    private static final int MAX_YEAR = 2021;
+    private static final int MIN_YEAR = 1960;
+    public Calendar cal = Calendar.getInstance();
+    NumberPicker yearPicker;
+    NumberPicker monthPicker;
+    NumberPicker dayPicker;
+    NumberPicker seasonPicker;
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -121,10 +136,35 @@ public class WritingFragment extends Fragment {
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
         loaderLayout = rootView.findViewById(R.id.loaderLayout);
+        monthPicker = rootView.findViewById(R.id.picker_month);
+        yearPicker = rootView.findViewById(R.id.picker_year);
+        dayPicker = rootView.findViewById(R.id.picker_day);
+        seasonPicker = rootView.findViewById(R.id.picker_season);
+
+        int year = cal.get(Calendar.YEAR);
+        yearPicker.setMinValue(MIN_YEAR);
+        yearPicker.setMaxValue(MAX_YEAR);
+        monthPicker.setMinValue(1);
+        monthPicker.setMaxValue(12);
+        dayPicker.setMinValue(1);
+        dayPicker.setMaxValue(31);
+        seasonPicker.setMinValue(0);
+        seasonPicker.setMaxValue(3);
+        seasonPicker.setDisplayedValues( new String[] {"Summer", "Autumn", "Winter","Spring"});
+
+        String pickedYear = String.valueOf(yearPicker.getValue());
+        String pickedMonth = String.valueOf(monthPicker.getValue());
+        String pickedDay = String.valueOf(dayPicker.getValue());
+
+
+
+        yearPicker.setValue(year);
+        monthPicker.setValue(cal.get(Calendar.MONTH) + 1);
+        dayPicker.setValue(cal.get(Calendar.DATE));
+
+
 
         toolbar = rootView.findViewById(R.id.writing_fragment_toolbar);
-
-
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -233,7 +273,11 @@ public class WritingFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.check:
-                    storageUploader();
+                    try {
+                        storageUploader();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }
@@ -252,6 +296,8 @@ public class WritingFragment extends Fragment {
         super.onDetach();
 
     }
+
+
 
     private void startToast(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
@@ -463,9 +509,15 @@ public class WritingFragment extends Fragment {
 
     }
 
-    private void storageUploader() {
+    private void storageUploader() throws ParseException {
 
         final String title = titleEditText.getText().toString();
+        String pickedYear = String.valueOf(yearPicker.getValue());
+        String pickedMonth = String.valueOf(monthPicker.getValue());
+        String pickedDay = String.valueOf(dayPicker.getValue());
+        String t = pickedYear+pickedMonth+pickedDay;
+        final Date dateOfMemory = transformDate(t.toString());
+
 
         if (title.length() > 0) {
             loaderLayout.setVisibility(View.VISIBLE);
@@ -474,6 +526,11 @@ public class WritingFragment extends Fragment {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+
+            MemberInfo memberInfo = MemberInfo.getInstance();
+            final Date publisherBirthday = transformDate(memberInfo.getBirthDay());
+
             final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
 
             for (int i = 0; i < parent.getChildCount(); i++) {
@@ -508,7 +565,7 @@ public class WritingFragment extends Fragment {
                                         successCount++;
                                         if (pathList.size() == successCount) {
                                             //완료
-                                            PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
+                                            PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date(),dateOfMemory,publisherBirthday);
                                             storeUploader(documentReference, postInfo);
                                         }
                                     }
@@ -521,7 +578,7 @@ public class WritingFragment extends Fragment {
                     pathCount++;
                 }
                 if(pathList.size() ==0){
-                    PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
+                    PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date(),dateOfMemory,publisherBirthday);
                     storeUploader(documentReference, postInfo);
                 }
             }
@@ -530,6 +587,29 @@ public class WritingFragment extends Fragment {
         }
     }
 
+    public Date transformDate(String date) throws ParseException {
+        SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
+
+        // Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
+        SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+        java.util.Date tempDate = null;
+
+        try {
+            // 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
+            tempDate = beforeFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
+        String transDate = afterFormat.format(tempDate);
+
+        // 반환된 String 값을 Date로 변경한다.
+        Date d = beforeFormat.parse(transDate);
+
+        return d;
+    }
 
     private void storeUploader(DocumentReference documentReference, PostInfo postInfo) {
         documentReference.set(postInfo)
