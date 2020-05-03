@@ -67,7 +67,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         //position번째 아이템을 arrayList에서 가져옴
         PostInfo item = items.get(position);
-
+/*
         //타임바 부분
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         format.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
@@ -96,7 +96,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-/*
+
             //글 내용 날짜 구하기 createdAt
         String contentDate = format.format(item.realDate);
         try {
@@ -133,7 +133,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         holder.title.setText(item.title);
         //날짜
 
-        holder.writing_date.setText(format.format(item.getCreatedAt()));
+       // holder.writing_date.setText(format.format(item.getCreatedAt()));
 
 
 

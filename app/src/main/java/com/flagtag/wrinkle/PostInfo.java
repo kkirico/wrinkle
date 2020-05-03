@@ -34,12 +34,23 @@ public class PostInfo {
     private ArrayList<String> contents;
     private String publisher;
     private Date createdAt;
-
+    private Date dateOfMemory;
+    private Date birthdayOfPublisher;
     public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
         this.title = title;
         this.contents = contents ;
         this.publisher = publisher;
         this.createdAt = createdAt;
+    }
+
+
+    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, Date dateOfMemory, Date birthdayOfPublisher){
+        this.title = title;
+        this.contents = contents ;
+        this.publisher = publisher;
+        this.createdAt = createdAt;
+        this.dateOfMemory = dateOfMemory;
+        this.birthdayOfPublisher = birthdayOfPublisher;
     }
 /*
     public PostInfo() {
@@ -162,6 +173,19 @@ public class PostInfo {
     public void setContentWriting(String contentWriting) {
         this.contentWriting = contentWriting;
     }
+    public Date getDateOfMemory() {
+        return dateOfMemory;
+    }
+    public void setDateOfMemory(Date dateOfMemory) {
+        this.dateOfMemory = dateOfMemory;
+    }
+    public Date getBirthdayOfPublisher() {
+        return birthdayOfPublisher;
+    }
+    public void setBirthdayOfPublisher(Date birthdayOfPublisher) {
+        this.birthdayOfPublisher = birthdayOfPublisher;
+    }
+
 
 
     /*
