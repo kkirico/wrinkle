@@ -67,44 +67,37 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         //position번째 아이템을 arrayList에서 가져옴
         PostInfo item = items.get(position);
-/*
+
         //타임바 부분
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
         format.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 
-            //오늘 날짜 구하기
+        //날짜 세개(오늘, 기억의 날짜, 작성자생일)구하기 및 타임스탬프화
         Calendar calendar = Calendar.getInstance();
         Date today = new Date(calendar.getTimeInMillis());
         String todayDate = format.format(today);
         long todayTimeStamp=0;
         long birthdayTimeStamp=0;
-        long contentDateTimeStamp=0;
+        long dateOfMemoryTimeStamp=0;
+        String birthdayOfPublisher = item.getBirthdayOfPublisher();
+        String dateOfMemory = item.getDateOfMemory();
         try {
             todayTimeStamp = format.parse(todayDate).getTime()/(60*60*24*1000);
+            birthdayTimeStamp = format.parse(birthdayOfPublisher).getTime()/(60*60*24*1000);
+            dateOfMemoryTimeStamp = format.parse(dateOfMemory).getTime()/(60*60*24*1000);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-            //생일 날짜구하기
+        //생일 날짜구하기
+
         MemberInfo memberInfo = MemberInfo.getInstance();
         String name = memberInfo.getName();
         String birthDay = memberInfo.getBirthDay();
         String profilePicture = memberInfo.getPhotoUrl();
 
-        try {
-            birthdayTimeStamp = format.parse(birthDay).getTime()/(60*60*24*1000);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-            //글 내용 날짜 구하기 createdAt
-        String contentDate = format.format(item.realDate);
-        try {
-            contentDateTimeStamp = format.parse(contentDate).getTime()/(60*60*24*1000);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        double a =(((double)contentDateTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp))*100;
+        double a =(((double)dateOfMemoryTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp))*100;
         holder.time_bar.setProgress((int)a);
 
         int height = holder.timelinebar_container.getHeight();
@@ -118,6 +111,9 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             }
         });
 
+
+
+ /*
 
         //태그된 사용자를 넣는것.
         holder.tagged_user_container.removeAllViews();
@@ -133,7 +129,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         holder.title.setText(item.title);
         //날짜
 
-       // holder.writing_date.setText(format.format(item.getCreatedAt()));
+        holder.writing_date.setText(format.format(item.getCreatedAt()));
 
 
 

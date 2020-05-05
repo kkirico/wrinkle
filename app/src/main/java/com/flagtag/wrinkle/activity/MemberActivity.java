@@ -139,7 +139,11 @@ public class MemberActivity extends BasicActivity {
         final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         final String profileText = ((EditText) findViewById(R.id.profileEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
-        final String userBirthDay = ((EditText)findViewById(R.id.birthdayEditText)).getText().toString();
+        String t = ((EditText)findViewById(R.id.birthdayEditText)).getText().toString();
+        String birthYear = t.substring(0,4);
+        String birthMonth = t.substring(4,6);
+        String birthDay = t.substring(6);
+        final String userBirthDay = birthYear+"-"+birthMonth+"-"+birthDay;
         final String profilePicture = findViewById(R.id.profileImageView).toString();
         memberInfo.setAddress(address);
         memberInfo.setName(name);

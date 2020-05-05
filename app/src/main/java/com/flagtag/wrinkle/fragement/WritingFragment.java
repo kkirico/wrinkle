@@ -105,6 +105,8 @@ public class WritingFragment extends Fragment {
     private int currentSelectedItem = 0;
     private boolean BOLD_BUTTON_CHECKED = false;
 
+    MemberInfo memberInfo = MemberInfo.getInstance();
+
     private static final int MAX_YEAR = 2021;
     private static final int MIN_YEAR = 1960;
     public Calendar cal = Calendar.getInstance();
@@ -515,11 +517,22 @@ public class WritingFragment extends Fragment {
         String pickedYear = String.valueOf(yearPicker.getValue());
         String pickedMonth = String.valueOf(monthPicker.getValue());
         String pickedDay = String.valueOf(dayPicker.getValue());
-        String t = pickedYear+pickedMonth+pickedDay;
-        final Date dateOfMemory = transformDate(t.toString());
+        if(pickedMonth.length()==1){
+            pickedMonth = "0"+pickedMonth;
+        }
+        if(pickedDay.length()==1){
+            pickedDay = "0"+pickedDay;
+        }
+
+        String t = pickedYear+"-"+pickedMonth+"-"+pickedDay;
+        final String dateOfMemory = t;
+        final String publisherBirthday = memberInfo.getBirthDay();
+        final String name  = memberInfo.getName();
+
 
 
         if (title.length() > 0) {
+
             loaderLayout.setVisibility(View.VISIBLE);
             final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
@@ -528,8 +541,6 @@ public class WritingFragment extends Fragment {
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-            MemberInfo memberInfo = MemberInfo.getInstance();
-            final Date publisherBirthday = transformDate(memberInfo.getBirthDay());
 
             final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
 
@@ -586,7 +597,7 @@ public class WritingFragment extends Fragment {
             startToast("제목을 입력해 주세");
         }
     }
-
+/*
     public Date transformDate(String date) throws ParseException {
         SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 
@@ -610,7 +621,7 @@ public class WritingFragment extends Fragment {
 
         return d;
     }
-
+*/
     private void storeUploader(DocumentReference documentReference, PostInfo postInfo) {
         documentReference.set(postInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

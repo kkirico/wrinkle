@@ -15,6 +15,7 @@ public class MemberInfo{
             this.text = text;
             this.address = address;
             this.photoUrl = photoUrl;
+            this.birthDay = birthDay;
         }
 
         public MemberInfo(){

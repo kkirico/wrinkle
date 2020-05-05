@@ -34,8 +34,8 @@ public class PostInfo {
     private ArrayList<String> contents;
     private String publisher;
     private Date createdAt;
-    private Date dateOfMemory;
-    private Date birthdayOfPublisher;
+    private String dateOfMemory;
+    private String birthdayOfPublisher;
     public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
         this.title = title;
         this.contents = contents ;
@@ -44,7 +44,7 @@ public class PostInfo {
     }
 
 
-    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, Date dateOfMemory, Date birthdayOfPublisher){
+    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, String dateOfMemory, String birthdayOfPublisher){
         this.title = title;
         this.contents = contents ;
         this.publisher = publisher;
@@ -158,6 +158,10 @@ public class PostInfo {
     public void setComments(int comments) {
         this.comments = comments;
     }*/
+    public String getTitle(){
+        return this.title;
+    }
+    public void setString(String title){this.title  = title;}
     public ArrayList<String> getContents(){
         return this.contents;
     }
@@ -173,16 +177,16 @@ public class PostInfo {
     public void setContentWriting(String contentWriting) {
         this.contentWriting = contentWriting;
     }
-    public Date getDateOfMemory() {
+    public String getDateOfMemory() {
         return dateOfMemory;
     }
-    public void setDateOfMemory(Date dateOfMemory) {
+    public void setDateOfMemory(String dateOfMemory) {
         this.dateOfMemory = dateOfMemory;
     }
-    public Date getBirthdayOfPublisher() {
+    public String getBirthdayOfPublisher() {
         return birthdayOfPublisher;
     }
-    public void setBirthdayOfPublisher(Date birthdayOfPublisher) {
+    public void setBirthdayOfPublisher(String birthdayOfPublisher) {
         this.birthdayOfPublisher = birthdayOfPublisher;
     }
 

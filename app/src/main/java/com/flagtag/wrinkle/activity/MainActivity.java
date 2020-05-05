@@ -86,6 +86,7 @@ public class MainActivity extends BasicActivity {
                             memberInfo.setemail(document.get("email").toString());
                             memberInfo.setText(document.get("text").toString());
                             memberInfo.setPhotoUrl(document.get("photoUrl").toString());
+                            memberInfo.setBirthDay(document.get("birthDay").toString());
                         }
                     }
                 }
