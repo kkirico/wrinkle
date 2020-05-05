@@ -118,7 +118,7 @@ public class WritingFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_writing, container, false);
@@ -230,7 +230,7 @@ public class WritingFragment extends Fragment {
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
                     int cursorPosition = curView.text.getSelectionStart();
-                    curView.clearComposingText();
+                    curView.clearComposingText(cursorPosition);
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
@@ -249,12 +249,8 @@ public class WritingFragment extends Fragment {
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
                         startToast("boldbutton unset");
-                        for (int i = 0; i < writing_content_container.getChildCount(); i++) {
-                            WritingView writingView = (WritingView) writing_content_container.getChildAt(i);
-                            if (writingView instanceof WritingTextView) {
 
-                            }
-                        }
+                        curView.setStyleAt(cursorPosition, Typeface.NORMAL);
                     }
                     activity.invalidateOptionsMenu();
 

@@ -58,6 +58,7 @@ public class WritingTextView extends WritingView {
         text = new EditText(context);
         spanInfoArrayList = new ArrayList<>();
         editable = text.getEditableText();
+        this.setStyleAt(0, Typeface.NORMAL);
 
 
         ConstraintLayout.LayoutParams textViewLayoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -108,7 +109,7 @@ public class WritingTextView extends WritingView {
                     spanInfoArrayList.add(new SpanInfo(style, spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
                 }
 
-                Log.d("current editable",editable.toString());
+
 
 
             }
@@ -151,7 +152,7 @@ public class WritingTextView extends WritingView {
 
                     }
                     //글을 지워서 커서가 뒤로 왔을 때
-                    else if(curCursor<=lastCursor){
+                    else if(curCursor<lastCursor){
                         if(lastCursor<=spanStart){
                             spanStart--;
                         }
@@ -186,12 +187,11 @@ public class WritingTextView extends WritingView {
         return textString;
     }
 
-    public void clearComposingText(){
+    public void clearComposingText(int cursor){
 
         InputConnection inputConnection = text.onCreateInputConnection(new EditorInfo());
-        inputConnection.endBatchEdit();
-        inputConnection.
-        Log.e("text in clearComposing Text", text.toString());
+        inputConnection.commitText(editable.toString(), cursor);
+        Log.e("text in clearComposing Text", text.getText().toString());
     }
     public void setMinLines(int num){
         text.setMinLines(num);
@@ -229,8 +229,9 @@ public class WritingTextView extends WritingView {
     }
 
     public void setStyleAt(int cursor, int style){
+
         editable.setSpan(new StyleSpan(style), cursor, cursor, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        Log.d("after bold button set ", editable.toString());
+
     }
 
 
