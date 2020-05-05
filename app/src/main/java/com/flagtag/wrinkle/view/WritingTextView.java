@@ -10,6 +10,9 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.text.style.StyleSpan;
@@ -55,6 +58,7 @@ public class WritingTextView extends WritingView {
         text = new EditText(context);
         spanInfoArrayList = new ArrayList<>();
         editable = text.getEditableText();
+        this.setStyleAt(0, Typeface.NORMAL);
 
 
         ConstraintLayout.LayoutParams textViewLayoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -76,13 +80,15 @@ public class WritingTextView extends WritingView {
 
             int lastCursor, curCursor;
 
+            //모든 span을 나타낸다.
             StyleSpan[] styleSpans ;
-            StyleSpan inclusiveSpan;
+            //현재의 inclusive span을 나타낸다.
+            StyleSpan inclusiveSpan = null;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                lastCursor = text.getSelectionStart();
 
-                //selectionStart와 selectionEnd가 똑같을 때
+                //바꾸기 전 상태의 cursor를 나타낸다.
+                lastCursor = text.getSelectionStart();
 
                 //span들을 다 가져온다.
                 styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
@@ -95,23 +101,28 @@ public class WritingTextView extends WritingView {
                     int spanStart = editable.getSpanStart(span);
                     int spanEnd = editable.getSpanEnd(span);
                     int style = span.getStyle();
+                    //SPAN_EXCLUSIVE_EXCLUSIVE인 것은 inclusiveSpan 변수에 저장해놓음
                     if(flag != Spannable.SPAN_EXCLUSIVE_EXCLUSIVE){
                         inclusiveSpan = span;
                     }
+                    //spanInfoArrayList에 모두 저장
                     spanInfoArrayList.add(new SpanInfo(style, spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
                 }
+
+
 
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                Log.d("onTextChanged editable",editable.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 curCursor = text.getSelectionEnd();
+
 
                 if(inclusiveSpan != null){
                     editable.removeSpan(inclusiveSpan);
@@ -141,7 +152,7 @@ public class WritingTextView extends WritingView {
 
                     }
                     //글을 지워서 커서가 뒤로 왔을 때
-                    else if(curCursor<=lastCursor){
+                    else if(curCursor<lastCursor){
                         if(lastCursor<=spanStart){
                             spanStart--;
                         }
@@ -154,11 +165,11 @@ public class WritingTextView extends WritingView {
                     //setspan 해주기
                     editable.setSpan(new StyleSpan(spanStyle), spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+
+
                 }
-                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
-                for(StyleSpan span : styleSpans){
-                    int flag = editable.getSpanFlags(span);
-                }
+
+
             }
         });
 
@@ -176,8 +187,11 @@ public class WritingTextView extends WritingView {
         return textString;
     }
 
-    public void clearComposingText(){
-        text.clearComposingText();
+    public void clearComposingText(int cursor){
+
+        InputConnection inputConnection = text.onCreateInputConnection(new EditorInfo());
+        inputConnection.commitText(editable.toString(), cursor);
+        Log.e("text in clearComposing Text", text.getText().toString());
     }
     public void setMinLines(int num){
         text.setMinLines(num);
@@ -215,7 +229,9 @@ public class WritingTextView extends WritingView {
     }
 
     public void setStyleAt(int cursor, int style){
+
         editable.setSpan(new StyleSpan(style), cursor, cursor, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
     }
 
 

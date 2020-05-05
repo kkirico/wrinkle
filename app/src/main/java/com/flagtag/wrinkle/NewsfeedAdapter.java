@@ -126,7 +126,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             holder.tagged_user_container.addView(button,new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
         }*/
         //title
-        holder.title.setText(item.title);
+        //holder.title.setText(item.title);
         //날짜
 
         holder.writing_date.setText(format.format(item.getCreatedAt()));
