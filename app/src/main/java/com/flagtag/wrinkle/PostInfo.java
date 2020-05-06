@@ -20,10 +20,6 @@ public class PostInfo {
     Date writingDate;
     ArrayList<String> tags;
 
-    //User writer;
-    //int postNumber;
-    //Date realDate;
-    //ArrayList<String> imageUrls;
     /*
     일단은 이렇게 하나의 String으로 했는데 나중에 원노트처럼
     누가 썼는지 옆에 나오게 하기 위해서는 다른 방법이 필요할 것 같음.
@@ -87,54 +83,6 @@ public class PostInfo {
         this.taggedUsers = taggedUsers;
     }
 
-    public User getWriter() {
-        return writer;
-    }
-
-    public void setWriter(User writer) {
-        this.writer = writer;
-    }
-
-    public int getPostNumber() {
-        return postNumber;
-    }
-
-    public void setPostNumber(int postNumber) {
-        this.postNumber = postNumber;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Date getWritingDate() {
-        return writingDate;
-    }
-
-    public void setWritingDate(Date writingDate) {
-        this.writingDate = writingDate;
-    }
-
-    public Date getRealDate() {
-        return realDate;
-    }
-
-    public void setRealDate(Date realDate) {
-        this.realDate = realDate;
-    }
-
-    public ArrayList<String> getImageUrls() {
-        return imageUrls;
-    }
-
-    public void setImageUrls(ArrayList<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
     public ArrayList<String> getTags() {
         return tags;
     }
@@ -158,6 +106,7 @@ public class PostInfo {
     public void setComments(int comments) {
         this.comments = comments;
     }*/
+    //getter and setter
     public String getTitle(){
         return this.title;
     }

@@ -65,16 +65,6 @@ public class NewsfeedFragment extends Fragment {
                             ArrayList<PostInfo> postList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                if (document.getData().get("dateOfMemory") == null||document.getData().get("birthdayOfPublisher") == null) {
-
-                                    postList.add(new PostInfo(
-                                            document.getData().get("title").toString(),
-                                            (ArrayList<String>) document.getData().get("contents"),
-                                            document.getData().get("publisher").toString(),
-                                            new Date(document.getDate("createdAt").getTime())
-                                    ));
-                                }
-                                else{
                                     postList.add(new PostInfo(
                                             document.getData().get("title").toString(),
                                             (ArrayList<String>) document.getData().get("contents"),
@@ -83,7 +73,7 @@ public class NewsfeedFragment extends Fragment {
                                             document.getData().get("dateOfMemory").toString(),
                                             document.getData().get("birthdayOfPublisher").toString()
                                     ));
-                                }
+
                             }
                             recyclerView = rootView.findViewById(R.id.newsfeed_list);
                             recyclerView.setHasFixedSize(true);

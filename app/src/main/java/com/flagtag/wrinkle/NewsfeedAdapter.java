@@ -154,9 +154,9 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
                 countVideos++;
             }*/
             else {
+                //컨텐츠의 여러 컨텐트중 텍스트만 걸러서 texts에 넣고, 그중 첫 번째를 postInfo형의 contentWriting에 set한 후 , 뷰홀더에 그 텍스트를 적용
                 texts.add(contentList.get(i));
                 item.setContentWriting(texts.get(0));
-                //내용(글) 위에서 걸러낸 texts를 사용해야하는디...
                 holder.content_writing.setText(item.contentWriting);
                 //택스트 중 더 보기
                 Spannable span = (Spannable) holder.content_writing.getText();
