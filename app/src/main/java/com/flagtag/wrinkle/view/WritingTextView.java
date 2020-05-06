@@ -87,30 +87,6 @@ public class WritingTextView extends WritingView {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                //바꾸기 전 상태의 cursor를 나타낸다.
-                lastCursor = text.getSelectionStart();
-
-                //span들을 다 가져온다.
-                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
-                //spanInfoArrayList를 다 지운 다음
-                spanInfoArrayList.clear();
-
-                //spanInfo들을 저장.
-                for(StyleSpan span : styleSpans){
-                    int flag = editable.getSpanFlags(span);
-                    int spanStart = editable.getSpanStart(span);
-                    int spanEnd = editable.getSpanEnd(span);
-                    int style = span.getStyle();
-                    //SPAN_EXCLUSIVE_EXCLUSIVE인 것은 inclusiveSpan 변수에 저장해놓음
-                    if(flag != Spannable.SPAN_EXCLUSIVE_EXCLUSIVE){
-                        inclusiveSpan = span;
-                    }
-                    //spanInfoArrayList에 모두 저장
-                    spanInfoArrayList.add(new SpanInfo(style, spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
-                }
-
-
-
 
             }
 
@@ -121,55 +97,6 @@ public class WritingTextView extends WritingView {
 
             @Override
             public void afterTextChanged(Editable s) {
-                curCursor = text.getSelectionEnd();
-
-
-                if(inclusiveSpan != null){
-                    editable.removeSpan(inclusiveSpan);
-                    inclusiveSpan = null;
-                }
-
-                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
-
-
-                for(SpanInfo spanInfo: spanInfoArrayList){
-                    int spanStart = spanInfo.getStart();
-                    int spanEnd = spanInfo.getEnd();
-                    int spanStyle = spanInfo.getStyle();
-
-
-                    //글을 써서 커서가 넘어갔을 때
-                    if(curCursor>lastCursor){
-
-                        if(lastCursor<spanStart){
-                            spanStart++;
-                        }
-                        if(lastCursor<=spanEnd){
-                            spanEnd++;
-                        }
-
-
-
-                    }
-                    //글을 지워서 커서가 뒤로 왔을 때
-                    else if(curCursor<lastCursor){
-                        if(lastCursor<=spanStart){
-                            spanStart--;
-                        }
-                        if(lastCursor<=spanEnd){
-                            spanEnd--;
-                        }
-                    }
-                    //글을 쓰거나 지웠는데 커서가 넘어가거나 지워지지는 않을 때는 그냥 그대로 적용하면 됨
-
-                    //setspan 해주기
-                    editable.setSpan(new StyleSpan(spanStyle), spanStart, spanEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
-
-                }
-
-
             }
         });
 
