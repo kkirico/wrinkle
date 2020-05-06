@@ -312,7 +312,7 @@ public class WritingFragment extends Fragment {
         if (requestCode == SELECT_IMAGE) {
             try {
                 // 선택한 이미지에서 비트맵 생성
-                pathList.add(data.getData().toString());
+                pathList.add("0"+data.getData().toString());
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
@@ -331,7 +331,7 @@ public class WritingFragment extends Fragment {
             Uri videoURI = data.getData();
             if (videoURI != null) {
 
-                pathList.add(data.getData().toString());
+                pathList.add("1"+data.getData().toString());
 
                 //WritingVideoView 생성
                 WritingVideoView videoView = new WritingVideoView(activity);
@@ -417,34 +417,6 @@ public class WritingFragment extends Fragment {
     }
 
 
-    private String getPath(Uri uri,int type) {
-        if (type == 0) {
-            String[] projection = {MediaStore.Images.Media.DATA};
-            Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
-            if (cursor != null) {
-                // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
-                // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
-                int column_index = cursor
-                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                return cursor.getString(column_index);
-            } else
-                return null;
-        } else {
-            String[] projection = {MediaStore.Video.Media.DATA};
-            Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
-            if (cursor != null) {
-                // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
-                // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
-                int column_index = cursor
-                        .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-                cursor.moveToFirst();
-                return cursor.getString(column_index);
-            } else
-                return null;
-        }
-    }
-
     private void addViewToContainer(final WritingView view, final int type) {
         //WritingImageView의 onClickListener를 만든다.
         view.setOnClickListener(new View.OnClickListener() {
@@ -513,13 +485,14 @@ public class WritingFragment extends Fragment {
         String pickedYear = String.valueOf(yearPicker.getValue());
         String pickedMonth = String.valueOf(monthPicker.getValue());
         String pickedDay = String.valueOf(dayPicker.getValue());
+        //날짜를 8자리로 표현하기 위한 if
         if(pickedMonth.length()==1){
             pickedMonth = "0"+pickedMonth;
         }
         if(pickedDay.length()==1){
             pickedDay = "0"+pickedDay;
         }
-
+       //날짜에 -붙이는 형식 맞추기
         String t = pickedYear+"-"+pickedMonth+"-"+pickedDay;
         final String dateOfMemory = t;
         final String publisherBirthday = memberInfo.getBirthDay();
@@ -528,16 +501,12 @@ public class WritingFragment extends Fragment {
 
 
         if (title.length() > 0) {
-
             loaderLayout.setVisibility(View.VISIBLE);
             final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
-
-
             final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
 
             for (int i = 0; i < parent.getChildCount(); i++) {
@@ -548,12 +517,17 @@ public class WritingFragment extends Fragment {
                         contentsList.add(text);
                     }
                 } else {
-                    contentsList.add(pathList.get(pathCount));
-                    String[] pathArray = pathList.get(pathCount).split("\\.");
+                    String URI = pathList.get(pathCount);
+                    contentsList.add(URI.substring(1));
                     final StorageReference mountainImagesRef;
-                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + "."+ pathArray[pathArray.length-1]);
+                    if(URI.substring(0, 1).equals("0")) {
+                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".jpg");
+                    }
+                    else {
+                        mountainImagesRef = storageRef.child("post/" + documentReference.getId() + "/" + pathCount + ".mp4");
+                    }
                     try {
-                        InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(pathList.get(pathCount)));
+                        InputStream stream = activity.getContentResolver().openInputStream(Uri.parse(URI.substring(1)));
                         StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
                         UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
                         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -590,34 +564,11 @@ public class WritingFragment extends Fragment {
                 }
             }
         } else {
-            startToast("제목을 입력해 주세");
+            startToast("제목을 입력해 주세요");
         }
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
     }
-/*
-    public Date transformDate(String date) throws ParseException {
-        SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
-
-        // Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
-        SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
-
-        java.util.Date tempDate = null;
-
-        try {
-            // 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
-            tempDate = beforeFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        // java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
-        String transDate = afterFormat.format(tempDate);
-
-        // 반환된 String 값을 Date로 변경한다.
-        Date d = beforeFormat.parse(transDate);
-
-        return d;
-    }
-*/
     private void storeUploader(DocumentReference documentReference, PostInfo postInfo) {
         documentReference.set(postInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -638,7 +589,6 @@ public class WritingFragment extends Fragment {
                     }
                 });
     }
-
 
 
 }
