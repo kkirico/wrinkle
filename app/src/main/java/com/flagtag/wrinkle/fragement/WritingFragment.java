@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -114,6 +116,8 @@ public class WritingFragment extends Fragment {
     NumberPicker monthPicker;
     NumberPicker dayPicker;
     NumberPicker seasonPicker;
+
+    TextWatcher textWatcher;
     public WritingFragment() {
         // Required empty public constructor
     }
@@ -131,12 +135,87 @@ public class WritingFragment extends Fragment {
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
         titleEditText = rootView.findViewById(R.id.title);
         //contentEditText = rootView.findViewById(R.id.contentEditText);
+
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
+        textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0){
+                    return;
+                }
+                char character = s.charAt(start+count-1);
+                if(character == '\n'){
+                    WritingTextView curWritingTextView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
+                    String string = s.toString();
+                    curWritingTextView.text.setText(string.substring(0, string.length()-1));
+                    curWritingTextView.clearFocus();
+                    curWritingTextView.setMinLines(3);
+                    WritingTextView writingTextView = new WritingTextView(activity);
+
+                    writingTextView.setOnFocusChangeListener(focusChangeListener);
+                    writingTextView.setTextChangeListner(this);
+                    writing_content_container.addView(writingTextView);
+                    //선택된 것 말고 나머지 unset
+                    unsetOtherViews(writingTextView);
+                    //지금 선택된 아이템이 텍스트 메뉴라고 해주기
+                    currentSelectedItem = TEXT_MENU;
+                    changeToolbarMenu(toolbar.getMenu(),true);
+
+                    if (BOLD_BUTTON_CHECKED) {
+
+                        toolbar.getMenu().findItem(R.id.bold_button).setChecked(true);
+                        toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(ColorStateList.valueOf(Color.RED));
+
+
+                    } else {
+                        toolbar.getMenu().findItem(R.id.bold_button).setChecked(false);
+                        toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(null);
+
+
+                    }
+                    writingTextView.requestTextFocus();
+                    writingTextView.text.setCursorVisible(true);
+
+                    InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() == 0 && CUR_INDEX !=0){
+                    View cur_view = writing_content_container.getChildAt(CUR_INDEX);
+                    writing_content_container.removeView(cur_view);
+
+
+                    View writingView = writing_content_container.getChildAt(CUR_INDEX-1);
+                    if(writingView instanceof WritingTextView){
+                        WritingTextView writingTextView = (WritingTextView) writingView;
+                        writingTextView.requestTextFocus();
+                        writingTextView.text.setCursorVisible(true);
+                        writingTextView.text.setSelection(writingTextView.text.getText().length());
+
+                        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
+                    }
+
+                    //CUR_INDEX--;
+                }
+            }
+        };
+        writing.setTextChangeListner(textWatcher);
+
         loaderLayout = rootView.findViewById(R.id.loaderLayout);
         monthPicker = rootView.findViewById(R.id.picker_month);
         yearPicker = rootView.findViewById(R.id.picker_year);
@@ -203,16 +282,16 @@ public class WritingFragment extends Fragment {
 
                 } else if (item.getItemId() == R.id.up_button) {
 
-                    if (numberofItem == 1 || CUR_INDEX == numberofItem - 1) {
+                    if (numberofItem == 1) {
                         return false;
                     }
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
-                    changeToolbarMenu(toolbar.getMenu(), false);
+                    writing_content_container.addView(curView, --CUR_INDEX);
 
                 } else if (item.getItemId() == R.id.down_button) {
 
-                    if (CUR_INDEX == numberofItem - 1 || CUR_INDEX == numberofItem - 2) {
+                    if ( CUR_INDEX == numberofItem - 1) {
                         return false;
                     } else {
                         WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
@@ -232,7 +311,7 @@ public class WritingFragment extends Fragment {
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
                     int cursorPosition = curView.text.getSelectionStart();
-                    curView.clearComposingText(cursorPosition);
+
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
@@ -242,9 +321,6 @@ public class WritingFragment extends Fragment {
                         startToast("boldbutton set");
 
 
-                        //현재 커서 위치가 포함되는 span을 수정한다.
-                        curView.setStyleAt(cursorPosition, Typeface.BOLD);
-
 
                     } else {
                         item.setChecked(false);
@@ -252,7 +328,6 @@ public class WritingFragment extends Fragment {
                         BOLD_BUTTON_CHECKED = false;
                         startToast("boldbutton unset");
 
-                        curView.setStyleAt(cursorPosition, Typeface.NORMAL);
                     }
                     activity.invalidateOptionsMenu();
 
@@ -361,7 +436,7 @@ public class WritingFragment extends Fragment {
                 changeToolbarMenu(toolbar.getMenu(),true);
 
                 int cursorPosition = ((EditText)view).getSelectionEnd();
-                BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isCursorInSpan(cursorPosition , Typeface.BOLD);
+                //BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isCursorInSpan(cursorPosition , Typeface.BOLD);
 
                 if (BOLD_BUTTON_CHECKED) {
 
@@ -457,12 +532,12 @@ public class WritingFragment extends Fragment {
 
             } else {
                 //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
-                ((WritingTextView) cur_view).setMinLines(0);
+                ((WritingTextView) cur_view).setMinLines(3);
                 CUR_INDEX++;
             }
             //그 밑에 텍스트뷰를 넣어준다.
             WritingTextView editText = new WritingTextView(activity);
-
+            editText.setTextChangeListner(textWatcher);
             editText.setOnFocusChangeListener(focusChangeListener);
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -589,6 +664,7 @@ public class WritingFragment extends Fragment {
                     }
                 });
     }
+
 
 
 }
