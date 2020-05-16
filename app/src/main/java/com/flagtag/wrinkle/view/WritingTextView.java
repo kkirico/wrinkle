@@ -30,7 +30,7 @@ public class WritingTextView extends WritingView {
 
     Editable editable;
     Context context;
-
+    public Boolean isBold;
 
 
 
@@ -63,7 +63,7 @@ public class WritingTextView extends WritingView {
 
         editable = text.getEditableText();
 
-
+        isBold = false;
 
 
 
@@ -132,7 +132,13 @@ public class WritingTextView extends WritingView {
         text.requestFocus();
     }
 
-
+    public void toggleIsBold(){
+        if(isBold){
+            isBold = true;
+        }else{
+            isBold = false;
+        }
+    }
 
 
 }

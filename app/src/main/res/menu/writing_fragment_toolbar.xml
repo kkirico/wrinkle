@@ -14,16 +14,6 @@
 
             />
         <item
-            android:id="@+id/video_button"
-            android:icon="@drawable/ic_video_call_24px"
-            android:title="video_button"
-            app:showAsAction="always" />
-        <item
-            android:id="@+id/location_button"
-            android:icon="@drawable/ic_location_on_24px"
-            android:title="location_button"
-            app:showAsAction="always" />
-        <item
             android:id="@+id/quote_button"
             android:icon="@drawable/ic_format_quote_24px"
             android:title="quote_button"

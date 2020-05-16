@@ -257,15 +257,6 @@ public class WritingFragment extends Fragment {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
 
-                } else if (item.getItemId() == R.id.video_button) {
-                    //동영상 선택
-                    startToast("동영상 선택");
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("video/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(intent, SELECT_VIDEO);
-                } else if (item.getItemId() == R.id.location_button) {
-                    //위치 선택
                 } else if (item.getItemId() == R.id.quote_button) {
                     //인용 버튼
                 } else if (item.getItemId() == R.id.division_line_button) {
@@ -310,14 +301,13 @@ public class WritingFragment extends Fragment {
 
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
-                    int cursorPosition = curView.text.getSelectionStart();
 
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
                         item.setChecked(true);
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
-                        BOLD_BUTTON_CHECKED = true;
+                        curView.toggleIsBold();
                         startToast("boldbutton set");
 
 
@@ -326,6 +316,7 @@ public class WritingFragment extends Fragment {
                         item.setChecked(false);
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
+                        curView.toggleIsBold();
                         startToast("boldbutton unset");
 
                     }
@@ -435,8 +426,7 @@ public class WritingFragment extends Fragment {
                 currentSelectedItem = TEXT_MENU;
                 changeToolbarMenu(toolbar.getMenu(),true);
 
-                int cursorPosition = ((EditText)view).getSelectionEnd();
-                //BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isCursorInSpan(cursorPosition , Typeface.BOLD);
+                BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isBold;
 
                 if (BOLD_BUTTON_CHECKED) {
 
