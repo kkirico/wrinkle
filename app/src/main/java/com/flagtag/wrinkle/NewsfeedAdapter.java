@@ -1,15 +1,10 @@
 package com.flagtag.wrinkle;
 
 import android.content.Context;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.flagtag.wrinkle.adapter.PhotoAdapter;
-import com.flagtag.wrinkle.fragement.NewsfeedFragment;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,18 +22,17 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import me.relex.circleindicator.CircleIndicator3;
-
 public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
     //뉴스피드에 각각의 아이템의 데이터를 가지고 있는 arrayList
     private ArrayList<PostInfo> items;
+    LinearLayout contents;
 
     public NewsfeedAdapter() {
         this.items = new ArrayList<>();;
     }
 
-    public NewsfeedAdapter(NewsfeedFragment newsfeedFragment, ArrayList<PostInfo> postList) {
+    public NewsfeedAdapter(ArrayList<PostInfo> postList) {
         this.items = postList;
     }
 
@@ -51,6 +42,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
+
 
         //layoutinflater로 newsfeed_cardview_layout inflate
         View view = inflater.inflate(R.layout.newsfeed_cardview_layout, parent, false) ;
@@ -135,7 +127,6 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         ArrayList<String> imageUrls = new ArrayList<>();
         ArrayList<String> texts = new ArrayList<>();
-        ArrayList<String> videoUrls = new ArrayList<>();
         int countImages=0;
         int countVideos= 0;
         int countTexts=0;
@@ -145,33 +136,23 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             String contents = contentList.get(i);
             String[] type = contents.split("\\.");
             if (type[type.length - 1].substring(0, 3).equals("jpg")) {
+                //contents 에 image_view 생성 후 contentList.get(i)를 넣기
+                ImageView imageView = new ImageView(holder.time_bar.getContext());
+                holder.contents.addView(imageView);
+                Glide.with(holder.time_bar.getContext()).load(contentList.get(i)).into(imageView);
                 imageUrls.add(contentList.get(i));
                 //이미지 넣을때 마다 카운트 증가
                 countImages++;
-            } /* video adapter만들어야
-            else if(type[type.length - 1].substring(0, 3).equals("avi")||type[type.length - 1].substring(0, 3).equals("mp4")){
-                videoUrls.add(URLs.get(i));
-                countVideos++;
-            }*/
+            }
             else {
-                //컨텐츠의 여러 컨텐트중 텍스트만 걸러서 texts에 넣고, 그중 첫 번째를 postInfo형의 contentWriting에 set한 후 , 뷰홀더에 그 텍스트를 적용
-                texts.add(contentList.get(i));
-                item.setContentWriting(texts.get(0));
-                holder.content_writing.setText(item.contentWriting);
-                //택스트 중 더 보기
-                Spannable span = (Spannable) holder.content_writing.getText();
-                int start = 0;
-                int end = start + holder.content_writing.getText().length();
-                span.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View view) {
-                        //이 게시물이 있는 페이지로 이동하게 하기
-                    }
-                }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                countTexts++;
+                //contents안에 textview생성 하고, contentList.get(i)를 넣
+                TextView textView = new TextView(holder.time_bar.getContext());
+                holder.contents.addView(textView);
+                textView.setText(contentList.get(i));
             }
         }
 
+/*
         PhotoAdapter imageAdapter = new PhotoAdapter(imageUrls);
         holder.image_viewpager.setAdapter(imageAdapter);
         CircleIndicator3 indicator = holder.indicator;
@@ -179,6 +160,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         imageAdapter.registerAdapterDataObserver(indicator.getAdapterDataObserver());
 
 
+*/
         //태그
         /*
         holder.tags_container.removeAllViews();
@@ -196,7 +178,6 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //동적으로 넣을 것들은 새로 생성해서 넣어줘야함.
         */
     }
-
 
     @Override
     public int getItemCount() {

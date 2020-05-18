@@ -16,7 +16,6 @@ import java.util.Date;
 
 public class PostInfo {
     private static final String TAG ="오류" ;
-    ArrayList<User> taggedUsers;
     Date writingDate;
     ArrayList<String> tags;
 
@@ -32,6 +31,7 @@ public class PostInfo {
     private Date createdAt;
     private String dateOfMemory;
     private String birthdayOfPublisher;
+    ArrayList<String> taggedUsers;
     public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
         this.title = title;
         this.contents = contents ;
@@ -47,6 +47,15 @@ public class PostInfo {
         this.createdAt = createdAt;
         this.dateOfMemory = dateOfMemory;
         this.birthdayOfPublisher = birthdayOfPublisher;
+    }
+    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, String dateOfMemory, String birthdayOfPublisher, ArrayList<String> taggedUsers){
+        this.title = title;
+        this.contents = contents ;
+        this.publisher = publisher;
+        this.createdAt = createdAt;
+        this.dateOfMemory = dateOfMemory;
+        this.birthdayOfPublisher = birthdayOfPublisher;
+        this.taggedUsers = taggedUsers;
     }
 /*
     public PostInfo() {
@@ -75,13 +84,7 @@ public class PostInfo {
         ==========================================================
         Getter와 Setter
 
-    public ArrayList<User> getTaggedUsers() {
-        return taggedUsers;
-    }
 
-    public void setTaggedUsers(ArrayList<User> taggedUsers) {
-        this.taggedUsers = taggedUsers;
-    }
 
     public ArrayList<String> getTags() {
         return tags;
@@ -137,6 +140,12 @@ public class PostInfo {
     }
     public void setBirthdayOfPublisher(String birthdayOfPublisher) {
         this.birthdayOfPublisher = birthdayOfPublisher;
+    }
+    public ArrayList<String> getTaggedUsers() {
+        return taggedUsers;
+    }
+    public void setTaggedUsers(ArrayList<String> taggedUsers) {
+        this.taggedUsers = taggedUsers;
     }
 
 

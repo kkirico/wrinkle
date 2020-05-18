@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +30,8 @@ import java.util.Date;
 public class NewsfeedFragment extends Fragment {
 
     private static final String TAG = "오";
-    RecyclerView recyclerView;
     NewsfeedAdapter newsfeedAdapter;
+    ViewPager2 viewPager2;
 
     public NewsfeedFragment() {
         // Required empty public constructor
@@ -46,10 +47,8 @@ public class NewsfeedFragment extends Fragment {
 
         newsfeedAdapter = new NewsfeedAdapter();
 
-        recyclerView = rootView.findViewById(R.id.newsfeed_list);
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(newsfeedAdapter);
+        viewPager2 = rootView.findViewById(R.id.viewPager);
+        viewPager2.setAdapter(newsfeedAdapter);
 
         Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
         MainActivity mainActivity = (MainActivity) getActivity();
@@ -75,11 +74,9 @@ public class NewsfeedFragment extends Fragment {
                                     ));
 
                             }
-                            recyclerView = rootView.findViewById(R.id.newsfeed_list);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                            RecyclerView.Adapter mAdapter = new NewsfeedAdapter(NewsfeedFragment.this, postList);
-                            recyclerView.setAdapter(mAdapter);
+                            viewPager2 = rootView.findViewById(R.id.viewPager);
+                            NewsfeedAdapter mAdapter = new NewsfeedAdapter(postList);
+                            viewPager2.setAdapter(mAdapter);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

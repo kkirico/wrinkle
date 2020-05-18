@@ -78,66 +78,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="2020.2.4."
-            app:layout_constraintBottom_toTopOf="@id/image_viewpager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintVertical_weight="0" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/image_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/indicator"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.47"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/writing_date"
-            app:layout_constraintVertical_weight="0">
-
-        </androidx.viewpager2.widget.ViewPager2>
-
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            app:layout_constraintBottom_toTopOf="@id/content_writing"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_viewpager" />
-
-        <TextView
-            android:id="@+id/content_writing"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:text="글 내용"
-            app:layout_constraintBottom_toTopOf="@id/tags_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/indicator"
-            app:layout_constraintVertical_weight="1" />
-
         <LinearLayout
             android:id="@+id/tags_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/contents"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/content_writing"
+            app:layout_constraintTop_toBottomOf="@id/writing_date"
             app:layout_constraintVertical_weight="0">
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/contents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/comment_container"
+            app:layout_constraintTop_toBottomOf="@id/tags_container"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/comment_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
