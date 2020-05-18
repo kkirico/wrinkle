@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,6 +67,10 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
     public void addItem(String primaryKey){
         items.add(primaryKey);
+    }
+
+    public void setItems(List<String> list){
+        items.addAll(list);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

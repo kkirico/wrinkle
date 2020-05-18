@@ -2,6 +2,7 @@ package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,8 +31,8 @@ public class UserSelectActivity extends AppCompatActivity {
 
     String selectedUserKey;
 
-    private List<String> list;          // 데이터를 넣은 리스트변수
-    private ListView listView;          // 검색을 보여줄 리스트변수
+    private ArrayList<String> list;          // 데이터를 넣은 리스트변수
+    private RecyclerView listView;          // 검색을 보여줄 리스트변수
     private EditText search;        // 검색어를 입력할 Input 창
     private SearchUserAdapter adapter;      // 리스트뷰에 연결할 아답터 여기다가 선택된 유아이 넣기
     private ArrayList<String> arraylist;
@@ -44,7 +45,7 @@ public class UserSelectActivity extends AppCompatActivity {
 
         selectedUserKey= null;
         search = (EditText) findViewById(R.id.user_search);
-        listView = (ListView) findViewById(R.id.search_user_recyclerview);
+        listView = (RecyclerView) findViewById(R.id.search_user_recyclerview);
 
         // 리스트를 생성한다.
         list = new ArrayList<String>();
@@ -57,7 +58,7 @@ public class UserSelectActivity extends AppCompatActivity {
         arraylist.addAll(list);
 
         // 리스트에 연동될 아답터를 생성한다.
-        adapter = new SearchUserAdapter(list, this);
+        adapter = new SearchUserAdapter();
 
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
@@ -108,6 +109,7 @@ public class UserSelectActivity extends AppCompatActivity {
                 }
             }
         }
+        adapter.setItems(list);
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
         adapter.notifyDataSetChanged();
     }
