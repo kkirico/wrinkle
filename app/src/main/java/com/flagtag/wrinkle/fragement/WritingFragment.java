@@ -18,6 +18,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -76,26 +77,30 @@ public class WritingFragment extends Fragment {
 
     FirebaseFirestore db;
     Toolbar toolbar;
+    //제목을 적는 edittext
+    EditText titleEditText;
+    //writingView가 들어가는 linearlayout
     LinearLayout writing_content_container;
+    //처음에 들어가있는 writingTextView
     WritingTextView writing;
+    //프레그먼트가 올라가있는 메인액티비티
     MainActivity activity;
 
-
+    //현재 이미지가 선택되어있다는 것을 의미
     private static final int SELECT_IMAGE = 1;
-    private static final int SELECT_VIDEO = 2;
-    //현재 선택된 아이템을 뜻함.
+
+    //현재 선택된 writingView의 index를 뜻함.
+    //이것으로 n 번째의 아이템을 선택할 수 있음
     private static int CUR_INDEX = 0;
 
-    private String imagePath;
-
+    //현재의 메뉴가 무엇인지를 뜻함
+    //이것에 따라서 툴바의 메뉴가 변함
     private static int DEFAULT_MENU = 0;
     private static int IMAGE_MENU = 1;
-    private static int VEDIO_MENU = 2;
-    private static int QUOTE_MENU = 3;
-    private static int LOCATION_MENU = 4;
-    private static int DIVISION_MENU = 5;
-    private static int TEXT_MENU = 6;
-    EditText titleEditText;
+    private static int TEXT_MENU = 2;
+
+
+
     private ArrayList<String> pathList = new ArrayList<>();
     private LinearLayout parent;
     private RelativeLayout loaderLayout;
@@ -124,7 +129,7 @@ public class WritingFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_writing, container, false);
@@ -159,14 +164,25 @@ public class WritingFragment extends Fragment {
                     String string = s.toString();
                     curWritingTextView.text.setText(string.substring(0, string.length()-1));
                     curWritingTextView.clearFocus();
-                    curWritingTextView.setMinLines(3);
+                    curWritingTextView.text.setMinLines(0);
+                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(0,0,0,32);
+
+                    curWritingTextView.text.setLayoutParams(layoutParams);
                     WritingTextView writingTextView = new WritingTextView(activity);
 
                     writingTextView.setOnFocusChangeListener(focusChangeListener);
                     writingTextView.setTextChangeListner(this);
-                    writing_content_container.addView(writingTextView);
+                    writing_content_container.addView(writingTextView,CUR_INDEX+1);
                     //선택된 것 말고 나머지 unset
                     unsetOtherViews(writingTextView);
+
+                    writingTextView.requestTextFocus();
+                    writingTextView.text.setCursorVisible(true);
+
+                    InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
+
                     //지금 선택된 아이템이 텍스트 메뉴라고 해주기
                     currentSelectedItem = TEXT_MENU;
                     changeToolbarMenu(toolbar.getMenu(),true);
@@ -183,11 +199,7 @@ public class WritingFragment extends Fragment {
 
 
                     }
-                    writingTextView.requestTextFocus();
-                    writingTextView.text.setCursorVisible(true);
 
-                    InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
 
                 }
             }
@@ -301,7 +313,7 @@ public class WritingFragment extends Fragment {
 
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
-
+                    BOLD_BUTTON_CHECKED = curView.isBold;
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
@@ -378,7 +390,7 @@ public class WritingFragment extends Fragment {
         if (requestCode == SELECT_IMAGE) {
             try {
                 // 선택한 이미지에서 비트맵 생성
-                pathList.add("0"+data.getData().toString());
+                pathList.add("0" + data.getData().toString());
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
@@ -393,19 +405,20 @@ public class WritingFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == SELECT_VIDEO) {
-            Uri videoURI = data.getData();
-            if (videoURI != null) {
-
-                pathList.add("1"+data.getData().toString());
-
-                //WritingVideoView 생성
-                WritingVideoView videoView = new WritingVideoView(activity);
-                videoView.setVideoView(videoURI);
-                videoView.requestFocus();
-                addViewToContainer(videoView, VEDIO_MENU);
-            }
         }
+//        } else if (requestCode == SELECT_VIDEO) {
+//            Uri videoURI = data.getData();
+//            if (videoURI != null) {
+//
+//                pathList.add("1"+data.getData().toString());
+//
+//                //WritingVideoView 생성
+//                WritingVideoView videoView = new WritingVideoView(activity);
+//                videoView.setVideoView(videoURI);
+//                videoView.requestFocus();
+//                addViewToContainer(videoView, VEDIO_MENU);
+//            }
+//        }
     }
 
 

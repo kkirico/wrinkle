@@ -3,6 +3,7 @@ package com.flagtag.wrinkle.view;
 import android.content.Context;
 import android.graphics.Color;
 
+import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.InputType;
 
@@ -133,10 +134,12 @@ public class WritingTextView extends WritingView {
     }
 
     public void toggleIsBold(){
-        if(isBold){
+        if(!isBold){
             isBold = true;
+            text.setTypeface(null, Typeface.BOLD);
         }else{
             isBold = false;
+            text.setTypeface(null, Typeface.NORMAL);
         }
     }
 

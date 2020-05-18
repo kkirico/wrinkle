@@ -13,16 +13,6 @@
             app:showAsAction="always"
 
             />
-        <item
-            android:id="@+id/quote_button"
-            android:icon="@drawable/ic_format_quote_24px"
-            android:title="quote_button"
-            app:showAsAction="always" />
-        <item
-            android:id="@+id/division_line_button"
-            android:icon="@drawable/ic_horizontal_line_24px"
-            android:title="division_line_button"
-            app:showAsAction="always" />
     </group>
     <group
         android:id="@+id/move_group"
