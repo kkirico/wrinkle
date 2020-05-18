@@ -106,11 +106,7 @@
                             android:layout_margin="10dp"></NumberPicker>
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/datePick"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="날짜 선택" />
+
 
                 </LinearLayout>
 
@@ -126,9 +122,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tagged_user_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:weightSum="5"
                     app:layout_constraintEnd_toEndOf="@id/guideline9"
                     app:layout_constraintStart_toStartOf="@id/guideline8"
 
@@ -137,11 +135,12 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="4"
+                        android:text="추가"
                         />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/tagged_user_container"
+                        android:id="@+id/tagged_user_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:orientation="horizontal"
