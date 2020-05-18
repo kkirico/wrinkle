@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -41,6 +42,7 @@ import android.widget.Toast;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.PostInfo;
+import com.flagtag.wrinkle.adapter.TaggedUserAdapter;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
@@ -85,6 +87,7 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     //프레그먼트가 올라가있는 메인액티비티
     MainActivity activity;
+    //Adapter taggedUserAdapter = new TaggedUserAdapter(taggedusers);
 
     //현재 이미지가 선택되어있다는 것을 의미
     private static final int SELECT_IMAGE = 1;
@@ -268,10 +271,6 @@ public class WritingFragment extends Fragment {
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
-
-                } else if (item.getItemId() == R.id.quote_button) {
-                    //인용 버튼
-                } else if (item.getItemId() == R.id.division_line_button) {
                     //구분선 버튼
                 } else if (item.getItemId() == R.id.more_button) {
                     //더보기 버튼
@@ -548,13 +547,11 @@ public class WritingFragment extends Fragment {
         } else {
             CUR_INDEX++;
         }
-
         currentSelectedItem = type;
         //추가한 뷰 빼고 다른 뷰의 focus는 삭제한다.
         unsetOtherViews(view);
         changeToolbarMenu(toolbar.getMenu(), true);
         startToast(Integer.toString(CUR_INDEX));
-
     }
 
     private void storageUploader() throws ParseException {
@@ -563,6 +560,7 @@ public class WritingFragment extends Fragment {
         String pickedYear = String.valueOf(yearPicker.getValue());
         String pickedMonth = String.valueOf(monthPicker.getValue());
         String pickedDay = String.valueOf(dayPicker.getValue());
+        //final ArrayList<String> taggedusers = taggedUserAdapter.get(taggedUser);
         //날짜를 8자리로 표현하기 위한 if
         if(pickedMonth.length()==1){
             pickedMonth = "0"+pickedMonth;
