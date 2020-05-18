@@ -108,11 +108,6 @@
                             android:layout_height="150dp"
                             android:layout_margin="10dp"></NumberPicker>
                     </LinearLayout>
-                    <Button
-                        android:id="@+id/datePick"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="날짜 선택" />
 
                 </LinearLayout>
 
