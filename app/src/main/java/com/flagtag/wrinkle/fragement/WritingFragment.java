@@ -269,10 +269,6 @@ public class WritingFragment extends Fragment {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
 
-                } else if (item.getItemId() == R.id.quote_button) {
-                    //인용 버튼
-                } else if (item.getItemId() == R.id.division_line_button) {
-                    //구분선 버튼
                 } else if (item.getItemId() == R.id.more_button) {
                     //더보기 버튼
                     //아직 더보기 버튼을 어떻게 사용할지는 정하지 않았음

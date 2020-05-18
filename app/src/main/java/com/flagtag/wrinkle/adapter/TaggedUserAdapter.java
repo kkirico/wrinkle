@@ -12,6 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flagtag.wrinkle.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,11 @@ public class TaggedUserAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        String userName = taggedUsers.get(position);
+        String primaryKey = taggedUsers.get(position);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").get()
+
     }
 
     @Override
