@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -32,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -41,6 +43,7 @@ import android.widget.Toast;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.PostInfo;
+import com.flagtag.wrinkle.adapter.TaggedUserAdapter;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
@@ -112,6 +115,13 @@ public class WritingFragment extends Fragment {
     private int currentSelectedItem = 0;
     private boolean BOLD_BUTTON_CHECKED = false;
 
+    //태그된 유저 리사이클러뷰에서 사용되는 어뎁터
+    private TaggedUserAdapter taggedUserAdapter;
+    //태그된 유저 리사이클러뷰
+    private RecyclerView taggedUserRecyclerView;
+    //태그된 유저를 추가하는 버튼
+    private Button addTaggedUserButton;
+
     MemberInfo memberInfo = MemberInfo.getInstance();
 
     private static final int MAX_YEAR = 2021;
@@ -140,6 +150,11 @@ public class WritingFragment extends Fragment {
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
         titleEditText = rootView.findViewById(R.id.title);
         //contentEditText = rootView.findViewById(R.id.contentEditText);
+
+        //addtaggedUserButton
+        addTaggedUserButton = rootView.findViewById(R.id.add_tagged_user_button);
+        taggedUserRecyclerView = rootView.findViewById(R.id.tagged_user_recyclerview);
+        taggedUserAdapter = new TaggedUserAdapter();
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);

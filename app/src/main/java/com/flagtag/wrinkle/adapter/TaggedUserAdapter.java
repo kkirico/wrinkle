@@ -71,6 +71,10 @@ public class TaggedUserAdapter extends RecyclerView.Adapter<TaggedUserAdapter.Ta
 
     }
 
+    public void addItem(String primaryKey){
+        taggedUsers.add(primaryKey);
+    }
+
     @Override
     public int getItemCount() {
         return taggedUsers.size();
