@@ -83,24 +83,21 @@
                             android:id="@+id/picker_year"
                             android:layout_width="wrap_content"
                             android:layout_height="150dp"
-                            android:layout_margin="10dp"
-                            >
-                        </NumberPicker>
+                            android:layout_margin="10dp"></NumberPicker>
 
                         <NumberPicker
                             android:id="@+id/picker_month"
                             android:layout_width="wrap_content"
                             android:layout_height="150dp"
-                            android:layout_margin="10dp"
-                            >
+                            android:layout_margin="10dp">
 
-                        </NumberPicker> <NumberPicker
-                        android:id="@+id/picker_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        >
-                    </NumberPicker>
+                        </NumberPicker>
+
+                        <NumberPicker
+                            android:id="@+id/picker_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:layout_margin="10dp"></NumberPicker>
 
                         <NumberPicker
                             android:id="@+id/picker_season"
@@ -118,16 +115,27 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="@id/guideline9"
                     app:layout_constraintStart_toStartOf="@id/guideline8"
-                    app:layout_constraintTop_toBottomOf="@id/date_picker_actions" />
+                    app:layout_constraintTop_toBottomOf="@id/date_picker_actions" >
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tagged_user_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@id/guideline9"
+                    app:layout_constraintStart_toStartOf="@id/guideline8"
+                    app:layout_constraintTop_toBottomOf="@id/content_container" />
 
                 <Button
                     android:id="@+id/check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Button"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/guideline8"
-                    app:layout_constraintRight_toRightOf="@id/guideline9" />
+                    app:layout_constraintRight_toRightOf="@id/guideline9"
+                    app:layout_constraintTop_toBottomOf="@+id/tagged_user_container" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

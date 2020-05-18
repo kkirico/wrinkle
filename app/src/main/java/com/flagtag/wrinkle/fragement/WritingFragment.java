@@ -18,10 +18,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,26 +77,30 @@ public class WritingFragment extends Fragment {
 
     FirebaseFirestore db;
     Toolbar toolbar;
+    //제목을 적는 edittext
+    EditText titleEditText;
+    //writingView가 들어가는 linearlayout
     LinearLayout writing_content_container;
+    //처음에 들어가있는 writingTextView
     WritingTextView writing;
+    //프레그먼트가 올라가있는 메인액티비티
     MainActivity activity;
 
-
+    //현재 이미지가 선택되어있다는 것을 의미
     private static final int SELECT_IMAGE = 1;
-    private static final int SELECT_VIDEO = 2;
-    //현재 선택된 아이템을 뜻함.
+
+    //현재 선택된 writingView의 index를 뜻함.
+    //이것으로 n 번째의 아이템을 선택할 수 있음
     private static int CUR_INDEX = 0;
 
-    private String imagePath;
-
+    //현재의 메뉴가 무엇인지를 뜻함
+    //이것에 따라서 툴바의 메뉴가 변함
     private static int DEFAULT_MENU = 0;
     private static int IMAGE_MENU = 1;
-    private static int VEDIO_MENU = 2;
-    private static int QUOTE_MENU = 3;
-    private static int LOCATION_MENU = 4;
-    private static int DIVISION_MENU = 5;
-    private static int TEXT_MENU = 6;
-    EditText titleEditText;
+    private static int TEXT_MENU = 2;
+
+
+
     private ArrayList<String> pathList = new ArrayList<>();
     private LinearLayout parent;
     private RelativeLayout loaderLayout;
@@ -114,13 +121,15 @@ public class WritingFragment extends Fragment {
     NumberPicker monthPicker;
     NumberPicker dayPicker;
     NumberPicker seasonPicker;
+
+    TextWatcher textWatcher;
     public WritingFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_writing, container, false);
@@ -131,12 +140,94 @@ public class WritingFragment extends Fragment {
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
         titleEditText = rootView.findViewById(R.id.title);
         //contentEditText = rootView.findViewById(R.id.contentEditText);
+
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
         writing.setMinLines(20);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
+        textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0){
+                    return;
+                }
+                char character = s.charAt(start+count-1);
+                if(character == '\n'){
+                    WritingTextView curWritingTextView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
+                    String string = s.toString();
+                    curWritingTextView.text.setText(string.substring(0, string.length()-1));
+                    curWritingTextView.clearFocus();
+                    curWritingTextView.text.setMinLines(0);
+                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams.setMargins(0,0,0,32);
+
+                    curWritingTextView.text.setLayoutParams(layoutParams);
+                    WritingTextView writingTextView = new WritingTextView(activity);
+
+                    writingTextView.setOnFocusChangeListener(focusChangeListener);
+                    writingTextView.setTextChangeListner(this);
+                    writing_content_container.addView(writingTextView,CUR_INDEX+1);
+                    //선택된 것 말고 나머지 unset
+                    unsetOtherViews(writingTextView);
+
+                    writingTextView.requestTextFocus();
+                    writingTextView.text.setCursorVisible(true);
+
+                    InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
+
+                    //지금 선택된 아이템이 텍스트 메뉴라고 해주기
+                    currentSelectedItem = TEXT_MENU;
+                    changeToolbarMenu(toolbar.getMenu(),true);
+
+                    if (BOLD_BUTTON_CHECKED) {
+
+                        toolbar.getMenu().findItem(R.id.bold_button).setChecked(true);
+                        toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(ColorStateList.valueOf(Color.RED));
+
+
+                    } else {
+                        toolbar.getMenu().findItem(R.id.bold_button).setChecked(false);
+                        toolbar.getMenu().findItem(R.id.bold_button).setIconTintList(null);
+
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() == 0 && CUR_INDEX !=0){
+                    View cur_view = writing_content_container.getChildAt(CUR_INDEX);
+                    writing_content_container.removeView(cur_view);
+
+
+                    View writingView = writing_content_container.getChildAt(CUR_INDEX-1);
+                    if(writingView instanceof WritingTextView){
+                        WritingTextView writingTextView = (WritingTextView) writingView;
+                        writingTextView.requestTextFocus();
+                        writingTextView.text.setCursorVisible(true);
+                        writingTextView.text.setSelection(writingTextView.text.getText().length());
+
+                        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(writingTextView.text, InputMethodManager.SHOW_IMPLICIT);
+                    }
+
+                    //CUR_INDEX--;
+                }
+            }
+        };
+        writing.setTextChangeListner(textWatcher);
+
         loaderLayout = rootView.findViewById(R.id.loaderLayout);
         monthPicker = rootView.findViewById(R.id.picker_month);
         yearPicker = rootView.findViewById(R.id.picker_year);
@@ -178,15 +269,6 @@ public class WritingFragment extends Fragment {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, SELECT_IMAGE);
 
-                } else if (item.getItemId() == R.id.video_button) {
-                    //동영상 선택
-                    startToast("동영상 선택");
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("video/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(intent, SELECT_VIDEO);
-                } else if (item.getItemId() == R.id.location_button) {
-                    //위치 선택
                 } else if (item.getItemId() == R.id.quote_button) {
                     //인용 버튼
                 } else if (item.getItemId() == R.id.division_line_button) {
@@ -203,16 +285,16 @@ public class WritingFragment extends Fragment {
 
                 } else if (item.getItemId() == R.id.up_button) {
 
-                    if (numberofItem == 1 || CUR_INDEX == numberofItem - 1) {
+                    if (numberofItem == 1) {
                         return false;
                     }
                     WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
                     writing_content_container.removeView(curView);
-                    changeToolbarMenu(toolbar.getMenu(), false);
+                    writing_content_container.addView(curView, --CUR_INDEX);
 
                 } else if (item.getItemId() == R.id.down_button) {
 
-                    if (CUR_INDEX == numberofItem - 1 || CUR_INDEX == numberofItem - 2) {
+                    if ( CUR_INDEX == numberofItem - 1) {
                         return false;
                     } else {
                         WritingView curView = (WritingView) writing_content_container.getChildAt(CUR_INDEX);
@@ -231,28 +313,24 @@ public class WritingFragment extends Fragment {
 
 
                     WritingTextView curView = (WritingTextView) writing_content_container.getChildAt(CUR_INDEX);
-                    int cursorPosition = curView.text.getSelectionStart();
-                    curView.clearComposingText(cursorPosition);
+                    BOLD_BUTTON_CHECKED = curView.isBold;
                     //not bold ->bold
                     if (!BOLD_BUTTON_CHECKED) {
 
                         item.setChecked(true);
                         item.setIconTintList(ColorStateList.valueOf(Color.RED));
-                        BOLD_BUTTON_CHECKED = true;
+                        curView.toggleIsBold();
                         startToast("boldbutton set");
 
-
-                        //현재 커서 위치가 포함되는 span을 수정한다.
-                        curView.setStyleAt(cursorPosition, Typeface.BOLD);
 
 
                     } else {
                         item.setChecked(false);
                         item.setIconTintList(null);
                         BOLD_BUTTON_CHECKED = false;
+                        curView.toggleIsBold();
                         startToast("boldbutton unset");
 
-                        curView.setStyleAt(cursorPosition, Typeface.NORMAL);
                     }
                     activity.invalidateOptionsMenu();
 
@@ -312,7 +390,7 @@ public class WritingFragment extends Fragment {
         if (requestCode == SELECT_IMAGE) {
             try {
                 // 선택한 이미지에서 비트맵 생성
-                pathList.add("0"+data.getData().toString());
+                pathList.add("0" + data.getData().toString());
                 InputStream in = activity.getContentResolver().openInputStream(data.getData());
                 Bitmap img = BitmapFactory.decodeStream(in);
                 in.close();
@@ -327,19 +405,20 @@ public class WritingFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == SELECT_VIDEO) {
-            Uri videoURI = data.getData();
-            if (videoURI != null) {
-
-                pathList.add("1"+data.getData().toString());
-
-                //WritingVideoView 생성
-                WritingVideoView videoView = new WritingVideoView(activity);
-                videoView.setVideoView(videoURI);
-                videoView.requestFocus();
-                addViewToContainer(videoView, VEDIO_MENU);
-            }
         }
+//        } else if (requestCode == SELECT_VIDEO) {
+//            Uri videoURI = data.getData();
+//            if (videoURI != null) {
+//
+//                pathList.add("1"+data.getData().toString());
+//
+//                //WritingVideoView 생성
+//                WritingVideoView videoView = new WritingVideoView(activity);
+//                videoView.setVideoView(videoURI);
+//                videoView.requestFocus();
+//                addViewToContainer(videoView, VEDIO_MENU);
+//            }
+//        }
     }
 
 
@@ -360,8 +439,7 @@ public class WritingFragment extends Fragment {
                 currentSelectedItem = TEXT_MENU;
                 changeToolbarMenu(toolbar.getMenu(),true);
 
-                int cursorPosition = ((EditText)view).getSelectionEnd();
-                BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isCursorInSpan(cursorPosition , Typeface.BOLD);
+                BOLD_BUTTON_CHECKED = ((WritingTextView)curWritingView).isBold;
 
                 if (BOLD_BUTTON_CHECKED) {
 
@@ -457,12 +535,12 @@ public class WritingFragment extends Fragment {
 
             } else {
                 //텍스트뷰에 글이 쓰여있었으면 최소 라인 수를 없앤다.
-                ((WritingTextView) cur_view).setMinLines(0);
+                ((WritingTextView) cur_view).setMinLines(3);
                 CUR_INDEX++;
             }
             //그 밑에 텍스트뷰를 넣어준다.
             WritingTextView editText = new WritingTextView(activity);
-
+            editText.setTextChangeListner(textWatcher);
             editText.setOnFocusChangeListener(focusChangeListener);
             editText.setMinLines(3);
             writing_content_container.addView(editText, CUR_INDEX + 1, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -589,6 +667,7 @@ public class WritingFragment extends Fragment {
                     }
                 });
     }
+
 
 
 }
