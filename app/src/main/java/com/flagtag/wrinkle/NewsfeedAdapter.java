@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.flagtag.wrinkle.adapter.PhotoAdapter;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import me.relex.circleindicator.CircleIndicator3;
 
 public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
@@ -47,7 +45,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
 
         //layoutinflater로 newsfeed_cardview_layout inflate
-        View view = inflater.inflate(R.layout.newsfeed_layout, parent, false) ;
+        View view = inflater.inflate(R.layout.newsfeed_cardview_layout, parent, false) ;
         //뷰홀더 붙여줌.
         NewsfeedViewHolder vh = new NewsfeedViewHolder(view) ;
 
