@@ -121,32 +121,40 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/taggged_user_indicator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="친구 태그하기"
+                    app:layout_constraintEnd_toEndOf="@id/guideline9"
+                    app:layout_constraintStart_toStartOf="@id/guideline8"
+                    app:layout_constraintTop_toBottomOf="@id/content_container" />
+
                 <LinearLayout
                     android:id="@+id/tagged_user_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/boder_all"
+                    android:gravity="center|center_horizontal|center_vertical"
                     android:orientation="horizontal"
                     android:weightSum="5"
                     app:layout_constraintEnd_toEndOf="@id/guideline9"
-                    app:layout_constraintStart_toStartOf="@id/guideline8"
 
-                    app:layout_constraintTop_toBottomOf="@id/content_container">
+                    app:layout_constraintStart_toStartOf="@id/guideline8"
+                    app:layout_constraintTop_toBottomOf="@id/taggged_user_indicator">
 
                     <Button
                         android:id="@+id/add_tagged_user_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:text="추가"
-                        />
+                        style="@android:style/Widget.Material.Button.Borderless"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@android:drawable/ic_input_add" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/tagged_user_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:orientation="horizontal"
-                        android:layout_weight="1"
-                        />
+                        android:orientation="horizontal" />
                 </LinearLayout>
 
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,6 +43,14 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference userCollection = db.collection("users");
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         userCollection.document(primaryKey).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -70,6 +79,10 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
         items.add(primaryKey);
     }
 
+    public ArrayList<String> getItems() {
+        return items;
+    }
+
     public void setItems(List<String> list){
         items.addAll(list);
     }
@@ -78,10 +91,11 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
         CircleImageView imageView;
         TextView name;
         TextView email;
+        ConstraintLayout container;
 
         public searchViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            container = itemView.findViewById(R.id.search_user_item_container);
             imageView = itemView.findViewById(R.id.search_item_image);
             name = itemView.findViewById(R.id.search_item_name);
             email = itemView.findViewById(R.id.search_item_email);

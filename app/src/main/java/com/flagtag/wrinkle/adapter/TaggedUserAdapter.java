@@ -17,6 +17,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -73,6 +74,19 @@ public class TaggedUserAdapter extends RecyclerView.Adapter<TaggedUserAdapter.Ta
 
     public void addItem(String primaryKey){
         taggedUsers.add(primaryKey);
+    }
+
+    public void setItems(ArrayList<String> users){
+        this.claer();
+        this.taggedUsers.addAll(users);
+    }
+
+    public void addItems(ArrayList<String> users){
+        this.taggedUsers.addAll(users);
+    }
+
+    public void claer(){
+        this.taggedUsers.clear();
     }
 
     @Override
