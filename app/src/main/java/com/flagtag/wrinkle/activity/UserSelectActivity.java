@@ -37,8 +37,8 @@ public class UserSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search = (EditText) findViewById(R.id.search);
-        listView = (ListView) findViewById(R.id.listView);
+        search = (EditText) findViewById(R.id.user_search);
+        listView = (ListView) findViewById(R.id.search_user_recyclerview);
 
         // 리스트를 생성한다.
         list = new ArrayList<String>();
@@ -53,8 +53,11 @@ public class UserSelectActivity extends AppCompatActivity {
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchUserAdapter(list, this);
 
+
+
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
+
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         search.addTextChangedListener(new TextWatcher() {
@@ -120,6 +123,7 @@ public class UserSelectActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 list.add(document.getId());
+                                adapter.
                                 Log.d("Setting list", document.getId() + " => " + document.getData());
                             }
                         } else {
@@ -130,6 +134,9 @@ public class UserSelectActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
 
 
