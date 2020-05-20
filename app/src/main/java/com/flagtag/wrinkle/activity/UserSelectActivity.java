@@ -2,6 +2,7 @@ package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -41,7 +42,7 @@ public class UserSelectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_select);
 
         selectedUserKey= null;
         search = (EditText) findViewById(R.id.user_search);
@@ -55,13 +56,14 @@ public class UserSelectActivity extends AppCompatActivity {
 
         // 리스트의 모든 데이터를 arraylist에 복사한다.// list 복사본을 만든다.
         arraylist = new ArrayList<String>();
-        arraylist.addAll(list);
+
 
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchUserAdapter();
 
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
+        listView.setLayoutManager(new LinearLayoutManager(this));
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         search.addTextChangedListener(new TextWatcher() {
@@ -91,6 +93,8 @@ public class UserSelectActivity extends AppCompatActivity {
 
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
         list.clear();
+        adapter.clear();
+
 
         // 문자 입력이 없을때는 모든 데이터를 보여준다.
         if (charText.length() == 0) {
@@ -120,7 +124,7 @@ public class UserSelectActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
-                .whereEqualTo(String.valueOf(search), true)
+//                .whereEqualTo(String.valueOf(search.getText()), true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -130,6 +134,8 @@ public class UserSelectActivity extends AppCompatActivity {
                                 list.add(document.getId());
                                 Log.d("Setting list", document.getId() + " => " + document.getData());
                             }
+
+                            arraylist.addAll(list);
                         } else {
                             Log.d("Setting list", "Error getting documents: ", task.getException());
                         }

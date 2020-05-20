@@ -22,21 +22,22 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.ViewHolder> {
+public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.searchViewHolder> {
 
     ArrayList<String> items = new ArrayList<>();
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SearchUserAdapter.searchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
         View view = inflater.inflate(R.layout.search_user_item, parent, false) ;
 
-        return new ViewHolder(view);
+        return new SearchUserAdapter.searchViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SearchUserAdapter.searchViewHolder holder, int position) {
         String primaryKey = items.get(position);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -73,17 +74,21 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
         items.addAll(list);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class searchViewHolder extends RecyclerView.ViewHolder {
         CircleImageView imageView;
         TextView name;
         TextView email;
 
-        public ViewHolder(@NonNull View itemView) {
+        public searchViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.search_item_image);
             name = itemView.findViewById(R.id.search_item_name);
             email = itemView.findViewById(R.id.search_item_email);
         }
+    }
+
+    public void clear(){
+        items.clear();
     }
 }
