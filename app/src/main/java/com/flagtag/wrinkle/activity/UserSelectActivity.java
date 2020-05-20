@@ -135,7 +135,6 @@ public class UserSelectActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 list.add(document.getId());
-                                adapter.
                                 Log.d("Setting list", document.getId() + " => " + document.getData());
                             }
 
