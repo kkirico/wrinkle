@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_user_item_container"
     android:layout_width="match_parent"
     android:layout_height="80dp">
 
@@ -8,7 +9,7 @@
         android:id="@+id/search_item_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="10dp"
 
         app:layout_constraintHeight_percent="0.8"
         app:layout_constraintDimensionRatio="H,1:1"
@@ -39,4 +40,19 @@
         app:layout_constraintLeft_toRightOf="@id/search_item_image"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
+    <Button
+        android:id="@+id/search_item_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_radius"
+        android:text="추가"
+        android:textColor="#F8F1F1"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

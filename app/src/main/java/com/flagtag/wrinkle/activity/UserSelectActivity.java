@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -37,6 +39,7 @@ public class UserSelectActivity extends AppCompatActivity {
     private EditText search;        // 검색어를 입력할 Input 창
     private SearchUserAdapter adapter;      // 리스트뷰에 연결할 아답터 여기다가 선택된 유아이 넣기
     private ArrayList<String> arraylist;
+    private Button submitButton;
 
 
     @Override
@@ -47,6 +50,16 @@ public class UserSelectActivity extends AppCompatActivity {
         selectedUserKey= null;
         search = (EditText) findViewById(R.id.user_search);
         listView = (RecyclerView) findViewById(R.id.search_user_recyclerview);
+        submitButton = (Button) findViewById(R.id.submit_button);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("users",adapter.getItems() );
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
         // 리스트를 생성한다.
         list = new ArrayList<String>();

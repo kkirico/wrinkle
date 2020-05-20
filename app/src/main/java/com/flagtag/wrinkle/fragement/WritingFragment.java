@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
@@ -44,6 +45,7 @@ import android.widget.Toast;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.PostInfo;
+import com.flagtag.wrinkle.activity.UserSelectActivity;
 import com.flagtag.wrinkle.adapter.TaggedUserAdapter;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
@@ -77,6 +79,7 @@ import static android.app.Activity.RESULT_CANCELED;
 public class WritingFragment extends Fragment {
 
     private static final String TAG = "Write Post Activity";
+
     private FirebaseUser user;
 
     FirebaseFirestore db;
@@ -89,11 +92,13 @@ public class WritingFragment extends Fragment {
     WritingTextView writing;
     //프레그먼트가 올라가있는 메인액티비티
     MainActivity activity;
-    //Adapter taggedUserAdapter = new TaggedUserAdapter(taggedusers);
+
+
+
 
     //현재 이미지가 선택되어있다는 것을 의미
     private static final int SELECT_IMAGE = 1;
-
+    private static final int ADD_TAGGED_USER = 2;
     //현재 선택된 writingView의 index를 뜻함.
     //이것으로 n 번째의 아이템을 선택할 수 있음
     private static int CUR_INDEX = 0;
@@ -155,8 +160,24 @@ public class WritingFragment extends Fragment {
 
         //addtaggedUserButton
         addTaggedUserButton = rootView.findViewById(R.id.add_tagged_user_button);
+        addTaggedUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserSelectActivity.class);
+
+                startActivityForResult(intent,ADD_TAGGED_USER);
+            }
+        });
+
         taggedUserRecyclerView = rootView.findViewById(R.id.tagged_user_recyclerview);
+
         taggedUserAdapter = new TaggedUserAdapter();
+
+        taggedUserRecyclerView.setAdapter(taggedUserAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity.getApplicationContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        taggedUserRecyclerView.setLayoutManager(linearLayoutManager);
+
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
@@ -419,6 +440,15 @@ public class WritingFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+        //UserSelectActivity에서 돌아오는 경우
+        else if(requestCode == ADD_TAGGED_USER){
+            ArrayList<String> userList = (ArrayList<String>) data.getSerializableExtra("users");
+
+            taggedUserAdapter.addItems(userList);
+
+            taggedUserAdapter.notifyDataSetChanged();
+        }
+
 //        } else if (requestCode == SELECT_VIDEO) {
 //            Uri videoURI = data.getData();
 //            if (videoURI != null) {
