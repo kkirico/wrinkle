@@ -2,7 +2,10 @@ package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,19 +29,24 @@ import java.util.List;
 
 public class UserSelectActivity extends AppCompatActivity {
 
-    private List<String> list;          // 데이터를 넣은 리스트변수
-    private ListView listView;          // 검색을 보여줄 리스트변수
+
+    String selectedUserKey;
+
+    private ArrayList<String> list;          // 데이터를 넣은 리스트변수
+    private RecyclerView listView;          // 검색을 보여줄 리스트변수
     private EditText search;        // 검색어를 입력할 Input 창
     private SearchUserAdapter adapter;      // 리스트뷰에 연결할 아답터 여기다가 선택된 유아이 넣기
     private ArrayList<String> arraylist;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_select);
 
+        selectedUserKey= null;
         search = (EditText) findViewById(R.id.user_search);
-        listView = (ListView) findViewById(R.id.search_user_recyclerview);
+        listView = (RecyclerView) findViewById(R.id.search_user_recyclerview);
 
         // 리스트를 생성한다.
         list = new ArrayList<String>();
@@ -48,15 +56,16 @@ public class UserSelectActivity extends AppCompatActivity {
 
         // 리스트의 모든 데이터를 arraylist에 복사한다.// list 복사본을 만든다.
         arraylist = new ArrayList<String>();
-        arraylist.addAll(list);
+
 
         // 리스트에 연동될 아답터를 생성한다.
-        adapter = new SearchUserAdapter(list, this);
+        adapter = new SearchUserAdapter();
 
 
 
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
+        listView.setLayoutManager(new LinearLayoutManager(this));
 
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
@@ -87,6 +96,8 @@ public class UserSelectActivity extends AppCompatActivity {
 
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
         list.clear();
+        adapter.clear();
+
 
         // 문자 입력이 없을때는 모든 데이터를 보여준다.
         if (charText.length() == 0) {
@@ -105,6 +116,7 @@ public class UserSelectActivity extends AppCompatActivity {
                 }
             }
         }
+        adapter.setItems(list);
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
         adapter.notifyDataSetChanged();
     }
@@ -115,7 +127,7 @@ public class UserSelectActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
-                .whereEqualTo(String.valueOf(search), true)
+//                .whereEqualTo(String.valueOf(search.getText()), true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -126,6 +138,8 @@ public class UserSelectActivity extends AppCompatActivity {
                                 adapter.
                                 Log.d("Setting list", document.getId() + " => " + document.getData());
                             }
+
+                            arraylist.addAll(list);
                         } else {
                             Log.d("Setting list", "Error getting documents: ", task.getException());
                         }
@@ -133,10 +147,24 @@ public class UserSelectActivity extends AppCompatActivity {
                 });
 
 
+
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent();
+
+        if (selectedUserKey != null) {
+            intent.putExtra("selected user", selectedUserKey);
+
+        }
+
     }
 
 
 
 }
-
-
