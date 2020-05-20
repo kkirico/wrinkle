@@ -74,9 +74,12 @@ public class UserSelectActivity extends AppCompatActivity {
         // 리스트에 연동될 아답터를 생성한다.
         adapter = new SearchUserAdapter();
 
+
+
         // 리스트뷰에 아답터를 연결한다.
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(this));
+
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         search.addTextChangedListener(new TextWatcher() {
@@ -173,6 +176,7 @@ public class UserSelectActivity extends AppCompatActivity {
         }
 
     }
+
+
+
 }
-
-
