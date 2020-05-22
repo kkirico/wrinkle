@@ -1,7 +1,20 @@
+<ScrollView android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +59,39 @@
 
             </androidx.cardview.widget.CardView>
 
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/buttonsCardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                app:cardBackgroundColor="@android:color/holo_red_light"
+                app:cardCornerRadius="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/picture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="지금 사진 촬영" />
+
+                    <Button
+                        android:id="@+id/gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="갤러리에서 선택" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <EditText
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
@@ -60,8 +106,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="생년월일 8자"
-                android:inputType="date" />
+                android:text="생년월일 선택"
+                android:inputType="date"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_gravity="center">
+
+                <NumberPicker
+                    android:id="@+id/birthYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp" />
+
+                <NumberPicker
+                    android:id="@+id/birthMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp" />
+
+                <NumberPicker
+                    android:id="@+id/birthDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/emailEditText"
@@ -99,36 +174,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/buttonsCardview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        app:cardBackgroundColor="@android:color/holo_red_light"
-        app:cardCornerRadius="15dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="지금 사진 촬영" />
-
-            <Button
-                android:id="@+id/gallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="갤러리에서 선택" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
     <include
         layout="@layout/view_loader"
         android:layout_width="match_parent"
@@ -136,3 +181,4 @@
         android:visibility="gone"/>
 
 </RelativeLayout>
+</ScrollView>

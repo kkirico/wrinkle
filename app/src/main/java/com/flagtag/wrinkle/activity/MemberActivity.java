@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,10 @@ public class MemberActivity extends BasicActivity {
     private RelativeLayout loaderLayout;
     private String profilePath;
     private FirebaseUser user;
+    private NumberPicker bYear;
+    private NumberPicker bMonth;
+    private NumberPicker bDay;
+
     MemberInfo memberInfo = MemberInfo.getInstance();
 
     @Override
@@ -58,11 +63,30 @@ public class MemberActivity extends BasicActivity {
         String name = memberInfo.getName();
         String text = memberInfo.getText();
         String birthDay = memberInfo.getBirthDay();
+
+        bYear = findViewById(R.id.birthYear);
+        bMonth = findViewById(R.id.birthMonth);
+        bDay = findViewById(R.id.birthDay);
+
+
+        bDay.setMaxValue(31);
+        bDay.setMinValue(1);
+        bMonth.setMinValue(1);
+        bMonth.setMaxValue(12);
+        bYear.setMaxValue(2020);
+        bYear.setMinValue(1900);
+
+        bYear.setValue(Integer.parseInt(birthDay.substring(0,4)));
+        bMonth.setValue(Integer.parseInt(birthDay.substring(5,7)));
+        bDay.setValue(Integer.parseInt(birthDay.substring(8)));
+
         ((TextView)findViewById(R.id.nameEditText)).setText(name);
         ((TextView)findViewById(R.id.emailEditText)).setText(email);
         ((TextView)findViewById(R.id.profileEditText)).setText(text);
         ((TextView)findViewById(R.id.addressEditText)).setText(address);
-        ((TextView)findViewById(R.id.birthdayEditText)).setText(birthDay);
+
+
+
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -139,11 +163,20 @@ public class MemberActivity extends BasicActivity {
         final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         final String profileText = ((EditText) findViewById(R.id.profileEditText)).getText().toString();
         final String address = ((EditText) findViewById(R.id.addressEditText)).getText().toString();
-        String t = ((EditText)findViewById(R.id.birthdayEditText)).getText().toString();
-        String birthYear = t.substring(0,4);
-        String birthMonth = t.substring(4,6);
-        String birthDay = t.substring(6);
-        final String userBirthDay = birthYear+"-"+birthMonth+"-"+birthDay;
+
+        String pickedYear = String.valueOf(bYear.getValue());
+        String pickedMonth = String.valueOf(bMonth.getValue());
+        String pickedDay = String.valueOf(bDay.getValue());
+
+
+        if(pickedMonth.length()==1){
+            pickedMonth = "0"+pickedMonth;
+        }
+        if(pickedDay.length()==1){
+            pickedDay = "0"+pickedDay;
+        }
+
+        String userBirthDay = pickedYear+"-"+pickedMonth+"-"+pickedDay;
         final String profilePicture = findViewById(R.id.profileImageView).toString();
         memberInfo.setAddress(address);
         memberInfo.setName(name);
@@ -152,7 +185,7 @@ public class MemberActivity extends BasicActivity {
         memberInfo.setPhotoUrl(profilePicture);
         memberInfo.setBirthDay(userBirthDay);
 
-        if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0&& userBirthDay.length()==8) {
+        if (name.length()>0 && email.length()>9 && profileText.length()>5 && address.length()>0&& userBirthDay.length()>=8) {
             loaderLayout.setVisibility(View.VISIBLE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
@@ -160,9 +193,9 @@ public class MemberActivity extends BasicActivity {
             user = mAuth.getCurrentUser();
             assert user != null;
             final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"profileImage.jpg");
-
             if(profilePath ==null){
-                storeUploader(memberInfo);
+                startToast("프로필 이미지를 설정 해주세요");
+                loaderLayout.setVisibility(View.GONE);
             }
             else{
                 try{
@@ -184,7 +217,7 @@ public class MemberActivity extends BasicActivity {
                                 assert downloadUri != null;
                                 memberInfo.setPhotoUrl(downloadUri.toString());
                                 storeUploader(memberInfo);
-                             } else {
+                            } else {
                                 startToast("회원정보 저장 실패.");
                             }
                         }
@@ -199,6 +232,7 @@ public class MemberActivity extends BasicActivity {
         } else {
             startToast("회원정보를 정확히 입력해주세요.");
         }
+
     }
 
     private void storeUploader(MemberInfo memberInfo){
