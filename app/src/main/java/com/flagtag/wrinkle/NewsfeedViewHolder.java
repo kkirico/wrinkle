@@ -3,6 +3,7 @@ package com.flagtag.wrinkle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -26,7 +27,7 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
     SeekBar time_bar;
     ConstraintLayout timelinebar_container;
     ConstraintLayout content_container;
-    Button singlefeed_button;
+    ImageButton singlefeed_button;
     ImageView content_image;
     TextView content_writing;
     ImageView publisher_pic;
