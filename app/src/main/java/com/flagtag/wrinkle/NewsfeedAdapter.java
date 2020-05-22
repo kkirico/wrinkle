@@ -1,6 +1,7 @@
 package com.flagtag.wrinkle;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.flagtag.wrinkle.activity.MainActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -102,8 +104,15 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
                 return true;
             }
         });
+/*
+        holder.singlefeed_button.OnClickListener{
 
+            Intent intent = new Intent(v.getContext(), NewActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            v.getContext().startActivity(intent);
 
+        }
+*/
 
  /*
 
@@ -122,7 +131,8 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //날짜
 
         holder.writing_date.setText(format.format(item.getCreatedAt()));
-
+        holder.publisher_id.setText(memberInfo.getName());
+        Glide.with(holder.time_bar.getContext()).load(memberInfo.getPhotoUrl()).into(holder.publisher_pic);
 
 
         ArrayList<String> imageUrls = new ArrayList<>();
@@ -130,25 +140,26 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         int countImages=0;
         int countVideos= 0;
         int countTexts=0;
+        String firstText = "";
         //이미지 (뷰페이저 부분)
         ArrayList<String> contentList = item.getContents();
         for(int i =0; i<contentList.size(); i++) {
             String contents = contentList.get(i);
             String[] type = contents.split("\\.");
             if (type[type.length - 1].substring(0, 3).equals("jpg")) {
-                //contents 에 image_view 생성 후 contentList.get(i)를 넣기
-                ImageView imageView = new ImageView(holder.time_bar.getContext());
-                holder.contents.addView(imageView);
-                Glide.with(holder.time_bar.getContext()).load(contentList.get(i)).into(imageView);
+                Glide.with(holder.time_bar.getContext()).load(contentList.get(i)).into(holder.content_image);
                 imageUrls.add(contentList.get(i));
-                //이미지 넣을때 마다 카운트 증가
-                countImages++;
+                break;
+            }
+        }
+        for(int i =0; i<contentList.size(); i++) {
+            String contents = contentList.get(i);
+            String[] type = contents.split("\\.");
+            if (type[type.length - 1].substring(0, 3).equals("jpg")) {
             }
             else {
-                //contents안에 textview생성 하고, contentList.get(i)를 넣
-                TextView textView = new TextView(holder.time_bar.getContext());
-                holder.contents.addView(textView);
-                textView.setText(contentList.get(i));
+                holder.content_writing.setText(contentList.get(i)+"...");
+                break;
             }
         }
 

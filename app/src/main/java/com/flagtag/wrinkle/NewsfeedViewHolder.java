@@ -3,6 +3,7 @@ package com.flagtag.wrinkle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -22,15 +23,19 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
     LinearLayout tags_container;
     Button likes;
     Button comments;
-    CircleIndicator3 indicator;
     SeekBar time_bar;
     ConstraintLayout timelinebar_container;
-    LinearLayout contents;
+    ConstraintLayout content_container;
+    Button singlefeed_button;
+    ImageView content_image;
+    TextView content_writing;
+    ImageView publisher_pic;
+    TextView publisher_id;
     public NewsfeedViewHolder(@NonNull View itemView) {
 
         super(itemView);
 
-        contents = itemView.findViewById(R.id.contents);
+        content_container = itemView.findViewById(R.id.content_container);
         tagged_user_container = itemView.findViewById(R.id.tagged_users_container);
         title = itemView.findViewById(R.id.title);
         writing_date = itemView.findViewById(R.id.writing_date);
@@ -39,6 +44,13 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
         comments = itemView.findViewById(R.id.comments);
         time_bar = itemView.findViewById(R.id.time_bar);
         timelinebar_container = itemView.findViewById(R.id.timelinebar_container);
+        content_image = itemView.findViewById(R.id.content_image);
+        content_writing = itemView.findViewById(R.id.content_writing);
+        publisher_id = itemView.findViewById(R.id.publisher_id);
+        publisher_pic = itemView.findViewById(R.id.publisher_pic);
+        singlefeed_button = itemView.findViewById(R.id.singlefeed_button);
+
+
 
     }
 }

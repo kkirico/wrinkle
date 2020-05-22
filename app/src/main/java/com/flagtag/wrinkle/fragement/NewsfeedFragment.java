@@ -50,9 +50,9 @@ public class NewsfeedFragment extends Fragment {
         viewPager2 = rootView.findViewById(R.id.viewPager);
         viewPager2.setAdapter(newsfeedAdapter);
 
-        Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
+//        Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setSupportActionBar(toolbar);
+  //      mainActivity.setSupportActionBar(toolbar);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
