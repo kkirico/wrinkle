@@ -188,7 +188,7 @@ public class WritingFragment extends Fragment {
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
-        writing.setMinLines(20);
+        writing.setMinLines(4);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
