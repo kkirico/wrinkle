@@ -81,8 +81,16 @@ public class TaggedUserAdapter extends RecyclerView.Adapter<TaggedUserAdapter.Ta
         this.taggedUsers.addAll(users);
     }
 
+    public ArrayList<String> getItems(){
+        return this.taggedUsers;
+    }
+
     public void addItems(ArrayList<String> users){
         this.taggedUsers.addAll(users);
+    }
+
+    public void removeItems(ArrayList<String> users){
+        this.taggedUsers.removeAll(users);
     }
 
     public void claer(){
