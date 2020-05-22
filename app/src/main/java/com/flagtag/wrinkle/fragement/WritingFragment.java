@@ -164,6 +164,13 @@ public class WritingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UserSelectActivity.class);
+                //이미 선택한 적이 있다면 그 리스트를 보낸다.
+                if(taggedUserAdapter.getItemCount() != 0 ){
+                    intent.putStringArrayListExtra("taggedUsers",taggedUserAdapter.getItems());
+
+                }
+
+
 
                 startActivityForResult(intent,ADD_TAGGED_USER);
             }
@@ -181,7 +188,7 @@ public class WritingFragment extends Fragment {
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
-        writing.setMinLines(20);
+        writing.setMinLines(4);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
@@ -444,6 +451,7 @@ public class WritingFragment extends Fragment {
         else if(requestCode == ADD_TAGGED_USER){
             ArrayList<String> userList = (ArrayList<String>) data.getSerializableExtra("users");
 
+            taggedUserAdapter.claer();
             taggedUserAdapter.addItems(userList);
 
             taggedUserAdapter.notifyDataSetChanged();

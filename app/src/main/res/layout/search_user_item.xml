@@ -50,8 +50,8 @@
         android:background="@drawable/round_radius"
         android:text="추가"
         android:textColor="#F8F1F1"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
+        android:textSize="12sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

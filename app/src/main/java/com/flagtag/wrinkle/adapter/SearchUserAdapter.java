@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.searchViewHolder> {
 
     ArrayList<String> items = new ArrayList<>();
+    ArrayList<String> selectedItems = new ArrayList<>();
+
     @NonNull
     @Override
     public SearchUserAdapter.searchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,17 +42,33 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
 
     @Override
     public void onBindViewHolder(@NonNull final SearchUserAdapter.searchViewHolder holder, int position) {
-        String primaryKey = items.get(position);
+        final String primaryKey = items.get(position);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference userCollection = db.collection("users");
 
-        holder.container.setOnClickListener(new View.OnClickListener() {
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(v.isSelected()){
+                    v.setSelected(false);
+                    holder.addButton.setText("추가");
+                    int index = selectedItems.indexOf(primaryKey);
+                    selectedItems.remove(index);
+                }else{
+                    v.setSelected(true);
+                    holder.addButton.setText("취소");
+                    selectedItems.add(primaryKey);
+                }
             }
         });
+
+        //이미 선택된 것이라면
+        if(selectedItems.indexOf(primaryKey) != -1){
+            holder.addButton.setText("취소");
+            holder.addButton.setSelected(true);
+
+        }
 
         userCollection.document(primaryKey).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -83,8 +102,16 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
         return items;
     }
 
+    public ArrayList<String> getSelectedItems(){
+        return selectedItems;
+    }
+
     public void setItems(List<String> list){
         items.addAll(list);
+    }
+
+    public void addSelectedItems(ArrayList<String> list){
+        selectedItems.addAll(list);
     }
 
     public class searchViewHolder extends RecyclerView.ViewHolder {
@@ -92,6 +119,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
         TextView name;
         TextView email;
         ConstraintLayout container;
+        Button addButton;
 
         public searchViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,6 +127,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.se
             imageView = itemView.findViewById(R.id.search_item_image);
             name = itemView.findViewById(R.id.search_item_name);
             email = itemView.findViewById(R.id.search_item_email);
+            addButton = itemView.findViewById(R.id.search_item_add_button);
         }
     }
 
