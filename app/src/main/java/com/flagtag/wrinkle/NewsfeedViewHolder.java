@@ -1,6 +1,9 @@
 package com.flagtag.wrinkle;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,26 +14,30 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.flagtag.wrinkle.activity.SinglefeedActivity;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
 
+    private static final String DEBUG_TAG = "touch event error" ;
+    public ImageView publisher_pic;
     LinearLayout tagged_user_container;
     TextView title;
     TextView writing_date;
     LinearLayout tags_container;
     Button likes;
     Button comments;
-    SeekBar time_bar;
+    public SeekBar time_bar;
     ConstraintLayout timelinebar_container;
     ConstraintLayout content_container;
     ImageButton singlefeed_button;
     ImageView content_image;
     TextView content_writing;
-    ImageView publisher_pic;
     TextView publisher_id;
     public NewsfeedViewHolder(@NonNull View itemView) {
 
@@ -51,6 +58,9 @@ public class NewsfeedViewHolder extends RecyclerView.ViewHolder {
         publisher_pic = itemView.findViewById(R.id.publisher_pic);
         singlefeed_button = itemView.findViewById(R.id.singlefeed_button);
 
+
+
+        View view = time_bar;
 
 
     }

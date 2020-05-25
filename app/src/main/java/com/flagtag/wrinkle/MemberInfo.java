@@ -29,8 +29,15 @@ public class MemberInfo{
         this.address = address;
         this.birthDay = birthDay;
     }
+    public MemberInfo(String name, String photoUrl) {
 
-        public String getName(){
+            this.name  = name;
+            this.photoUrl  = photoUrl;
+    }
+
+
+
+    public String getName(){
             return this.name;
         }
         public void setName(String name){
