@@ -1,7 +1,6 @@
 package com.flagtag.wrinkle.activity;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
