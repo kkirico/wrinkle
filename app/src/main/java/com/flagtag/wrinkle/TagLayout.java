@@ -2,6 +2,8 @@ package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,10 +48,49 @@ public class TagLayout extends LinearLayout {
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if(!hasFocus){
-                    setText(tagItemEditText.getText().toString());
+                    String string = tagItemEditText.getText().toString();
+                    if(string.length()==0){
+                        return;
+                    }
+
+                    char character = string.charAt(string.length()-1);
+                    if(character == '\n' || character==' '){
+
+                        setText(string.substring(0, string.length()-1));
+
+                    }else{
+                        setText(tagItemEditText.getText().toString());
+                    }
+
                     tagItemEditText.setVisibility(GONE);
                     tagItemTextView.setVisibility(VISIBLE);
                 }
+            }
+        });
+        tagItemEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0){
+                    return;
+                }
+                char character = s.charAt(start+count-1);
+                if(character == '\n' || character==' '){
+                    String string = tagItemEditText.getText().toString();
+                    
+                    setText(string.substring(0, string.length()-1));
+                    tagItemEditText.setVisibility(GONE);
+                    tagItemTextView.setVisibility(VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         tagItemTextView = findViewById(R.id.tag_item_text_view);

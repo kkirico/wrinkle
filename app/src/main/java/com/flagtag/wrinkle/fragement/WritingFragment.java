@@ -192,7 +192,7 @@ public class WritingFragment extends Fragment {
 
         writing_content_container = rootView.findViewById(R.id.content_container);
         writing = new WritingTextView(activity);
-        writing.setMinLines(4);
+        writing.setMinLines(7);
         writing.setOnFocusChangeListener(focusChangeListener);
         writing.setHint("무슨 일이 있었나요?");
         writing_content_container.addView(writing);
@@ -390,9 +390,11 @@ public class WritingFragment extends Fragment {
             public void onClick(View v) {
                 TagLayout tagLayout = new TagLayout(getContext());
                 tagLayout.tagItemEditText.requestFocus();
+
+                tagContainer.addView(tagLayout);
+
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(tagLayout.tagItemEditText, InputMethodManager.SHOW_IMPLICIT);
-                tagContainer.addView(tagLayout);
             }
         });
 
