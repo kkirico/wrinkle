@@ -4,4 +4,9 @@
         <attr name="state_on" format="boolean"></attr>
 
     </declare-styleable>
+    
+    
+    <declare-styleable name="tag_layout">
+        <attr name="text" format="string"></attr>
+    </declare-styleable>
 </resources>
