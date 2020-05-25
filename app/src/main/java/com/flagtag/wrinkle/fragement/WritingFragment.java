@@ -45,6 +45,7 @@ import android.widget.Toast;
 import com.flagtag.wrinkle.MemberInfo;
 import com.flagtag.wrinkle.R;
 import com.flagtag.wrinkle.PostInfo;
+import com.flagtag.wrinkle.TagLayout;
 import com.flagtag.wrinkle.activity.UserSelectActivity;
 import com.flagtag.wrinkle.adapter.TaggedUserAdapter;
 import com.flagtag.wrinkle.view.WritingImageView;
@@ -62,6 +63,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.nex3z.flowlayout.FlowLayout;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -138,6 +140,8 @@ public class WritingFragment extends Fragment {
     NumberPicker monthPicker;
     NumberPicker dayPicker;
     NumberPicker seasonPicker;
+
+    FlowLayout tagContainer;
 
     TextWatcher textWatcher;
     public WritingFragment() {
@@ -377,6 +381,18 @@ public class WritingFragment extends Fragment {
 
                 }
                 return false;
+            }
+        });
+
+        tagContainer = rootView.findViewById(R.id.tags_container);
+        tagContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TagLayout tagLayout = new TagLayout(getContext());
+                tagLayout.tagItemEditText.requestFocus();
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(tagLayout.tagItemEditText, InputMethodManager.SHOW_IMPLICIT);
+                tagContainer.addView(tagLayout);
             }
         });
 
