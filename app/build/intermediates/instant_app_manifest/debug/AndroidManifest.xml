@@ -8,15 +8,12 @@
     <uses-sdk
         android:minSdkVersion="28"
         android:targetSdkVersion="27" />
-
     <!-- 인터넷 권한 선언 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 카메라 권한 선언 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라 권한 선언 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!-- 핸드폰 스토리지에 접근하는 권한 선언 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 핸드폰 스토리지에 접근하는 권한 선언 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,9 +32,12 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.flagtag.wrinkle.activity.MainActivity" >
+        <activity android:name="com.flagtag.wrinkle.activity.UserSelectActivity" >
 
             <!-- 인텐트 필터로 첫 실행 액티비티 선정 -->
+
+        </activity>
+        <activity android:name="com.flagtag.wrinkle.activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,8 +54,7 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name="com.flagtag.wrinkle.activity.googleLoginActivity" >
-        </activity>
+        <activity android:name="com.flagtag.wrinkle.activity.googleLoginActivity" />
         <activity android:name="com.flagtag.wrinkle.activity.LoginActivity" />
         <activity android:name="com.flagtag.wrinkle.activity.PasswordResetActivity" />
         <activity android:name="com.flagtag.wrinkle.activity.MemberActivity" />
