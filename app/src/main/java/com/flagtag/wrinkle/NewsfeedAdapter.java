@@ -2,19 +2,33 @@ package com.flagtag.wrinkle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.MotionEventCompat;
+import androidx.customview.widget.ViewDragHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.activity.MainActivity;
+import com.flagtag.wrinkle.activity.SinglefeedActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,9 +69,10 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
     }
 
 
+
     //position번째 item에 해당하는 데이터를 뷰홀더의 item view에 표시
     @Override
-    public void onBindViewHolder(@NonNull NewsfeedViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NewsfeedViewHolder holder, int position) {
 
         //position번째 아이템을 arrayList에서 가져옴
         PostInfo item = items.get(position);
@@ -85,12 +100,6 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
         //생일 날짜구하기
 
-        MemberInfo memberInfo = MemberInfo.getInstance();
-        String name = memberInfo.getName();
-        String birthDay = memberInfo.getBirthDay();
-        String profilePicture = memberInfo.getPhotoUrl();
-
-
         double a =(((double)dateOfMemoryTimeStamp-birthdayTimeStamp)/(todayTimeStamp-birthdayTimeStamp))*100;
         holder.time_bar.setProgress((int)a);
 
@@ -104,15 +113,12 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
                 return true;
             }
         });
-/*
-        holder.singlefeed_button.OnClickListener{
 
-            Intent intent = new Intent(v.getContext(), NewActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            v.getContext().startActivity(intent);
+        View view = holder.time_bar;
+        ImageButton singlefeed_button = holder.singlefeed_button;
 
-        }
-*/
+
+
 
  /*
 
@@ -131,8 +137,33 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //날짜
 
         holder.writing_date.setText(format.format(item.getCreatedAt()));
-        holder.publisher_id.setText(memberInfo.getName());
-        Glide.with(holder.time_bar.getContext()).load(memberInfo.getPhotoUrl()).into(holder.publisher_pic);
+
+
+        String publisher_id = item.getPublisher();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("users").document(publisher_id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String pid = document.getData().get("name").toString();
+                        String pUrl = document.getData().get("photoUrl").toString();
+
+                        holder.publisher_id.setText(pid);
+                        Glide.with(holder.time_bar.getContext()).load(pUrl).into(holder.publisher_pic);
+                    } else {
+                    }
+                } else {
+                }
+            }
+        });
+
+
+
 
 
         ArrayList<String> imageUrls = new ArrayList<>();
@@ -189,6 +220,8 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         //동적으로 넣을 것들은 새로 생성해서 넣어줘야함.
         */
     }
+
+
 
     @Override
     public int getItemCount() {
