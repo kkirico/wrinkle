@@ -81,7 +81,7 @@ public class TagLayout extends LinearLayout {
                 char character = s.charAt(start+count-1);
                 if(character == '\n' || character==' '){
                     String string = tagItemEditText.getText().toString();
-                    
+
                     setText(string.substring(0, string.length()-1));
                     tagItemEditText.setVisibility(GONE);
                     tagItemTextView.setVisibility(VISIBLE);

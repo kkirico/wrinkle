@@ -4,6 +4,7 @@ package com.flagtag.wrinkle.fragement;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -12,10 +13,14 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.OverScroller;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,199 +39,99 @@ import static android.graphics.Typeface.NORMAL;
  */
 public class NotificationFragment extends Fragment {
 
-    SmartEditText text;
-    TextView textView;
+    TextView textView1;
+    TextView textView2;
+    TextView textView3;
+    ConstraintLayout constraintLayout;
     Button button;
-    Button newSpanButton;
-    Button flagButton;
-    Editable editable;
-    boolean flag = false;
+    GestureDetector mDetector;
 
+    ScrollView scrollView;
+    OverScroller overScroller; //스크롤
 
-    public NotificationFragment() {
-        // Required empty public constructor
-    }
+    Boolean visible = false;
 
+    ConstraintLayout.LayoutParams layoutParamsLong;
+    ConstraintLayout.LayoutParams layoutParamsShort;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_notification, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_notification, container, false);
 
-        //button 가져오기
-        button = (Button) rootView.findViewById(R.id.aButton);
-        newSpanButton = (Button) rootView.findViewById(R.id.newSpanButton);
-        flagButton = (Button)rootView.findViewById(R.id.flagButton) ;
-        textView = (TextView)rootView.findViewById(R.id.textView);
+        constraintLayout = rootView.findViewById(R.id.aa);
+        textView1 = rootView.findViewById(R.id.text1);
+        textView2 = rootView.findViewById(R.id.text2);
+        textView3 = rootView.findViewById(R.id.text3);
 
-        flagButton.setOnClickListener(new View.OnClickListener() {
+        scrollView = rootView.findViewById(R.id.scrollView);
+
+        layoutParamsLong = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,500);
+        layoutParamsShort = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,300);
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-
-
-
-
+            public boolean onTouch(View v, MotionEvent event) {
+                mDetector.onTouchEvent(event);
+                return true;
             }
         });
 
-        //start와 end 위치를 띄워주는 버튼
-        button.setOnClickListener(new View.OnClickListener() {
+        mDetector = new GestureDetector(getContext(), new GestureDetector.OnGestureListener() {
             @Override
-            public void onClick(View v) {
-                int start;
-                int end;
-                String string = "";
-
-                StyleSpan[] styleSpans = editable.getSpans(0, editable.length(),StyleSpan.class);
-
-
-                //Toast.makeText(getContext(), styleSpans.length, Toast.LENGTH_SHORT).show();
-                for(StyleSpan span: styleSpans){
-                    start= editable.getSpanStart(span);
-                    end = editable.getSpanEnd(span);
-                    string = string.concat("\nstart : "+Integer.toString(start)+", end : " + Integer.toString(end));
-
-                }
-                textView.setText("\n"+string);
+            public boolean onDown(MotionEvent e) {
+                return false;
             }
-        });
 
-        newSpanButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                editable.append("\n잇잇잇잇잇");
-
-
-            }
-        });
-
-        //editText 가져오기
-        text = (SmartEditText) rootView.findViewById(R.id.editText);
-        //text 글자 주기
-        text.setText("가나다라마바사아자차카타파하");
-        editable = text.getEditableText();
-
-
-        //가나다라를 굵게 start: 0 , end : 4
-        editable.setSpan(new StyleSpan(BOLD),0, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        editable.setSpan(new StyleSpan(NORMAL),5, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        //자차카타를 빨간색으로 start : 8, end : 12
-        editable.setSpan(new StyleSpan(BOLD),8, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
-
-
-        text.addTextChangedListener(new TextWatcher() {
-
-            int lastCursor, curCursor;
-            StyleSpan inclusive;
-            StyleSpan[] styleSpans ;
-            ArrayList<SpanInfo> spanInfoArr = new ArrayList<>();
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                lastCursor = text.getSelectionStart();
-
-                styleSpans = editable.getSpans(0, editable.length(), StyleSpan.class);
-                spanInfoArr.clear();
-                for(StyleSpan span : styleSpans){
-                    int spanStart = editable.getSpanStart(span);
-                    int spanEnd = editable.getSpanEnd(span);
-                    int style = span.getStyle();
-                    if(editable.getSpanFlags(span) != Spanned.SPAN_EXCLUSIVE_EXCLUSIVE){
-                        inclusive = span;
-                    }
-                    spanInfoArr.add(new SpanInfo(style,spanStart, spanEnd));
-                }
+            public void onShowPress(MotionEvent e) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public boolean onSingleTapUp(MotionEvent e) {
+                return false;
+            }
 
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                if(visible == true &&distanceY > 0){
+
+                    textView2.setVisibility(View.GONE);
+                    textView3.setVisibility(View.GONE);
+                    visible = false;
+                    constraintLayout.setLayoutParams(layoutParamsShort);
+                }
+                startToast("onscroll"+String.valueOf(distanceY));
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
 
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                boolean isCusorInSpan = false;
-                curCursor = text.getSelectionStart();
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                //startToast("onFling"+String.valueOf(velocityY));
+                if(visible == false && velocityY < 0) {
 
-                if(inclusive != null){
-                    editable.removeSpan(inclusive);
-                    inclusive = null;
+                    textView2.setVisibility(View.VISIBLE);
+                    textView3.setVisibility(View.VISIBLE);
+                    visible = true;
+                    constraintLayout.setLayoutParams(layoutParamsLong);
                 }
-
-
-                StyleSpan[] styleSpans = editable.getSpans(0, editable.length(),StyleSpan.class);
-                for(SpanInfo spanInfo: spanInfoArr){
-                    if(spanInfo.getStart()<=lastCursor &&spanInfo.getEnd()>=lastCursor){
-                        isCusorInSpan = true;
-                    }
-                    //if(spanInfo.getStart()<=cur)
-                    editable.setSpan(new StyleSpan(spanInfo.getStyle()), spanInfo.getStart(), spanInfo.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-                if(curCursor == lastCursor+1 && isCusorInSpan==false){
-                    editable.setSpan(new StyleSpan(BOLD), lastCursor, curCursor, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                }
-
-
-                startToast("lastCursor:" + Integer.toString(lastCursor) + "curCursor" +Integer.toString(curCursor));
+                    return false;
 
             }
         });
-
 
 
         return rootView;
-
-
     }
 
-    class SpanInfo{
-        int style;
-        int start;
-        int end;
-
-        public SpanInfo(int style, int start, int end) {
-            this.style = style;
-            this.start = start;
-            this.end = end;
-        }
-
-        public int getStyle() {
-            return style;
-        }
-
-        public int getStart() {
-            return start;
-        }
-
-        public int getEnd() {
-            return end;
-        }
+    public void startToast(String text){
+        Toast.makeText(getContext(),text,Toast.LENGTH_SHORT).show();
     }
-
-
-
-    //프래그먼트가 액티비티에 올라올 때 호출되는 함수
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
-
-    //프래그먼트가 액티비티에서 사라질 때 호출되는 함수
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-    }
-
-    private void startToast(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-
-    }
-
 }
