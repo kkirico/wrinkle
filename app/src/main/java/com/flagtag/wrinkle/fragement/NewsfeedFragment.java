@@ -26,8 +26,6 @@ import android.widget.Toast;
 import com.flagtag.wrinkle.NewsfeedAdapter;
 import com.flagtag.wrinkle.PostInfo;
 import com.flagtag.wrinkle.R;
-import com.flagtag.wrinkle.activity.MainActivity;
-import com.flagtag.wrinkle.activity.SinglefeedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,8 +38,6 @@ import java.util.Date;
 public class NewsfeedFragment extends Fragment implements GestureDetector.OnGestureListener {
 
     private static final String TAG = "오";
-    private static final String DEBUG_TAG = "scroll detect";
-    View view;
     NewsfeedAdapter newsfeedAdapter;
     ViewPager2 viewPager2;
 
@@ -50,57 +46,18 @@ public class NewsfeedFragment extends Fragment implements GestureDetector.OnGest
     }
 
 
-
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_newsfeed, container, false);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false);
-
-        newsfeedAdapter = new NewsfeedAdapter();
-
+        newsfeedAdapter = new NewsfeedAdapter(getActivity());
         viewPager2 = rootView.findViewById(R.id.viewPager);
         viewPager2.setAdapter(newsfeedAdapter);
 
 
-
-        viewPager2.setOnTouchListener(new MainActivity.OnSwipeTouchListener(viewPager2.getContext()){
-            public void onSwipeTop() {
-                Toast.makeText(viewPager2.getContext(), "top", Toast.LENGTH_SHORT).show();
-            }
-            public void onSwipeRight() {
-                Toast.makeText(viewPager2.getContext(), "right", Toast.LENGTH_SHORT).show();
-            }
-            public void onSwipeLeft() {
-                Toast.makeText(viewPager2.getContext(), "left", Toast.LENGTH_SHORT).show();
-            }
-            public void onSwipeBottom() {
-                Toast.makeText(viewPager2.getContext(), "bottom", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        viewPager2.setOnScrollChangeListener(new ViewPager.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Intent intent = new Intent(getActivity(), SinglefeedActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
-
-//        Toolbar toolbar = rootView.findViewById(R.id.newsfeed_toolbar);
-        MainActivity mainActivity = (MainActivity) getActivity();
-  //      mainActivity.setSupportActionBar(toolbar);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-
         db.collection("posts").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -131,8 +88,6 @@ public class NewsfeedFragment extends Fragment implements GestureDetector.OnGest
 
 //리싸이클러 뷰 초기화
         return rootView;
-
-
     }
 
 
