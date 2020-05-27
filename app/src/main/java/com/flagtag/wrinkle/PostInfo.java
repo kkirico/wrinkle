@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PostInfo {
+public class PostInfo extends ArrayList<String> {
     private static final String TAG ="오류" ;
     Date writingDate;
     ArrayList<String> tags;
@@ -32,14 +32,6 @@ public class PostInfo {
     private String dateOfMemory;
     private String birthdayOfPublisher;
     ArrayList<String> taggedUsers;
-    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
-        this.title = title;
-        this.contents = contents ;
-        this.publisher = publisher;
-        this.createdAt = createdAt;
-    }
-
-
     public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, String dateOfMemory, String birthdayOfPublisher){
         this.title = title;
         this.contents = contents ;
@@ -48,67 +40,6 @@ public class PostInfo {
         this.dateOfMemory = dateOfMemory;
         this.birthdayOfPublisher = birthdayOfPublisher;
     }
-    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, String dateOfMemory, String birthdayOfPublisher, ArrayList<String> taggedUsers){
-        this.title = title;
-        this.contents = contents ;
-        this.publisher = publisher;
-        this.createdAt = createdAt;
-        this.dateOfMemory = dateOfMemory;
-        this.birthdayOfPublisher = birthdayOfPublisher;
-        this.taggedUsers = taggedUsers;
-    }
-/*
-    public PostInfo() {
-        taggedUsers = new ArrayList<User>();
-        taggedUsers.add(new User());
-        writer = new User();
-        postNumber = 1;
-        title = "title";
-        writingDate = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            realDate = dateFormat.parse("2010-01-29");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        imageUrls = new ArrayList<>();
-        imageUrls.add("https://ssl.pstatic.net/mimgnews/image/312/2020/03/02/0000437912_001_20200302180211645.jpg?type=w540");
-        imageUrls.add("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png");
-        imageUrls.add("https://mimgnews.pstatic.net/image/117/2020/03/02/202003021714361802_1_20200302174409099.jpg?type=w540");
-        contentWriting = "contents.....";
-        tags = new ArrayList<>();
-        tags.add("tag1");
-    }
-*/
-    /*
-        ==========================================================
-        Getter와 Setter
-
-
-
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public void setComments(int comments) {
-        this.comments = comments;
-    }*/
     //getter and setter
     public String getTitle(){
         return this.title;

@@ -1,5 +1,6 @@
 package com.flagtag.wrinkle;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
@@ -13,11 +14,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.MotionEventCompat;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.flagtag.wrinkle.activity.MainActivity;
@@ -43,9 +47,11 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
     //뉴스피드에 각각의 아이템의 데이터를 가지고 있는 arrayList
     private ArrayList<PostInfo> items;
     LinearLayout contents;
+    Activity activity;
 
-    public NewsfeedAdapter() {
-        this.items = new ArrayList<>();;
+    public NewsfeedAdapter(Activity activity) {
+        this.items = new ArrayList<>();
+        this.activity = activity;
     }
 
     public NewsfeedAdapter(ArrayList<PostInfo> postList) {
@@ -72,10 +78,10 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
 
     //position번째 item에 해당하는 데이터를 뷰홀더의 item view에 표시
     @Override
-    public void onBindViewHolder(@NonNull final NewsfeedViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NewsfeedViewHolder holder, final int position) {
 
         //position번째 아이템을 arrayList에서 가져옴
-        PostInfo item = items.get(position);
+        final PostInfo item = items.get(position);
 
         //타임바 부분
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
@@ -88,8 +94,8 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         long todayTimeStamp=0;
         long birthdayTimeStamp=0;
         long dateOfMemoryTimeStamp=0;
-        String birthdayOfPublisher = item.getBirthdayOfPublisher();
-        String dateOfMemory = item.getDateOfMemory();
+        final String birthdayOfPublisher = item.getBirthdayOfPublisher();
+        final String dateOfMemory = item.getDateOfMemory();
         try {
             todayTimeStamp = format.parse(todayDate).getTime()/(60*60*24*1000);
             birthdayTimeStamp = format.parse(birthdayOfPublisher).getTime()/(60*60*24*1000);
@@ -117,6 +123,35 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
         View view = holder.time_bar;
         ImageButton singlefeed_button = holder.singlefeed_button;
 
+        final String title = item.title;
+        final String writingDate = format.format(item.getCreatedAt());
+        //title
+        holder.title.setText(title);
+        //날짜
+
+        holder.writing_date.setText(writingDate);
+
+        final ArrayList<String> contentList = item.getContents();
+
+        final String publisher_id = item.getPublisher();
+
+        singlefeed_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.comments.getContext(), SinglefeedActivity.class);
+                intent.putExtra("title",title);
+                intent.putExtra("writingDate",writingDate);
+                intent.putStringArrayListExtra("contentList",contentList);
+                intent.putExtra("pid",publisher_id);
+                intent.putExtra("birthdayOfPublisher",birthdayOfPublisher);
+                intent.putExtra("dateOfMemory",dateOfMemory);
+
+
+
+                holder.comments.getContext().startActivity(intent);
+            }
+        });
+
 
 
 
@@ -132,14 +167,7 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT,1));
             holder.tagged_user_container.addView(button,new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
         }*/
-        //title
-        holder.title.setText(item.title);
-        //날짜
 
-        holder.writing_date.setText(format.format(item.getCreatedAt()));
-
-
-        String publisher_id = item.getPublisher();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -162,18 +190,43 @@ public class NewsfeedAdapter extends RecyclerView.Adapter<NewsfeedViewHolder> {
             }
         });
 
+/*
+
+        holder.content_container.setOnScrollChangeListener(new ConstraintLayout.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Intent intent = new Intent(holder.comments.getContext(), SinglefeedActivity.class);
+                activity.startActivity(intent);
+            }
+
+        });
+        */
+
+
+        holder.content_container.setOnTouchListener(new MainActivity.OnSwipeTouchListener(holder.content_container.getContext()){
+            public void onSwipeTop() {
+                Toast.makeText(holder.content_container.getContext(), "top", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeRight() {
+                Toast.makeText(holder.content_container.getContext(), "right", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeLeft() {
+                Toast.makeText(holder.content_container.getContext(), "left", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeBottom() {
+                Toast.makeText(holder.content_container.getContext(), "bottom", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
 
 
 
         ArrayList<String> imageUrls = new ArrayList<>();
         ArrayList<String> texts = new ArrayList<>();
-        int countImages=0;
-        int countVideos= 0;
-        int countTexts=0;
         String firstText = "";
         //이미지 (뷰페이저 부분)
-        ArrayList<String> contentList = item.getContents();
         for(int i =0; i<contentList.size(); i++) {
             String contents = contentList.get(i);
             String[] type = contents.split("\\.");

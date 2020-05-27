@@ -1,17 +1,12 @@
 package com.flagtag.wrinkle.fragement;
 
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,7 +19,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,7 +28,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -51,7 +44,6 @@ import com.flagtag.wrinkle.adapter.TaggedUserAdapter;
 import com.flagtag.wrinkle.view.WritingImageView;
 import com.flagtag.wrinkle.activity.MainActivity;
 import com.flagtag.wrinkle.view.WritingTextView;
-import com.flagtag.wrinkle.view.WritingVideoView;
 import com.flagtag.wrinkle.view.WritingView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -69,7 +61,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -159,7 +150,7 @@ public class WritingFragment extends Fragment {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
         rootView.findViewById(R.id.check).setOnClickListener(onClickListener);
-        titleEditText = rootView.findViewById(R.id.title);
+        titleEditText = rootView.findViewById(R.id.titleSF);
         //contentEditText = rootView.findViewById(R.id.contentEditText);
 
         //addtaggedUserButton

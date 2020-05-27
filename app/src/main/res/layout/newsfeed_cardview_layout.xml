@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@id/titleSF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tagged_users_container">
@@ -94,7 +94,7 @@
         </HorizontalScrollView>
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titleSF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text='"제목은 제목"'
@@ -116,7 +116,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/titleSF"
             app:layout_constraintVertical_weight="0" />
 
         <androidx.appcompat.widget.AppCompatImageView
